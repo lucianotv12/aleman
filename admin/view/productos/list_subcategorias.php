@@ -12,7 +12,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">CATEGORIAS</h4>
+                            <h4 class="panel-title">SUBCATEGORIAS</h4>
                         </div>
                         <div class="alert alert-warning fade in">
                             <button type="button" class="close" data-dismiss="alert">
@@ -24,11 +24,12 @@
                                 <thead>
 
 
-                                <tr><th colspan="3"><a href="<?php echo HOME?>new_categoria.html">NUEVA CATEGORIA</a></th></tr>
+                                <tr><th colspan="3"><a href="<?php echo HOME?>producto_new.html">NUEVA SUBCATEGORIA</a></th></tr>
 
 								<tr style="color:gray;font-size: 11px">
 								
 									<th>id</th>
+									<th>Cateogira</th>
 									<th>nombre</th>
 									<th>Descripcion</th>
 							        <th>Proveedor</th>
@@ -47,6 +48,7 @@
 								<tr style="color:gray;font-size: 11px">
 								
 									<td><?php echo  $producto["id"]; ?></td>
+									<td><?php echo  $producto["categoria"]; ?></td>
 									<td><?php echo  $producto["nombre"]; ?></td>
 									<td><?php echo  $producto["descripcion"]; ?></td>
 									<td><?php echo  $producto["proveedor_categoria"]; ?></td>
@@ -54,7 +56,7 @@
 							                <td><? if($producto["fechaActualizacion"] == "00/00/0000") echo ""; else echo $producto["fechaActualizacion"]; ?></td>                
 									<td><?if($producto["activo"] == 1) echo "Si";else echo "No"; ?></td>
 
-									<td><a href="<?php echo HOME?>modify_categoria/<?php echo  $producto["id"] ?>/">
+									<td><a href="<?php echo HOME?>modify_subcategoria/<?php echo $producto["id"] ?>/">
 									<i class="fa fa-edit" aria-hidden="true"></i>
 
 									</a></td>

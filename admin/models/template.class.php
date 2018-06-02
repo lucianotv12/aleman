@@ -99,9 +99,18 @@ class Template
                 <span>Productos</span>
               </a>
           </li>
-
- 
-
+          <li class="has-sub">
+            <a href="<?php echo HOME?>list_categorias.html">
+                <i class="fa fa-copyright" aria-hidden="true"></i>
+                <span>Categorias</span>
+              </a>
+          </li>
+           <li class="has-sub">
+            <a href="<?php echo HOME?>list_subcategorias.html">
+                <i class="fa fa-stripe-s" aria-hidden="true"></i>
+                <span>SubCategorias</span>
+              </a>
+          </li>
               <!-- begin sidebar minify button -->
           <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
               <!-- end sidebar minify button -->

@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">IVA</label>
                                     <div class="col-md-9">
-                                        <select name="iva" >
+                                        <select name="iva" class="form-control" >
                                         <option value="21" <?php if($iva == "21") echo"selected";?>>21</option>
                                         <option value="10.5"  <?php if($iva == "10.5") echo"selected";?>>10.5</option>
                                         <option value="0"  <?php if($iva == "0") echo"selected";?>>0</option>
@@ -117,9 +117,10 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Estado</label>
                                     <div class="col-md-9">
-                                        <select name="activo" >
+                                        <select name="activo" class="form-control" >
                                         <option value="1" <?php if($activo == "1") echo"selected";?>>Activo</option>
                                         <option value="0"  <?php if($activo == "0") echo"selected";?>>Desactivado</option>
+                                       </select>
                                     </div>
                                 </div> 
                                 <input type="hidden" name="bulto" value="1">

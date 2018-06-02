@@ -24,7 +24,7 @@
                                 <thead>
 
 
-                                	<tr><th ><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th></tr>
+                                	<tr><th colspan="3"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th></tr>
 
                                     <tr style="font-size: 11px">
 									<th>ID</th>
@@ -36,7 +36,6 @@
 									<th>Fecha</th>
 
 									<th>Editar</th>
-									<th> Replicar</th>
 								  	<?php if(@$_GET["id"]):?>
 										<th>Orden</th>
 									<?php endif;?>		

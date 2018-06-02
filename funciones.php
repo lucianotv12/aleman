@@ -4,7 +4,7 @@
 if("localhost" == $_SERVER['SERVER_NAME'] ):
 	$URL = "http://localhost/aleman/admin";
 	define('ROOT','localhost');
-	define('DATABASE','control_alanis');
+	define('DATABASE','aleman');
 	define('USER','root');
 	define('PASS','');	
 

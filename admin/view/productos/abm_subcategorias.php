@@ -1,100 +1,126 @@
-<?
-session_start();
-include_once("../../funciones.php");
 
-validar_permanencia();
-conectar_bd();
+			    <div class="col-md-12">
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+                        <div class="panel-heading">
+                            <div class="panel-heading-btn">
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                            </div>
+                            <h4 class="panel-title">SUBCATEGORIA : <?php echo @ $nombre?></h4>
+                        </div>
+                        <div class="panel-body">
+  							<?php if($cambio == "new"):?>
+		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_subcategoria.html">
+		  					<?php else:?>
+		  					       <form name="categoria_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>subcategoria_update/<?php echo $_GET['id'];?>/">
+		  					       <input name="id" type="hidden" value="<?php echo $_GET['id'];?>">
 
-?>
-<link rel="stylesheet" type="text/css" href="<?= CSS?>style.css">
-<script language="JavaScript" src="<?=JS?>funciones.js"></script>
-<script type="text/javascript" src="<?=JS?>jquery-1.3.2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?=JS?>fancybox/fancybox/jquery.fancybox-1.3.4.css" media="screen">
-<script type="text/javascript" src="<?=JS?>fancybox/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+                            <?php endif;?>	
+                               <input type="hidden" name="cambio" value="<?php echo $cambio?>">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Nombre</label>
+                                    <div class="col-md-9">
+									<input type="text" class="form-control" name="nombre" value="<?php echo @$nombre?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Descripcion</label>
+                                    <div class="col-md-9">
+                                    <input type="text" class="form-control" name="descripcion" value="<?php echo @$descripcion?>">
+                                    </div>
+                                </div>         
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Dolar</label>
+                                    <div class="col-md-9">
+                                    <input type="number" class="form-control" name="dolar" value="<?php echo @$dolar?>">
+                                    </div>
+                                </div>         
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Estado</label>
+                                    <div class="col-md-9">
+                                        <select name="activo" class="form-control" >
+                                        <option value="1" <?php if($activo == "1") echo"selected";?>>Activo</option>
+                                        <option value="0"  <?php if($activo == "0") echo"selected";?>>Desactivado</option>
+	                                    </select>
+                                    </div>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Proveedor</label>
+                                    <div class="col-md-9">
+					                    <select name="proveedor" class="form-control">                    
+					                        <option value ="0" selected>NINGUNO</option>    
+					                        <?php foreach($proveedores as $proveedor):?>
+					                        <option value="<?php echo $proveedor->id;?>" <?php if($proveedor->id == $idProveedor) echo "selected";?> ><?php echo $proveedor->nombre;?></option>
+					                        
+					                        <?php endforeach;?>    
+					                    </select>   
+                                    </div>
+                                </div>                             
+
+								<div class="form-group">
+                                    <label class="col-md-3 control-label">Accion</label>
+                                    <div class="col-md-9">							
+									<input type="submit" name="submit" class="btn btn-sm btn-success" value="GUARDAR">
+									</div>
+								</div>	
 
 
-<?
-if($_POST["submit"]):
-		Producto::admin_subcategoria($_POST);
-		?>
-		<script language="javascript">
-		parent.jQuery.fancybox.close();
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+            </div>
+            <!-- end row -->
 
-		</script>
-		<?
+		</div>
+		<!-- end #content -->
+		
 
-endif;
-?>
-<div class="contentArea"> 
+	</div>
+	<!-- end page container -->
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="<?php echo ADMIN?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="<?php echo ADMIN?>assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="<?php echo ADMIN?>assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="<?php echo ADMIN?>assets/plugins/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+    <script src="<?php echo ADMIN?>assets/plugins/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
+    <script src="<?php echo ADMIN?>assets/js/form-wysiwyg.demo.min.js"></script>
+    <script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>    
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/js/table-manage-buttons.demo.min.js"></script>
+	<script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	
 
 
-
-<div class="header">
-
-
-<? if($cambio == "nuevo") {?>
-<form name="producto" method="post" >
-<? }else{ ?>
-<form name="producto" method="post" >
-<? } ?>
-<div class="pageTitle">
-<?= $mensaje_cabezera?> <?=$codigo?><br>
-</div>
-<table class="tabla_list" cellpadding=3 cellspacing=3  border="1">
-<input type="hidden" name="id" value="<?= $id?>">
-<input type="hidden" name="idCategoria" value="<?= $idCategoria?>">
-<input type="hidden" name="cambio" value="<?= $cambio?>">
-	<tr>
-		<td class="td_text">Nombre :</td><td class="td_text"><input name="nombre"  type="text" <?= $deshabilitado?> value="<?=$nombre?>" onFocus="foco(this);" onBlur="no_foco(this);"></td>
-	</tr>
-
-	<tr>
-		<td class="td_text">Descripcion:</td><td class="td_area"><textarea name="descripcion" rows="4" cols="60"  <?= $deshabilitado?> onFocus="foco(this);" onBlur="no_foco(this);"><?=$descripcion?></textarea></td>
-	</tr>
-	<tr>
-		<td class="td_text">proveedor :</td><td class="td_text">
-                    <select name="proveedor"  <?= $deshabilitado?> onFocus="foco(this);" onBlur="no_foco(this);">                    
-                        <option value ="0" selected>NINGUNO</option>    
-                        <? 
-                        foreach($proveedores as $proveedor):?>
-                        <option value="<?= $proveedor->id;?>" <?if($proveedor->id == $idProveedor) echo "selected";?> ><?= $proveedor->nombre;?></option>
-                        
-                        <? endforeach;?>    
-                    </select>                        
-		</td>
-	</tr>        
-	<tr>
-		<td class="td_text">Dolar :</td><td class="td_text"><input name="dolar"  type="text" <?= $deshabilitado?> value="<?=$dolar?>" onFocus="foco(this);" onBlur="no_foco(this);"></td>
-	</tr>
-	<tr>
-		<td class="td_text">Activo :</td><td class="td_text">
-		<select name="activo"  <?= $deshabilitado?> onFocus="foco(this);" onBlur="no_foco(this);">
-		<option value="1" <? if($activo == 1) echo"selected";?>>Activo</option>
-		<option value="0"  <? if($activo == 0) echo"selected";?>>No Activo</option>
-		</select>
-		</td>
-	</tr>
-	<tr>
-	<td class="submit" align="center" colspan="10" ><?if($boton== true){?><input type="submit" name="submit" value="GUARDAR" ><? } ?></td>
-	</tr>
-	</table>
-<?// if($gerarquia == true) {?>
-<? if($detalle == true) {?>
-<table class="tabla_list">
-<tr>
-	<td><a href="index.php?accion=modify&id=<?= $producto->get_id() ?>"><img style="display:block;" src="<?= IMGS?>lupa.gif"  border="0"></a></td>
-	<td><a href="index.php?accion=modify&id=<?= $producto->get_id() ?>">Editar</a></td>
-	<td>&nbsp;&nbsp;&nbsp;</td>
-<!--	< ?if($producto->get_id_tipo() != 1){ ?> -->
-	<td><a href="javaScript:pregunta('<?= $producto->get_id()?>', 'Producto :')"><img style="display:block;" src="<?= IMGS?>eliminar.png"  border="0"></a></td>
-	<td><a href="javaScript:pregunta('<?= $producto->get_id()?>', 'Producto :')">Eliminar</a></td>
-<!--	< ? } ?> -->
-</tr>
-
-</table>
-<? }?>
-<?// }?>
-	</form>
-</div>
-</div>
-
+</body>
+</html>

@@ -522,10 +522,11 @@ class Producto
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("Select PS.*,DATE_FORMAT(PS.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion, C.nombre as proveedor_subcategoria
+		$sql = $conn->prepare("SELECT PS.*,DATE_FORMAT(PS.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion, C.nombre as proveedor_subcategoria, PC.nombre as categoria
                                   FROM productos_subcategorias as PS
                                   left join proveedores_subcategorias as PR on PS.id = PR.idSubCategoria 
                                   left join clientes as C ON C.id = PR.idProveedor 
+                                  INNER JOIN productos_categorias AS PC ON PC.id = PS.idCategoria
                                   where 1 $whereclause2 order by PS.id ");
 		$sql->execute();
     	$resultado = $sql->fetchAll();
@@ -570,24 +571,23 @@ class Producto
 	$activo = $paramentros['activo'];	
 	$cambio= $paramentros['cambio'];	
         $proveedor = $paramentros['proveedor'];
+		$conn = new Conexion();
         
 		if($cambio == "nuevo"):
-			
-			$conn = new Conexion();
 
-			$sql = $conn->prepare("insert into productos_subcategorias values('','$idCategoria','$nombre','$descripcion','$activo', '$dolar',CURDATE())");
+			$sql = $conn->prepare("INSERT into productos_subcategorias values('','$idCategoria','$nombre','$descripcion','$activo', '$dolar',CURDATE())");
 			$sql->execute();	
 			$insert = $conn->lastInsertId();
 
             if($proveedor != 0): 
-                $sql = $conn->prepare("insert into proveedores_subcategorias values('$proveedor','$insert')");
+                $sql = $conn->prepare("INSERT into proveedores_subcategorias values('$proveedor','$insert')");
 				$sql->execute();
             endif;                        
                         
 		elseif($cambio == "modificar"):
+
 			$sql = $conn->prepare("UPDATE productos_subcategorias set nombre = '$nombre', descripcion = '$descripcion', activo = '$activo', dolar = '$dolar' where id = '$idSub'");
 			$sql->execute();	
-
             $sql = $conn->prepare("delete from proveedores_subcategorias where idSubCategoria ='$idSub'");    
             $sql->execute();
             $sql = $conn->prepare("insert into proveedores_subcategorias values('$proveedor','$idSub')");
