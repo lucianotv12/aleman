@@ -88,6 +88,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Condición IVA</label>
                                     <div class="col-md-9">
+                                        <select name="condicion_iva" class="form-control">
                                         <option value="0" >Seleccione...</option>       
                                         <option value="Responsable Inscripto" <?if($condicion_iva == "Responsable Inscripto") echo"selected"; ?> >Responsable Inscripto</option>
                                         <option value="Monotributista" <?if($condicion_iva == "Monotributista") echo"selected"; ?>>Monotributista</option>

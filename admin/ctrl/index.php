@@ -444,7 +444,7 @@ switch($accion):
 #				include($template->get_vista_url ("CLIENTE/panel/navegador.php"));
 				$mensaje_cabezera = "ALTA DEL CLIENTE";
 				$boton=true;
-				$cambio = "nuevo";
+				$cambio = "new";
 				$provincias = Cliente::get_provincias();
 				$vendedores = Cliente::get_vendedores();
 				$deshabilitado = "";
@@ -469,7 +469,7 @@ switch($accion):
 
 			//	$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
 				Template::draw_header(2);
-					include("../../view/clientes/abm.php");
+					include("../view/clientes/cliente_abm.php");
 #				$template->draw_footer();
 				}
 				break;
@@ -530,20 +530,15 @@ switch($accion):
 				
 	case "cliente_insert":
 				{
+				//	ECHO "MMMMMM";DIE;
 						$Cliente = new Cliente;
 						$Cliente->nuevo_cliente($_POST,1);
 					//ingreso un registro en el log
 					$hoy = date("Y-m-d G:i:s"); 
 					$texto = "Alta nuevo Cliente ";
-	//				mysql_query("insert into log values(null,".$_Cliente->get_idCliente().",'".$texto."', '".$hoy."')");
-//					header("Location: index.php");								
-#					$_SESSION["usuario"] = serialize($usuario);
-                             ?>                         
-                             <script language="javascript">
-                             parent.jQuery.fancybox.close();
+			     	echo '<script type="text/javascript">window.location.assign("clientes.html");</script>'; 
+					header('Location:' . HOME . 'clientes.html');
 
-                             </script>                                        
-                             <?	 
 				}
 				break;
 				
@@ -573,23 +568,59 @@ switch($accion):
 					//ingreso un registro en el log
 					$hoy = date("Y-m-d G:i:s"); 
 					$texto = "Modificacion Cliente ".$_GET["id"];
-//					mysql_query("insert into log values(null,".$_Cliente->get_id().",'".$texto."', '".$hoy."')");
-
-					//	if($Cliente->get_id_tipo() != 1 ){
-//						header("Location: index.php");
-					//	}else{
-					//	header("Location: index.php?accion=detail&id=".$_Cliente->idCliente);
-					//	}
-                                    ?>                         
-                                    <script language="javascript">
-                                    parent.jQuery.fancybox.close();
-
-                                    </script>                                        
-                                    <?	                                         
+			     	echo '<script type="text/javascript">window.location.assign("clientes.html");</script>'; 
+					header('Location:' . HOME . 'clientes.html');                                    
 				}
 				break;
 
-				
+/*PROVEEDORES*/				
+
+	case "proveedores" :
+				{				
+				if(!isset($_GET["start"])){		
+				$start = 0;
+				}else{
+				$start = $_GET["start"];
+				}
+				$end = 10000 ; 
+
+				if($_GET["buscador"]== "DEUDORES")
+					{
+					$clientes = Cliente::get_clientes_deudores();				
+					}
+				else
+					{
+					if($_GET["buscador"]== "TODOS") 
+					{
+					$_POST["buscador"] = ""; 
+					$_GET["buscador"] = "";
+					}
+					if($_POST["buscador"] != "")$_GET["buscador"] = $_POST["buscador"]; 
+					$clientes = Cliente::get_clientes($start,$end,2,$_GET["buscador"]);	
+					}	
+			
+#				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);				
+#				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
+				$total_clientes = Cliente::total_clientes();
+				Template::draw_header();
+//				include("../../view/clientes/list.php");
+				include("../view/clientes/clientes.php");
+
+				#				$template->draw_footer();	
+				}
+				break;
+
+	case "modelo_factura":
+		{
+				Template::draw_header();
+				include("../view/facturacion/modelo_factura.php");
+
+
+		}			
+
+
+/*PROVEEDORES*/
+
 	case "nueva_factura":
 				{
 

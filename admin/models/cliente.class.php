@@ -71,6 +71,7 @@ class Cliente
 			{
 			$sql = $conn->prepare("insert into clientes values (null, '$this->idTipo', '$this->nombre', '$this->domicilio', '$this->idLocalidad', '$this->idProvincia', '$this->pais', '$this->cp', '$this->telefono', '$this->telefono2', '$this->contacto', '$this->mail', '$this->web', '$this->fechaCarga', '$this->idUsuario', '$this->activo','$this->observaciones','$this->idVendedor','$this->descuento','$this->nro_cuit', '$this->condicion_iva')"); 
 			$sql->execute();
+		//	print_r($sql);DIE;
 			$this->id = $conn->lastInsertId();
 			}
 		$sql=null;

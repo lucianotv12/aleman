@@ -32,13 +32,9 @@
 									<th>Telefono</th>
 									<th>Email</th>
 									<th>Estado</th>
-									<th>+ Info</th>
-									<th>Borrar</th>
-
 									<th>Editar</th>
-								  	<?php if(@$_GET["id"]):?>
-										<th>Orden</th>
-									<?php endif;?>		
+									<th>Borrar</th>
+	
 
                                     </tr>
                                 </thead>
@@ -54,13 +50,15 @@
 											<td><?php echo $cliente->get_telefono();?></td>
 											<td><?php echo $cliente->get_mail();?></td>
 											<td><?php echo $cliente_deudor = Factura::get_cliente_deudor($cliente->get_id());?></td>
-											<td>dsadsa</td>
-											<td>dsadsada</td>
 												
 
-											<td><a href="<?php echo HOME?>cliente_modify/<?php echo $cliente->get_id();?>/">Ver mas</td>
+											<td><a href="<?php echo HOME?>cliente_modify/<?php echo $cliente->get_id();?>/">
+											<i class="fa fa-edit" aria-hidden="true"></i>
+											</a></td>
 											
-
+											<td align="center"><a href="javaScript:pregunta('<?php echo  $producto["id"]?>','Categoria','delete_categoria')">
+											<i class="fa fa-trash" aria-hidden="true"></i>									
+											</a></td>
 
 											</form>										
 										</tr>
