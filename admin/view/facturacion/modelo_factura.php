@@ -51,48 +51,35 @@
                         </div>
                     </div>   
                     <div class="" id="seleccionado" style="background: #5DBD90;padding: 20px; color: white;display: none;">
-                        <span >ID: <label style="color: white" id="idproducto"></label></span> &nbsp;&nbsp;-&nbsp;&nbsp;
-                        <span >Nombre: <label style="color: white" id="detalle_producto"></label></span>&nbsp;&nbsp;-&nbsp;&nbsp;
-                        <span >Precio: <label style="color: white" id="precio_producto"></label></span>
-                        <p> Cantidad <input type="number" name="cantidad" value="1" id="cantidad" style="color: black">&nbsp;&nbsp;-&nbsp;&nbsp; Descuento <input type="number" name="descuento" value="0" id="descuento"  style="color: black">
+                        <input type="hidden" name="idproducto" id="idproducto">
+                        <input type="hidden" name="detalle_producto" id="detalle_producto">
+                        <input type="hidden" name="precio_producto" id="precio_producto">
+                        <span >ID: <label style="color: white" id="idproducto_muestra"></label></span> &nbsp;&nbsp;-&nbsp;&nbsp;
+                        <span >Nombre: <label style="color: white" id="detalle_producto_muestra"></label></span>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <span >Precio: <label style="color: white" id="precio_producto_muestra"></label></span>
+                        <p> Cantidad <input type="number" name="cantidad" value="1" id="cantidad" style="color: black">&nbsp;&nbsp;-&nbsp;&nbsp; Descuento <input type="number" name="descuento_producto" value="0" id="descuento_producto"  style="color: black">&nbsp;&nbsp;-&nbsp;&nbsp;
+                            <a href="#" onclick="addTemporal()" style="background: gray; color: white; padding: 5px">
+                                Agregar
+                                <i class="fa fa-chevron-circle-right"></i>
 
+                            </a>
                         </p>
                     </div>
                 <div class="invoice-content">
 
 
                     <div class="table-responsive">
-                        <table class="table table-invoice">
-                            <thead>
-                                <tr>
-                                    <th>DESCRIPCION</th>
-                                    <th>PRECIO UNITARIO</th>
+                        <table id="mitabla" class="table table-invoice" >
+                                <tr id="0">
+                                    <th>Cant.</th>
+                                    <th>Art.</th>
+                                    <th>Detalle</th>
+                                    <th>P/unitario</th>
+                                    <th>Desc.</th>
+                                    <th>Importe</th>
+                                    <th></th>
+                                </tr>
 
-                                    <th>TOTAL PRODUCTO</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Placa Durlook
-                                        <br />
-                                        <small>placa durlock 9 x 3</small>
-                                    </td>
-                                    <td>$50.00</td>
-                                    <td>$150.00</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        TALADRO DEWALT<br />
-                                        <small>TALADRO DEWALT DWD 014 / 10 MM - 550W- V.V.R- 0 A 2800 RPM.	</small>
-                                    </td>
-                                    <td>$4230.00</td>
-                                    
-                                    <td>$4,230.00</td>
-                                </tr>
-                                <tr><td></td><td></td><td></td></tr>
-                                <tr><td></td><td></td><td></td></tr>
-                                <tr><td></td><td></td><td></td></tr>
-                            </tbody>
                         </table>
                     </div>
                     <div class="invoice-price">
@@ -165,17 +152,100 @@ var handleJqueryAutocomplete = function() {
             $('#jquery-autocomplete').autocomplete({
             source:"<?php echo VIEW?>facturacion/ajax.php",
             select: function(event, ui){
-                 $("#idproducto").html(ui.item.id);
-                 $("#detalle_producto").html(ui.item.descripcion);
-                 $("#precio_producto").html(ui.item.precio); 
+                 $("#idproducto_muestra").html(ui.item.id);
+                 $("#detalle_producto_muestra").html(ui.item.descripcion);
+                 $("#precio_producto_muestra").html(ui.item.precio); 
+                 $("#idproducto").val(ui.item.id);
+                 $("#detalle_producto").val(ui.item.descripcion);
+                 $("#precio_producto").val(ui.item.precio);                  
                  $("#seleccionado").css("display", "block");            
                  $("#cantidad").val("1");            
                  $("#descuento").val("0");            
+                 $("#mitabla").css("display", "block");
             //AGREGAR EL PRECIO DEL PRODUCTO 
             }
                     
             });
 };
+
+    function addTemporal()
+    {
+
+        if($('#cantidad').val())
+            {
+                if($('#idproducto').val())
+                    {   
+                    var desc = $('#detalle_producto').val();
+                    var numero = $('#mitabla tr:last').attr("id");
+                    var numero = Number(numero.replace(/[^0-9\.]+/g,""));
+        //          var lucho = $(this).parent("tr").remove();
+                    var lucho = '"tr"'; 
+                    //crear tabla manualmente
+                //  var table = document.getElementById('mitabla');   
+                //  var rows = table.getElementsByTagName("tr");   
+                    //crear tabla manualmente
+                    numero = numero + parseInt(1);
+                    var precio_descuento = $('#precio_producto').val() - ($('#precio_producto').val() * $('#descuento_producto').val() / 100) ;
+
+                    var precio_total = precio_descuento * $('#cantidad').val();
+                    precio_total = (precio_total).toFixed(2); // valor con 2 decimales          
+
+
+
+                    $('#mitabla tr:last').after("<tr class='fila_par' id="+ numero +"><td align='center'><input type=text size='1' onfocus='this.blur()' name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text size='3' onfocus='this.blur()' name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left'>"+desc+"</td><td align='center'><input type=text size='7' onfocus='this.blur()' name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input type=text size='7' onfocus='this.blur()' name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text size='7' name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " onfocus='this.blur()'></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
+                    
+                    
+                //  total_total = $('#precio_total1').val() ;
+                    if(numero > 1){
+                    var total_total=0;
+    
+                        var i=0;                        
+//                      var total_total=parseInt($('#precio_total'+i).val());
+                        for(i=1;i<=numero;i++){ 
+                            parcial = 'precio_total'+i; 
+                        //  total_total = parseInt(precio_total);
+                            total_total = parseFloat(total_total) + parseFloat($('#'+parcial+'').val());
+                        }
+
+                    }else{
+                    //  total_total = $('#precio_total1').val() ;
+                    $("#cantidad").attr('value', '1');
+                    $("#idproducto").attr('value', '');
+                    $("#detalle_producto").attr('value', '');
+                    $("#precio_producto").attr('value', '');
+                    $("#buscador").attr('value', '');
+                    $("#descuento_producto").attr('value', 0);
+                    $("#_total").attr('value', total_total);
+                    $("#buscador").focus();
+                    
+                        
+                    }
+                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
+
+                    $("#cantidad").attr('value', '1');
+                    $("#idproducto").attr('value', '');
+                    $("#detalle_producto").attr('value', '');
+                    $("#precio_producto").attr('value', '');
+                    $("#buscador").attr('value', '');
+                    $("#descuento_producto").attr('value', 0);
+                    $("#_total").attr('value', total_total);
+
+                    $("#buscador").focus();
+
+                    }//<td><img SRC='http://www.controldestockmovil.com.ar/lady-jane/templates/img/del.gif' onclick=$(this).parent('tr').remove();></td>
+                    //<td><a href='#' onClick='removeFormField(); return false;'>Remove</a></td>
+                else
+                    {
+                    window.alert('Tiene que ingresar un Producto');                         
+                    }
+            }
+        else
+            {
+            window.alert('Tiene que cargar la cantidad de productos para poder ingresar el producto');       
+            $("#cantidad").focus();
+            }
+    }
+
 
 	</script>
 </body>
