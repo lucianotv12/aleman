@@ -85,5 +85,8 @@ function redireccionar (  $message="", $seconds=0)
 	die();
 	}
 	
-
+function redondear_dos_decimal($valor) { 
+   $float_redondeado=round($valor * 100) / 100; 
+   return $float_redondeado; 
+} 
 ?>

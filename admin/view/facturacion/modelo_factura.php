@@ -30,14 +30,37 @@
                     </div>
                     <div class="invoice-date">
                         <small>Remito / ....</small>
-                        <div class="date m-t-5">Junio 4,2018</div>
+                        <div class="date m-t-5"><?php echo date("d/m/Y");?></div>
                         <div class="invoice-detail">
                             #0000123DSS<br />
                             Productos varios
                         </div>
                     </div>
                 </div>
+                <div class="" style="background: #5DBD90;padding: 20px">
+                      <label>  Seleccione Productos</label>
+                        <div class="panel-body panel-form">
+                            <form class="form-horizontal form-bordered">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Autocomplete</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="" id="jquery-autocomplete" class="form-control" placeholder="Try typing 'a' or 'b'." />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>   
+                    <div class="" id="seleccionado" style="background: #5DBD90;padding: 20px; color: white;display: none;">
+                        <span >ID: <label style="color: white" id="idproducto"></label></span> &nbsp;&nbsp;-&nbsp;&nbsp;
+                        <span >Nombre: <label style="color: white" id="detalle_producto"></label></span>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <span >Precio: <label style="color: white" id="precio_producto"></label></span>
+                        <p> Cantidad <input type="number" name="cantidad" value="1" id="cantidad" style="color: black">&nbsp;&nbsp;-&nbsp;&nbsp; Descuento <input type="number" name="descuento" value="0" id="descuento"  style="color: black">
+
+                        </p>
+                    </div>
                 <div class="invoice-content">
+
+
                     <div class="table-responsive">
                         <table class="table table-invoice">
                             <thead>
@@ -133,7 +156,27 @@
 	<script>
 		$(document).ready(function() {
 			App.init();
+            handleJqueryAutocomplete();
 		});
+
+var handleJqueryAutocomplete = function() {
+
+ //   $('#jquery-autocomplete').autocomplete({
+            $('#jquery-autocomplete').autocomplete({
+            source:"<?php echo VIEW?>facturacion/ajax.php",
+            select: function(event, ui){
+                 $("#idproducto").html(ui.item.id);
+                 $("#detalle_producto").html(ui.item.descripcion);
+                 $("#precio_producto").html(ui.item.precio); 
+                 $("#seleccionado").css("display", "block");            
+                 $("#cantidad").val("1");            
+                 $("#descuento").val("0");            
+            //AGREGAR EL PRECIO DEL PRODUCTO 
+            }
+                    
+            });
+};
+
 	</script>
 </body>
 </html>

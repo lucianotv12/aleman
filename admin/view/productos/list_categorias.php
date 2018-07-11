@@ -28,15 +28,15 @@
 
 								<tr style="color:gray;font-size: 11px">
 								
-									<th>id</th>
-									<th>nombre</th>
-									<th>Descripcion</th>
-							        <th>Proveedor</th>
-									<th>Dolar</th>      
-									<th>Actualizacion</th>                
-									<th>Activo</th>
-							        <th>+ Info</th>
-									<th>Borrar</th>
+									<th style="background-color: #5DBD90;">id</th>
+									<th style="background-color: #5DBD90;">nombre</th>
+									<th style="background-color: #5DBD90;">Descripcion</th>
+							        <th style="background-color: #5DBD90;">Proveedor</th>
+									<th style="background-color: #5DBD90;">Dolar</th>      
+									<th style="background-color: #5DBD90;">Actualizacion</th>                
+									<th style="background-color: #5DBD90;">Activo</th>
+							        <th style="background-color: #5DBD90;">+ Info</th>
+									<th style="background-color: #5DBD90;">Borrar</th>
 								</tr>
                                 </thead>
                                 <tbody>

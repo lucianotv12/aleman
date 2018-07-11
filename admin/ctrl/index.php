@@ -43,7 +43,7 @@ switch($accion):
 				$_POST["buscador"] = ""; 
 			//	$_GET["buscador"] = "";
 				
-				Template::draw_header(0, 'home');
+				Template::draw_header(0, 'productos');
 				
 				include("../view/productos/productos.php");
 
@@ -79,7 +79,7 @@ switch($accion):
         $iva_10="";
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
-		Template::draw_header(2);
+		Template::draw_header(2, 'productos');
 		include("../view/productos/producto_abm.php");
 		}
 		break;	
@@ -126,7 +126,7 @@ switch($accion):
 		$cambio="edit";
 
 
-		Template::draw_header(0, 'home');
+		Template::draw_header(0, 'productos');
 
 		include("../view/productos/producto_abm.php");
 
@@ -187,7 +187,7 @@ switch($accion):
 
 				$total_productos = Producto::total_productos();
 				
-				Template::draw_header();
+				Template::draw_header(0, 'categorias');
 				include("../view/productos/list_categorias.php");
 				#				$template->draw_footer();	
 				}
@@ -209,7 +209,7 @@ switch($accion):
 				$activo="";
                                 $proveedores = Cliente::get_clientes(0,0,2);                                
 
-				Template::draw_header();
+				Template::draw_header(0,'categorias');
 				include("../view/productos/abm_categorias.php");
 
 				}
@@ -238,7 +238,7 @@ switch($accion):
 
                                         endforeach;
                                         $subcategorias = Producto::get_subcategorias($categoria["id"]);															
-                                        Template::draw_header();
+                                        Template::draw_header(0,'categorias');
                                         include("../view/productos/abm_categorias.php");
 
                                 }
@@ -305,7 +305,7 @@ switch($accion):
 
 			//	$total_productos = Producto::total_productos();
 				
-				Template::draw_header();
+				Template::draw_header(0,'subcategorias');
 				include("../view/productos/list_subcategorias.php");
 				#				$template->draw_footer();	
 				}
@@ -329,7 +329,7 @@ switch($accion):
 
 				endforeach;
 				$subcategorias = Producto::get_subcategorias($categoria["id"]);															
-				Template::draw_header();
+				Template::draw_header(0,'subcategorias');
 
 				include("../../view/productos/abm_categorias.php");
 				}
@@ -377,7 +377,7 @@ switch($accion):
                                 $proveedores = Cliente::get_clientes(0,0,2);
                                 
 				endforeach;
-				Template::draw_header();
+				Template::draw_header(0,'subcategorias');
 
 				include("../view/productos/abm_subcategorias.php");
 
@@ -428,7 +428,7 @@ switch($accion):
 #				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);				
 #				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
 				$total_clientes = Cliente::total_clientes();
-				Template::draw_header();
+				Template::draw_header(0,'clientes');
 //				include("../../view/clientes/list.php");
 				include("../view/clientes/clientes.php");
 
@@ -468,7 +468,7 @@ switch($accion):
 				$condicion_iva="";
 
 			//	$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
-				Template::draw_header(2);
+				Template::draw_header(2,'clientes');
 					include("../view/clientes/cliente_abm.php");
 #				$template->draw_footer();
 				}
@@ -507,7 +507,7 @@ switch($accion):
 					$nro_cuit=$cliente->get_nro_cuit();
 					$condicion_iva=$cliente->get_condicion_iva();
 
-					Template::draw_header(2);
+					Template::draw_header(2, 'clientes');
 
 					include("../view/clientes/cliente_abm.php");
 
@@ -602,7 +602,7 @@ switch($accion):
 #				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);				
 #				$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
 				$total_clientes = Cliente::total_clientes();
-				Template::draw_header();
+				Template::draw_header(0, 'proveedores');
 //				include("../../view/clientes/list.php");
 				include("../view/clientes/clientes.php");
 

@@ -93,31 +93,27 @@ class Template
         <ul class="nav">
 
           <li class="nav-header">Panel General Productos</li>
-          <li class="has-sub">
+          <li class="has-sub <?php if($Seccion == 'productos' or $Seccion == 'categorias' or $Seccion == 'subcategorias') echo "active"; ?>">
             <a href="<?php echo HOME?>home.html">
+                <b class="caret pull-right"></b>
+
                 <i class="fa fa-pinterest" aria-hidden="true"></i>
                 <span>Productos</span>
               </a>
+            <ul class="sub-menu">
+                <li class="<?php if($Seccion == 'productos') echo "active"; ?>"><a href="<?php echo HOME?>home.html">Productos</a></li>
+                <li class="<?php if($Seccion == 'categorias') echo "active"; ?>"><a href="<?php echo HOME?>list_categorias.html">Categorias</a></li>
+                <li class="<?php if($Seccion == 'subcategorias') echo "active"; ?>"><a href="<?php echo HOME?>list_subcategorias.html">SubCategorias</a></li>
+            </ul>              
           </li>
-          <li class="has-sub">
-            <a href="<?php echo HOME?>list_categorias.html">
-                <i class="fa fa-copyright" aria-hidden="true"></i>
-                <span>Categorias</span>
-              </a>
-          </li>
-           <li class="has-sub">
-            <a href="<?php echo HOME?>list_subcategorias.html">
-                <i class="fa fa-stripe-s" aria-hidden="true"></i>
-                <span>SubCategorias</span>
-              </a>
-          </li>
-           <li class="has-sub">
+
+           <li class="has-sub <?php if($Seccion == 'clientes') echo "active"; ?>">
             <a href="<?php echo HOME?>clientes.html">
                 <i class="fa fa-child" aria-hidden="true"></i>
                 <span>Clientes</span>
               </a>
           </li>          
-           <li class="has-sub">
+           <li class="has-sub <?php if($Seccion == 'proveedores') echo "active"; ?>">
             <a href="<?php echo HOME?>proveedores.html">
                 <i class="fa fa-product-hunt" aria-hidden="true"></i>
                 <span>Proveedores</span>

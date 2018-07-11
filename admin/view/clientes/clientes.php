@@ -27,13 +27,13 @@
                                 	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO CLIENTE</a></th></tr>
 
                                     <tr style="font-size: 11px">
-									<th>ID</th>
-									<th>Razon social</th>
-									<th>Telefono</th>
-									<th>Email</th>
-									<th>Estado</th>
-									<th>Editar</th>
-									<th>Borrar</th>
+									<th style="background-color: #5DBD90;">ID</th>
+									<th style="background-color: #5DBD90;">Razon social</th>
+									<th style="background-color: #5DBD90;">Telefono</th>
+									<th style="background-color: #5DBD90;">Email</th>
+									<th style="background-color: #5DBD90;">Estado</th>
+									<th style="background-color: #5DBD90;">Editar</th>
+									<th style="background-color: #5DBD90;">Borrar</th>
 	
 
                                     </tr>

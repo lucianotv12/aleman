@@ -27,17 +27,17 @@
                                 	<tr><th colspan="3"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th></tr>
 
                                     <tr style="font-size: 11px">
-									<th>ID</th>
-									<th>Nombre</th>
-									<th>Referencia</th>
-									<th>Categoria</th>
-									<th>Subcategoria</th>
-									<th>Precio</th>
-									<th>Fecha</th>
+									<th style="background-color: #5DBD90;">ID</th>
+									<th style="background-color: #5DBD90;">Nombre</th>
+									<th style="background-color: #5DBD90;">Referencia</th>
+									<th style="background-color: #5DBD90;">Categoria</th>
+									<th style="background-color: #5DBD90;">Subcategoria</th>
+									<th style="background-color: #5DBD90;">Precio</th>
+									<th style="background-color: #5DBD90;">Fecha</th>
 
-									<th>Editar</th>
+									<th style="background-color: #5DBD90;">Editar</th>
 								  	<?php if(@$_GET["id"]):?>
-										<th>Orden</th>
+										<th style="background-color: #5DBD90;">Orden</th>
 									<?php endif;?>		
 
                                     </tr>

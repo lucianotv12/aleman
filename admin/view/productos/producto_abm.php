@@ -29,7 +29,9 @@
                                     <div class="col-md-9">
                                         <select name="idCategoria" class="form-control">
                                             <option value="1" > Categoria</option>
-   
+                                            <?php foreach($categorias as $categoria):?>
+                                            <option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
+                                            <? endforeach;?>
                                         </select>
                                     </div>
                                 </div>    
