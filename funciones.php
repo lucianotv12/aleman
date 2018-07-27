@@ -12,7 +12,7 @@ else:
 $URL = '/admin';
 
 define('ROOT','directgroup.c3aiub4xgnfs.us-west-2.rds.amazonaws.com');
-define('DATABASE','directgroup');
+define('DATABASE','aleman');
 define('USER','ibris');
 define('PASS','Ibris1193');
 endif;
