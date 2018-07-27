@@ -119,7 +119,7 @@
                         <span class="m-r-10"><i class="fa fa-envelope"></i> elaleman@gmail.com</span>
                     </p>
                 </div>-->
-                <div class="invoice-footer text-muted">
+                <div class="invoice-footer text-muted text-center" style="padding: 15px">
                     <input type="submit" name="GENERAR" class="btn btn-sm btn-success" value="GENERAR PRESUPUESTO">
 
                 </div>
