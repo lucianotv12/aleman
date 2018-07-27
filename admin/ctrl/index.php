@@ -649,7 +649,7 @@ switch($accion):
 		//	$total_facturas = Factura::total_facturas();
 			Template::draw_header();
 
-			include("../../view/facturacion/facturas.php");			
+			include("../view/facturacion/facturas.php");			
 		}				
 		break;
 	case "modelo_factura":
