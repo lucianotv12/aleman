@@ -651,7 +651,7 @@ switch($accion):
 
 			include("../../view/facturacion/facturas.php");			
 		}				
-
+		break;
 	case "modelo_factura":
 		{
 				Template::draw_header();
