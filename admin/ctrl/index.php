@@ -721,24 +721,6 @@ switch($accion):
 				}
 				break;
 	
-	case "generar_factura":
-				{
-
-				// ESPERA UN ID
-					$cliente = new Cliente($_GET["id"]);
-					Factura::generar_factura($_GET["id"],$_POST);
-					$mensaje_cabezera = "FACTURA GENERADA";
-					$boton=true;
-					$cambio = "nuevo";
-					$deshabilitado = "";
-//					$productos_virtuales =	Factura::get_productos_virtuales();
-
-					Template::draw_header();
-
-					include("../../view/clientes/nueva_factura.php");
-				
-				}
-				break;
 
 	case "insert_pago":
 				{
