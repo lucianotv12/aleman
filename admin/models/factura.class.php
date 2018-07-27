@@ -253,8 +253,7 @@ class Factura
                 $precio_producto = "precio_producto" . $i;
                 $precio_total = "precio_total" . $i;
                 $descuento_producto = "descuento_producto" . $i;
-                ECHO "ENTRO A FOR";
-                print_r($_PARAM[$cantidad]); die;
+                
                 if($_PARAM[$cantidad]):
 
                     $cantidad = $_PARAM[$cantidad];
