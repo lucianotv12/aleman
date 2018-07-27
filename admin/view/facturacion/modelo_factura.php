@@ -204,7 +204,7 @@ var handleJqueryAutocomplete = function() {
                         for(i=1;i<=numero;i++){ 
                             parcial = 'precio_total'+i; 
                         //  total_total = parseInt(precio_total);
-                            if($('#'+parcial+'').length == 0) {
+                            if($('#'+parcial+'').length > 0) {
                                 total_total = parseFloat(total_total) + parseFloat($('#'+parcial+'').val());
                             }    
                         }
