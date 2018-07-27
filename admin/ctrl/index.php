@@ -618,7 +618,7 @@ switch($accion):
 
 
 		}			
-
+		break;
 	case "generar_factura":
 				{
 				// ESPERA UN ID
