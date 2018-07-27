@@ -51,9 +51,9 @@
 											<?php $saldo_factura = Factura::get_saldo_factura($factura["importe"],$factura["id"]) ;
 											if($saldo_factura > 0) {
 																?>
-											<td>$<FONT SIZE='' COLOR='red'><?= $saldo_factura?></FONT></td>
+											<td>$<FONT SIZE='' COLOR='red'><?php echo $saldo_factura?></FONT></td>
 											<?php }else{ ?>
-											<td>$<FONT SIZE='' COLOR='green'><?= $saldo_factura?></FONT></td>
+											<td>$<FONT SIZE='' COLOR='green'><?php echo $saldo_factura?></FONT></td>
 
 											<?php } 
 											$fecha_factura=explode("-",$factura["fecha"]);

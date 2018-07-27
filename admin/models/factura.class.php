@@ -253,7 +253,7 @@ class Factura
                 $precio_producto = "precio_producto" . $i;
                 $precio_total = "precio_total" . $i;
                 $descuento_producto = "descuento_producto" . $i;
-                
+
                 if($_PARAM[$cantidad]):
 
                     $cantidad = $_PARAM[$cantidad];
@@ -474,7 +474,7 @@ class Factura
 		endif;
 		
 		$conn = new Conexion();					
-		$sql = $conn->prepare("select CF.*,date_format(CF.fecha,'%d/%m/%Y')as fecha, C.nombre as  nombre_cliente, TF.descripcion as tipo_factura $selectclause_factura
+		$sql = $conn->prepare("SELECT CF.*,date_format(CF.fecha,'%d/%m/%Y')as fecha, C.nombre as  nombre_cliente, TF.descripcion as tipo_factura $selectclause_factura
 				  from clientes_facturas AS CF
 				  LEFT join clientes as C ON C.id = CF.idCliente
 				  LEFT join tipos_facturas as TF ON TF.id = CF.idTipo $joinclause_factura

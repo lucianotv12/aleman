@@ -121,14 +121,14 @@ class Template
           </li>    
            <li class="has-sub">
             <a href="<?php echo HOME?>facturas.html">
-                <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                <i class="fa fa-archive" aria-hidden="true"></i>
                 <span>Presupuestos</span>
               </a>
           </li>  
 
            <li class="has-sub">
             <a href="<?php echo HOME?>modelo_factura.html">
-                <i class="fa fa-product-hunt" aria-hidden="true"></i>
+                <i class="fa fa-barcode" aria-hidden="true"></i>
                 <span>Generar Factura</span>
               </a>
           </li>                       
