@@ -212,10 +212,10 @@ var handleJqueryAutocomplete = function() {
                     $("#idproducto").attr('value', '');
                     $("#detalle_producto").attr('value', '');
                     $("#precio_producto").attr('value', '');
-                    $("#buscador").attr('value', '');
+                    $("#jquery-autocomplete").attr('value', '');
                     $("#descuento_producto").attr('value', 0);
                     $("#_total").attr('value', total_total);
-                    $("#buscador").focus();
+                    $("#jquery-autocomplete").focus();
                     
                         
                     }
@@ -225,11 +225,11 @@ var handleJqueryAutocomplete = function() {
                     $("#idproducto").attr('value', '');
                     $("#detalle_producto").attr('value', '');
                     $("#precio_producto").attr('value', '');
-                    $("#buscador").attr('value', '');
+                    $("#jquery-autocomplete").attr('value', '');
                     $("#descuento_producto").attr('value', 0);
                     $("#_total").attr('value', total_total);
 
-                    $("#buscador").focus();
+                    $("#jquery-autocomplete").focus();
                      $("#seleccionado").css("display", "none");            
 
                     }//<td><img SRC='http://www.controldestockmovil.com.ar/lady-jane/templates/img/del.gif' onclick=$(this).parent('tr').remove();></td>
