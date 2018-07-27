@@ -24,7 +24,7 @@
                                    <input name="_idProducto" type="hidden" value="<?php echo $_GET['id'];?>">
                                 <?php endif;?>   
                             <?php endif;?>	
-                                <div class="form-group">
+                      <!--          <div class="form-group">
                                     <label class="col-md-3 control-label">Categorias</label>
                                     <div class="col-md-9">
                                         <select name="idCategoria" class="form-control">
@@ -44,7 +44,7 @@
 
                                         </select>
                                     </div>
-                                </div>                                
+                                </div>                         -->       
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nombre</label>
                                     <div class="col-md-9">
