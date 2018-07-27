@@ -66,7 +66,7 @@
                     </div>
                 <div class="invoice-content">
 
-                    <form name="datos" method="post" enctype="multipart/form-data" action="index.php?accion=generar_factura" onKeyPress="return disableEnterKey(event)" >
+                    <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura.html" onKeyPress="return disableEnterKey(event)" >
 
                     <div class="table-responsive">
                         <table id="mitabla" class="table table-invoice" >
