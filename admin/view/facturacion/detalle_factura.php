@@ -22,14 +22,14 @@
                     <div class="invoice-to">
                         <small>Para</small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Cliente datos</strong><br />
+                            <strong>Consumidor Final</strong><br />
                             domicilio<br />
                             Ciudad<br />
                             Telefono: (123) 456-7890<br />
                         </address>
                     </div>
                     <div class="invoice-date">
-                        <small>Remito X / ....</small>
+                        <small>Remito X / <?php echo $factura["id"]?></small>
                         <div class="date m-t-5"><?php echo date("d/m/Y");?></div>
                         <div class="invoice-detail">
                             #0000123DSS<br />
@@ -52,7 +52,16 @@
                                     <th>Importe</th>
                                     <th></th>
                                 </tr>
-
+                                <?php foreach($productos as $producto):?>
+                                    <tr>
+                                        <td><?php echo $producto["cantidad"]?></td>
+                                        <td><?php echo $producto["idProducto"]?></td>
+                                        <td><?php echo $producto["descripcion"]?></td>
+                                        <td><?php echo $producto["precio_unitario"]?></td>
+                                        <td><?php echo $producto["descuento"]?></td>
+                                        <td><?php echo $producto["precio_total"]?></td>
+                                    </tr>    
+                                <?php endforeach;?>    
                         </table>
                     </div>
                     <div class="invoice-price">

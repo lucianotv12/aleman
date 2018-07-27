@@ -289,7 +289,7 @@ class Factura
 
 
 			$factura = new Factura();
-			$factura->set_idCliente($_PARAM["_idcliente"]);
+			$factura->set_idCliente(1);
 			$factura->set_idTipo(1);
 			$factura->set_n_remito($_PARAM["n_remito"]);
 			$factura->set_n_factura($_PARAM["n_factura"]);
