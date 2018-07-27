@@ -208,7 +208,7 @@ var handleJqueryAutocomplete = function() {
                         }
 
                     }else{
-                    //  total_total = $('#precio_total1').val() ;
+                    total_total = $('#precio_total1').val() ;
                     $("#cantidad").attr('value', '1');
                     $("#idproducto").attr('value', '');
                     $("#detalle_producto").attr('value', '');
@@ -221,7 +221,9 @@ var handleJqueryAutocomplete = function() {
                     
                         
                     }
-//                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
+
+
+                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
 
                     $("#cantidad").attr('value', '1');
                     $("#idproducto").attr('value', '');
