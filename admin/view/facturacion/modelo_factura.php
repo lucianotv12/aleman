@@ -215,8 +215,8 @@ var handleJqueryAutocomplete = function() {
                     $("#precio_producto").attr('value', '');
                     $("#jquery-autocomplete").attr('value', '');
                     $("#descuento_producto").attr('value', 0);
-                    $("#subtotal_final").attr('value', total_total);
-                    $("#total_final").attr('value', total_total);
+                    $("#subtotal_final").html(total_total);
+                    $("#total_final").html(total_total);
                     $("#jquery-autocomplete").focus();
                     
                         
