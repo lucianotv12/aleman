@@ -9,13 +9,13 @@ if("localhost" == $_SERVER['SERVER_NAME'] ):
 	define('PASS','');	
 
 else:
-$URL = 'http://www.ibris.com.ar/aleman/admin';
-define('ROOT','localhost');
-define('DATABASE','c0010037_aleman');
-define('USER','c0010037_columbi');
-define('PASS','BOtase47pe');
-endif;
+$URL = 'http://52.42.172.135/aleman/admin';
 
+define('ROOT','directgroup.c3aiub4xgnfs.us-west-2.rds.amazonaws.com');
+define('DATABASE','directgroup');
+define('USER','ibris');
+define('PASS','Ibris1193');
+endif;
 
 
 define('HOME',$URL.'/');
