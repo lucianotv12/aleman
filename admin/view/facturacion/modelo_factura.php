@@ -40,8 +40,8 @@
                 <div class="" style="background: #5DBD90;padding: 20px; color: white">
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered">
-                                <div class="form-group" style="color: white">
-                                    <label class="control-label col-md-2">Buscar Productos</label>
+                                <div class="form-group" >
+                                    <label class="control-label col-md-2" style="color: white">Buscar Productos</label>
                                     <div class="col-md-10">
                                         <input type="text" name="" id="jquery-autocomplete" class="form-control" placeholder="busqueda inteligente" />
                                     </div>
