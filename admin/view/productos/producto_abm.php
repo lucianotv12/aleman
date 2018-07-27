@@ -31,7 +31,7 @@
                                             <option value="1" > Categoria</option>
                                             <?php foreach($categorias as $categoria):?>
                                             <option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
-                                            <? endforeach;?>
+                                            <?php endforeach;?>
                                         </select>
                                     </div>
                                 </div>    
