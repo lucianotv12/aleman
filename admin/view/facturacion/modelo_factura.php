@@ -88,14 +88,14 @@
                                     <small>SUBTOTAL</small>
                                     <span id="subtotal_final">0</span>
                                 </div>
-     <!--                           <div class="sub-price">
+                                <div class="sub-price">
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="sub-price">
                                     <small>Iva (21%)</small>
                                     $919080
                                 </div>
-                            </div>-->
+                            </div>
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> 
