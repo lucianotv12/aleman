@@ -46,7 +46,7 @@
                                 <tr id="0">
                                     <th>Cant.</th>
                                     <th>Art.</th>
-                                    <th colspan="4">Detalle</th>
+                                    <th >Detalle</th>
                                     <th>P/unitario</th>
                                     <th>Desc.</th>
                                     <th>Importe</th>
@@ -69,7 +69,7 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    $<span id="subtotal_final">0</span>
+                                    $<span id="subtotal_final"><?php echo $factura["importe"]?></span>
                                 </div>
                                 <div class="sub-price">
                                     <i class="fa fa-plus"></i>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> 
-                            $<span id="total_final">0</span>
+                            $<span id="total_final"><?php echo $factura["importe"]?></span>
                         </div>
                     </div>
                 </div>
