@@ -86,19 +86,20 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    $4,380.00
+                                    <span id="subtotal_final"></span>
                                 </div>
-                                <div class="sub-price">
+     <!--                           <div class="sub-price">
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="sub-price">
                                     <small>Iva (21%)</small>
                                     $919080
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="invoice-price-right">
-                            <small>TOTAL</small> $5299.80
+                            <small>TOTAL</small> 
+                            <span id="total_final"></span>
                         </div>
                     </div>
                 </div>
@@ -214,7 +215,8 @@ var handleJqueryAutocomplete = function() {
                     $("#precio_producto").attr('value', '');
                     $("#jquery-autocomplete").attr('value', '');
                     $("#descuento_producto").attr('value', 0);
-                    $("#_total").attr('value', total_total);
+                    $("#subtotal_final").attr('value', total_total);
+                    $("#total_final").attr('value', total_total);
                     $("#jquery-autocomplete").focus();
                     
                         
