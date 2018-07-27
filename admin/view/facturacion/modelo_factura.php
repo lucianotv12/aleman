@@ -219,7 +219,7 @@ var handleJqueryAutocomplete = function() {
                     
                         
                     }
-                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
+//                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
 
                     $("#cantidad").attr('value', '1');
                     $("#idproducto").attr('value', '');
