@@ -1,6 +1,13 @@
 
 			<!-- begin invoice -->
 			<div class="invoice">
+               <div class="invoice-company">
+                    <span class="pull-right hidden-print">
+                    <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>
+                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
+                    </span>
+                    Company Name, Inc
+                </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <small>from</small>
