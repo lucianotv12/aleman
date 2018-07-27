@@ -437,7 +437,7 @@ class Producto
                                 where 1 $whereclause $whereclause2 order by PC.id $limit");
 
 		$sql->execute();
-		print_r($sql);
+		print_r($sql);die;
     	$resultado = $sql->fetchAll();
 
 		$conn = null;
