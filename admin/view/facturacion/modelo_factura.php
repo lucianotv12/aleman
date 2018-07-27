@@ -120,7 +120,7 @@
                     </p>
                 </div>-->
                 <div class="invoice-footer text-muted">
-                    <input type="submit" name="GENERAR" value="GENERAR PRESUPUESTO">
+                    <input type="submit" name="GENERAR" class="btn btn-sm btn-success" value="GENERAR PRESUPUESTO">
 
                 </div>
 
