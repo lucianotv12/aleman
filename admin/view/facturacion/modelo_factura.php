@@ -204,7 +204,12 @@ var handleJqueryAutocomplete = function() {
                         for(i=1;i<=numero;i++){ 
                             parcial = 'precio_total'+i; 
                         //  total_total = parseInt(precio_total);
-                            total_total = parseFloat(total_total) + parseFloat($('#'+parcial+'').val());
+                            if ( ($('#'+parcial+'').length ) {
+                              // hacer algo aquí si el elemento existe
+                                total_total = parseFloat(total_total) + parseFloat($('#'+parcial+'').val());
+
+                            }
+
                         }
 
                     }else{
