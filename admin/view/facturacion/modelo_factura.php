@@ -2,14 +2,14 @@
 			<!-- begin invoice -->
 			<div class="invoice">
                 <div class="invoice-company">
-                    <span class="pull-right hidden-print">
+<!--                    <span class="pull-right hidden-print">
                     <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
-                    </span>
+                    </span>-->
                     Maderas "El Aleman"
                 </div>
                 <div class="invoice-header">
-                    <div class="invoice-from">
+<!--                    <div class="invoice-from">
                         <small>De</small>
                         <address class="m-t-5 m-b-5">
                             <strong>Maderas "El Aleman"</strong><br />
@@ -35,7 +35,7 @@
                             #0000123DSS<br />
                             Productos varios
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="" style="background: #5DBD90;padding: 20px; color: white">
                         <div class="panel-body panel-form">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="invoice-note">
+<!--                <div class="invoice-note">
                     * Nota 1<br />
                     * Nota 2<br />
                     * Nota 3
@@ -117,7 +117,7 @@
                         <span class="m-r-10"><i class="fa fa-phone"></i> T:0237-4444444</span>
                         <span class="m-r-10"><i class="fa fa-envelope"></i> elaleman@gmail.com</span>
                     </p>
-                </div>
+                </div>-->
             </div>
 			<!-- end invoice -->
 
@@ -224,7 +224,6 @@ var handleJqueryAutocomplete = function() {
                     
                         
                     }
-                    alert(total_total);
 
 
                     $("#cantidad").attr('value', '1');
