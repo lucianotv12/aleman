@@ -192,9 +192,9 @@ var handleJqueryAutocomplete = function() {
 
 
 
-                    $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text size=1 name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left' colspan=4 style='min-width:320px' >"+desc+"</td><td align='center'><input type=text  name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input size=1 name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
+                    $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text size=1 name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left' colspan=4 style='min-width:320px' >"+desc+"</td><td align='center'><input type=text  name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input size=1 name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=remover_fila("+ numero + ");>Quitar</a></td></tr>"); 
                     
-                    
+                 //<a href='#' onClick=$(this).parent().parent().remove();>Quitar</a>   
                 //  total_total = $('#precio_total1').val() ;
                     if(numero > 1){
                     var total_total=0;
@@ -251,6 +251,9 @@ var handleJqueryAutocomplete = function() {
             }
     }
 
+    function remover_fila(fila){
+        alert(fila);
+    }
 
 	</script>
 </body>
