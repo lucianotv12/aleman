@@ -68,7 +68,7 @@
 
 
                     <div class="table-responsive">
-                        <table id="mitabla" class="table table-invoice" >
+                        <table id="mitabla" class="table " >
                                 <tr id="0">
                                     <th>Cant.</th>
                                     <th>Art.</th>
