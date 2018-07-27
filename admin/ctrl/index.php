@@ -79,9 +79,10 @@ switch($accion):
         $iva_10="";
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
-		echo "aca todo bien";die;
 
 		Template::draw_header(2, 'productos');
+		echo "aca todo bien";die;
+
 		include("../view/productos/producto_abm.php");
 		}
 		break;	
