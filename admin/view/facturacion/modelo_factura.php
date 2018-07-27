@@ -86,20 +86,20 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    <span id="subtotal_final">0</span>
+                                    $<span id="subtotal_final">0</span>
                                 </div>
                                 <div class="sub-price">
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="sub-price">
                                     <small>Iva (21%)</small>
-                                    $919080
+                                    $0
                                 </div>
                             </div>
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> 
-                            <span id="total_final">0</span>
+                            $<span id="total_final">0</span>
                         </div>
                     </div>
                 </div>
@@ -223,7 +223,6 @@ var handleJqueryAutocomplete = function() {
                     }
 
 
-                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
 
                     $("#cantidad").attr('value', '1');
                     $("#idproducto").attr('value', '');
@@ -231,11 +230,16 @@ var handleJqueryAutocomplete = function() {
                     $("#precio_producto").attr('value', '');
                     $("#jquery-autocomplete").attr('value', '');
                     $("#descuento_producto").attr('value', 0);
+                    $("#jquery-autocomplete").focus();
+                     $("#seleccionado").css("display", "none");            
+
+                    total_total = (total_total).toFixed(2); // valor con 2 decimales            
+
+
                     $("#subtotal_final").html(total_total);
                     $("#total_final").html(total_total);
 
-                    $("#jquery-autocomplete").focus();
-                     $("#seleccionado").css("display", "none");            
+
 
                     }//<td><img SRC='http://www.controldestockmovil.com.ar/lady-jane/templates/img/del.gif' onclick=$(this).parent('tr').remove();></td>
                     //<td><a href='#' onClick='removeFormField(); return false;'>Remove</a></td>
