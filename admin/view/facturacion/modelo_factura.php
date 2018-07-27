@@ -191,7 +191,7 @@ var handleJqueryAutocomplete = function() {
 
 
 
-                    $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text size=1 name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text size=2 name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left'>"+desc+"</td><td align='center'><input type=text size=3  name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input size=1 name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
+                    $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text size=1 name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text size=3 name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left'>"+desc+"</td><td align='center'><input type=text size=4  name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input size=1 name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
                     
                     
                 //  total_total = $('#precio_total1').val() ;
