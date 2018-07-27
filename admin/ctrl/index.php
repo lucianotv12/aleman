@@ -54,7 +54,6 @@ switch($accion):
 
 	case "producto_new" :
 		{			
-			error_reporting(E_ALL);
 		$cambio="new";
 		// Muestra el formulario de NUEVO
 		$producto = new Producto;
@@ -80,10 +79,7 @@ switch($accion):
         $iva_10="";
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
-
 		Template::draw_header(2, 'productos');
-	//	echo "aca todo bien";
-
 		include("../view/productos/producto_abm.php");
 		}
 		break;	
