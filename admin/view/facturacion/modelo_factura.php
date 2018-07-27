@@ -42,9 +42,9 @@
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Autocomplete</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="" id="jquery-autocomplete" class="form-control" placeholder="Try typing 'a' or 'b'." />
+                                    <label class="control-label col-md-2">Buscar Productos</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="" id="jquery-autocomplete" class="form-control" placeholder="busqueda inteligente" />
                                     </div>
                                 </div>
                             </form>
