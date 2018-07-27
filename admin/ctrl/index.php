@@ -81,7 +81,7 @@ switch($accion):
 		$monedas = $producto->get_monedas();
 
 		Template::draw_header(2, 'productos');
-		echo "aca todo bien";
+	//	echo "aca todo bien";
 
 		include("../view/productos/producto_abm.php");
 		}
