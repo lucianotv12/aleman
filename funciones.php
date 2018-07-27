@@ -9,7 +9,7 @@ if("localhost" == $_SERVER['SERVER_NAME'] ):
 	define('PASS','');	
 
 else:
-$URL = 'http://52.42.172.135/aleman/admin';
+$URL = '/admin';
 
 define('ROOT','directgroup.c3aiub4xgnfs.us-west-2.rds.amazonaws.com');
 define('DATABASE','directgroup');
