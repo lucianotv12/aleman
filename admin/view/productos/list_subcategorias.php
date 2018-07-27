@@ -41,7 +41,7 @@
 								</tr>
                                 </thead>
                                 <tbody>
-								<? $contador = 0;
+								<?php $contador = 0;
 								foreach ($productos as $producto):
 								$contador++;
 								?>
@@ -53,8 +53,8 @@
 									<td><?php echo  $producto["descripcion"]; ?></td>
 									<td><?php echo  $producto["proveedor_categoria"]; ?></td>
 							                <td><?php echo  $producto["dolar"]; ?></td>                
-							                <td><? if($producto["fechaActualizacion"] == "00/00/0000") echo ""; else echo $producto["fechaActualizacion"]; ?></td>                
-									<td><?if($producto["activo"] == 1) echo "Si";else echo "No"; ?></td>
+							                <td><?php if($producto["fechaActualizacion"] == "00/00/0000") echo ""; else echo $producto["fechaActualizacion"]; ?></td>                
+									<td><?php if($producto["activo"] == 1) echo "Si";else echo "No"; ?></td>
 
 									<td><a href="<?php echo HOME?>modify_subcategoria/<?php echo $producto["id"] ?>/">
 									<i class="fa fa-edit" aria-hidden="true"></i>
@@ -65,7 +65,7 @@
 									<i class="fa fa-trash" aria-hidden="true"></i>									
 									</a></td>
 								</tr>
-								<? endforeach ?>
+								<?php endforeach ?>
 
 								</tbody>
                             </table>
