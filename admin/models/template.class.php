@@ -122,7 +122,7 @@ class Template
            <li class="has-sub">
             <a href="<?php echo HOME?>modelo_factura.html">
                 <i class="fa fa-product-hunt" aria-hidden="true"></i>
-                <span>Factura</span>
+                <span>Generar Factura</span>
               </a>
           </li>                       
 

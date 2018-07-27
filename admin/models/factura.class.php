@@ -263,11 +263,11 @@ class Factura
                     $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
                     $descuento_producto = $_PARAM[$descuento_producto];
 
-					$sql = $conn->prepare("insert into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','PROCESO DE FACTURA', 2 , '$cantidad_stock', CURDATE(), 0, '$precio_producto')");
+					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','PROCESO DE FACTURA', 2 , '$cantidad_stock', CURDATE(), 0, '$precio_producto')");
 					$sql->execute();
                     $insert_id = $conn->lastInsertId();
 
-                    $sql = $conn->prepare("insert into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto')");
+                    $sql = $conn->prepare("INSERT into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto')");
 					$sql->execute();
 
 

@@ -619,6 +619,45 @@ switch($accion):
 
 		}			
 
+	case "generar_factura":
+				{
+				// ESPERA UN ID
+					$factura = new Factura($_GET["id"]);
+					$_id_factura =Factura::generar_factura2($_POST);
+					$mensaje_cabezera = "FACTURA GENERADA";
+					$boton=true;
+					$cambio = "nuevo";
+					$deshabilitado = "";
+//					$productos_virtuales =	Factura::get_productos_virtuales();
+		//			jsCommand(javascript:popUp('../../pdf/presupuesto.php?idFactura=<?= $factura["id"] ? >'));
+					$_id=$_GET["id"];
+
+			//		jsCommand("alert('holaaaaaa');");					
+					$_variable = true;
+					
+				// ESPERA UN ID
+				$factura = new Factura();
+			
+					$mensaje_cabezera = "NUEVO PRESUPUESTO";  		
+					$boton=true;
+					$cambio = "nuevo";
+					$deshabilitado = "";
+                                        
+                                        if($_id_factura):
+                                        
+                                            Template::draw_header(true, $_id_factura);                                            
+                                        else:
+                                            Template::draw_header();                                                                                        
+                                        endif;
+                                        
+
+					include("../../view/facturacion/nueva_factura.php");					
+					$_variable = false;						
+//					header("Location: index.php");				
+				}
+				break;
+
+
 
 /*PROVEEDORES*/
 
