@@ -12,7 +12,7 @@
                             <h4 class="panel-title">CATEGORIA : <?php echo @ $nombre?></h4>
                         </div>
                         <div class="panel-body">
-  							<?php if($cambio == "new"):?>
+  							<?php if($cambio == "nuevo"):?>
 		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_categoria.html">
                                 
 		  					<?php else:?>
