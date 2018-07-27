@@ -39,30 +39,45 @@
                     </div>
                 </div>
                 <div class="invoice-content">
-
-                    <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura.html" onKeyPress="return disableEnterKey(event)" >
-
                     <div class="table-responsive">
-                        <table id="mitabla" class="table table-invoice" >
-                                <tr id="0">
-                                    <th>Cant.</th>
-                                    <th>Art.</th>
-                                    <th >Detalle</th>
-                                    <th>P/unitario</th>
-                                    <th>Desc.</th>
-                                    <th>Importe</th>
-                                    <th></th>
+                        <table class="table table-invoice">
+                            <thead>
+                                <tr>
+                                    <th>TASK DESCRIPTION</th>
+                                    <th>RATE</th>
+                                    <th>HOURS</th>
+                                    <th>LINE TOTAL</th>
                                 </tr>
-                                <?php foreach($productos as $producto):?>
-                                    <tr>
-                                        <td><?php echo $producto["cantidad"]?></td>
-                                        <td><?php echo $producto["idProducto"]?></td>
-                                        <td><?php echo $producto["descripcion"]?></td>
-                                        <td><?php echo $producto["precio_unitario"]?></td>
-                                        <td><?php echo $producto["descuento"]?></td>
-                                        <td><?php echo $producto["precio_total"]?></td>
-                                    </tr>    
-                                <?php endforeach;?>    
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Website design &amp; development<br />
+                                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                                    </td>
+                                    <td>$50.00</td>
+                                    <td>50</td>
+                                    <td>$2,500.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Branding<br />
+                                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                                    </td>
+                                    <td>$50.00</td>
+                                    <td>40</td>
+                                    <td>$2,000.00</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Redesign Service<br />
+                                        <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id sagittis arcu.</small>
+                                    </td>
+                                    <td>$50.00</td>
+                                    <td>50</td>
+                                    <td>$2,500.00</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div class="invoice-price">
@@ -70,20 +85,19 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    $<span id="subtotal_final"><?php echo $factura["importe"]?></span>
+                                    $4,500.00
                                 </div>
                                 <div class="sub-price">
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="sub-price">
-                                    <small>Iva (21%)</small>
-                                    $0
+                                    <small>PAYPAL FEE (5.4%)</small>
+                                    $108.00
                                 </div>
                             </div>
                         </div>
                         <div class="invoice-price-right">
-                            <small>TOTAL</small> 
-                            $<span id="total_final"><?php echo $factura["importe"]?></span>
+                            <small>TOTAL</small> $4508.00
                         </div>
                     </div>
                 </div>
