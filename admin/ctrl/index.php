@@ -611,6 +611,47 @@ switch($accion):
 				}
 				break;
 
+	case "facturas":
+		{
+			if(!isset($_GET["start"])){		
+			$start = 0;
+			}else{
+			$start = $_GET["start"];
+			}
+			$end = 1000 ; 
+
+			if($_GET["buscador"]== "DEUDORES")
+				{
+				$facturas = Factura::get_facturas_deudores();				
+				}
+			else
+				{
+				if($_GET["buscador"]== "TODOS") 
+				{
+				$_POST["buscador"] = ""; 
+				$_GET["buscador"] = "";
+				}
+				if($_POST["buscador"] != "")$_GET["buscador"] = $_POST["buscador"]; 
+				
+				if($_GET["tipo_factura"]):
+				 $tipo_factura =	$_GET["tipo_factura"];
+				$titulo = "LISTADO GENERAL DE FACTURAS";	
+				$variable = "FACTURA";
+				 else :
+				 $tipo_factura = 1;
+					 $variable = "PRESUPUESTO";
+				 $titulo = "LISTADO GENERAL DE PRESUPUESTOS";	
+				endif;				
+
+				$facturas = Factura::get_facturas($_GET["buscador"],$tipo_factura);	
+				}	
+		
+		//	$total_facturas = Factura::total_facturas();
+			Template::draw_header();
+
+			include("../../view/facturacion/facturas.php");			
+		}				
+
 	case "modelo_factura":
 		{
 				Template::draw_header();
