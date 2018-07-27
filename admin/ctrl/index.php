@@ -184,7 +184,7 @@ switch($accion):
 				if($_POST["buscador"] != "")$_GET["buscador"] = $_POST["buscador"]; 
 				
 				$productos = Producto::get_categorias($start,$end,$_GET["buscador"]);	
-				
+
 				$total_productos = Producto::total_productos();
 				
 				Template::draw_header(0, 'categorias');
@@ -253,7 +253,8 @@ switch($accion):
 					$hoy = date("Y-m-d G:i:s"); 
 					$texto = "Alta nueva categoria ";
 	//				mysql_query("insert into log values(null,".$_producto->get_idproducto().",'".$texto."', '".$hoy."')");
-					header("Location: index.php?accion=list_categorias");								
+					header("Location:".HOME ."list_categorias.html");								
+
 
 				}
 				break;
