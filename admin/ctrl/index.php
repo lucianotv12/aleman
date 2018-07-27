@@ -652,11 +652,23 @@ switch($accion):
 			include("../view/facturacion/facturas.php");			
 		}				
 		break;
+
+	case "detalle_factura":
+		{
+			$factura = Factura::get_factura_by_id($_GET["id"]);	
+			$productos = Factura::get_productos_x_factura($_GET["id"]);	
+			print_r($factura);
+			echo"<br/>";
+			print_r($productos);
+				Template::draw_header();
+				include("../view/facturacion/detalle_factura.php");
+
+		}	
+
 	case "modelo_factura":
 		{
 				Template::draw_header();
 				include("../view/facturacion/modelo_factura.php");
-
 
 		}			
 		break;
@@ -677,7 +689,8 @@ switch($accion):
 					$_variable = true;
 					
 				// ESPERA UN ID
-				
+			     	echo '<script type="text/javascript">window.location.assign("detalle_factura/$_id_factura/");</script>'; 
+					header('Location:' . HOME . 'detalle_factura/'.$_id_factura .'/');				
 //					header("Location: index.php");				
 				}
 				break;
