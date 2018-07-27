@@ -46,6 +46,7 @@
                                 <tr id="0">
                                     <th>Cant.</th>
                                     <th>Art.</th>
+                                    <th >Detalle</th>
                                     <th>P/unitario</th>
                                     <th>Desc.</th>
                                     <th>Importe</th>
@@ -55,7 +56,7 @@
                                     <tr>
                                         <td><?php echo $producto["cantidad"]?></td>
                                         <td><?php echo $producto["idProducto"]?></td>
-
+                                        <td><?php echo $producto["descripcion"]?></td>
                                         <td><?php echo $producto["precio_unitario"]?></td>
                                         <td><?php echo $producto["descuento"]?></td>
                                         <td><?php echo $producto["precio_total"]?></td>

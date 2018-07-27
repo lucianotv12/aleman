@@ -662,6 +662,7 @@ switch($accion):
 				include("../view/facturacion/detalle_factura.php");
 
 		}	
+		break;
 
 	case "modelo_factura":
 		{
