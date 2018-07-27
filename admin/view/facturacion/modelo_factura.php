@@ -208,6 +208,7 @@ var handleJqueryAutocomplete = function() {
                         }
 
                     }else{
+                    var total_total=0;    
                     total_total = $('#precio_total1').val() ;
                     $("#cantidad").attr('value', '1');
                     $("#idproducto").attr('value', '');
@@ -221,7 +222,7 @@ var handleJqueryAutocomplete = function() {
                     
                         
                     }
-
+                    alert(total_total);
 
 
                     $("#cantidad").attr('value', '1');
