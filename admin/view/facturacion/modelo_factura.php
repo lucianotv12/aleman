@@ -72,7 +72,7 @@
                                 <tr id="0">
                                     <th>Cant.</th>
                                     <th>Art.</th>
-                                    <th colspan="4">Detalle</th>
+                                    <th >Detalle</th>
                                     <th>P/unitario</th>
                                     <th>Desc.</th>
                                     <th>Importe</th>
