@@ -230,6 +230,7 @@ var handleJqueryAutocomplete = function() {
                     $("#_total").attr('value', total_total);
 
                     $("#buscador").focus();
+                     $("#seleccionado").css("display", "none");            
 
                     }//<td><img SRC='http://www.controldestockmovil.com.ar/lady-jane/templates/img/del.gif' onclick=$(this).parent('tr').remove();></td>
                     //<td><a href='#' onClick='removeFormField(); return false;'>Remove</a></td>
