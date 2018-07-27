@@ -848,7 +848,7 @@ class Producto
 
 		endif; //if EURO
 
-		return($precio_iva);
+		return(round($precio_iva,2));
 		//$precio_desc
 	}	
         
