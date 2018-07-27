@@ -54,6 +54,7 @@ switch($accion):
 
 	case "producto_new" :
 		{			
+			error_reporting(E_ALL);
 		$cambio="new";
 		// Muestra el formulario de NUEVO
 		$producto = new Producto;
