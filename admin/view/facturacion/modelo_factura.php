@@ -37,8 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="" style="background: #5DBD90;padding: 20px">
-                      <label>  Seleccione Productos</label>
+                <div class="" style="background: #5DBD90;padding: 20px; color: white">
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered">
                                 <div class="form-group">
