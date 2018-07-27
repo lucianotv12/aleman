@@ -74,8 +74,7 @@
 													}
 											?>
 
-											<td><?php echo $factura["importe"] ?></td>
-											<td><?php echo $factura["importe"] ?></td>
+											
 
 												
 											<?php if(@$_GET['id']):?>
@@ -83,7 +82,7 @@
 											<?php else:?>
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
 											<?php endif;?>		
-											<td>ver</td>	
+										
 
 
 											</form>										
