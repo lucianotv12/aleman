@@ -80,6 +80,7 @@ switch($accion):
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
 		Template::draw_header(2, 'productos');
+		echo "aca todo bien";die;
 		include("../view/productos/producto_abm.php");
 		}
 		break;	
