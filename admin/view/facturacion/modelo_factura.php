@@ -86,7 +86,7 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    <span id="subtotal_final"></span>
+                                    <span id="subtotal_final">0</span>
                                 </div>
      <!--                           <div class="sub-price">
                                     <i class="fa fa-plus"></i>
@@ -99,7 +99,7 @@
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> 
-                            <span id="total_final"></span>
+                            <span id="total_final">0</span>
                         </div>
                     </div>
                 </div>
