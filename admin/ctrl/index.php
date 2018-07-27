@@ -184,7 +184,7 @@ switch($accion):
 				if($_POST["buscador"] != "")$_GET["buscador"] = $_POST["buscador"]; 
 				
 				$productos = Producto::get_categorias($start,$end,$_GET["buscador"]);	
-				print_r($productos);
+				
 				$total_productos = Producto::total_productos();
 				
 				Template::draw_header(0, 'categorias');

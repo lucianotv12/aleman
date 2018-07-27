@@ -43,6 +43,7 @@
 								<? $contador = 0;
 								foreach ($productos as $producto):
 								$contador++;
+								echo "aca entro";
 								?>
 								<tr style="color:gray;font-size: 11px">
 								
