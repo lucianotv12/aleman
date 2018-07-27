@@ -254,7 +254,7 @@ var handleJqueryAutocomplete = function() {
     function remover_fila(fila){
       var total_final = parseFloat( $('#total_final').html());
       var resta = parseFloat( $('#precio_total'+ fila ).html());
-      alert(total_final);
+      alert(resta);
     //  nouso = total_final - resta;
   //    $("#subtotal_final").html(nouso);
 //      $("#total_final").html(nouso);
