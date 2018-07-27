@@ -253,7 +253,8 @@ class Factura
                 $precio_producto = "precio_producto" . $i;
                 $precio_total = "precio_total" . $i;
                 $descuento_producto = "descuento_producto" . $i;
-
+                ECHO "ENTRO A FOR";
+                print_r($_PARAM[$cantidad]); die;
                 if($_PARAM[$cantidad]):
 
                     $cantidad = $_PARAM[$cantidad];
@@ -310,7 +311,7 @@ class Factura
 
 			$respuesta = $factura->save();
 
-			$sql = $conn->prepare("update clientes_factura_productos set activo = 1, idFactura = '$respuesta' where activo = 2");
+			$sql = $conn->prepare("UPDATE clientes_factura_productos set activo = 1, idFactura = '$respuesta' where activo = 2");
 			$sql->execute();
 
 			return($respuesta);
