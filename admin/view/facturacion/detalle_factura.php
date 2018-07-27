@@ -1,39 +1,33 @@
 
 			<!-- begin invoice -->
 			<div class="invoice">
-                <div class="invoice-company">
-                    <span class="pull-right hidden-print">
-                    <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>
-                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
-                    </span>
-                    Maderas "El Aleman"
-                </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
-                        <small>De</small>
+                        <small>from</small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Maderas "El Aleman"</strong><br />
-                            Direccion<br />
-                            General Rodriguez, Buenos Aires<br />
-                            Telefono: (123) 456-7890<br />
+                            <strong>Twitter, Inc.</strong><br />
+                            Street Address<br />
+                            City, Zip Code<br />
+                            Phone: (123) 456-7890<br />
                             Fax: (123) 456-7890
                         </address>
                     </div>
                     <div class="invoice-to">
-                        <small>Para</small>
+                        <small>to</small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Consumidor Final</strong><br />
-                            domicilio<br />
-                            Ciudad<br />
-                            Telefono: (123) 456-7890<br />
+                            <strong>Company Name</strong><br />
+                            Street Address<br />
+                            City, Zip Code<br />
+                            Phone: (123) 456-7890<br />
+                            Fax: (123) 456-7890
                         </address>
                     </div>
                     <div class="invoice-date">
-                        <small>Remito X / <?php echo $factura["id"]?></small>
-                        <div class="date m-t-5"><?php echo date("d/m/Y");?></div>
+                        <small>Invoice / July period</small>
+                        <div class="date m-t-5">August 3,2012</div>
                         <div class="invoice-detail">
                             #0000123DSS<br />
-                            Productos varios
+                            Services Product
                         </div>
                     </div>
                 </div>
