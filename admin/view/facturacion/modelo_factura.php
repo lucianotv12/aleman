@@ -68,7 +68,7 @@
 
 
                     <div class="table-responsive">
-                        <table id="mitabla" class="table " >
+                        <table id="mitabla" class="table table-invoice" >
                                 <tr id="0">
                                     <th>Cant.</th>
                                     <th>Art.</th>
@@ -191,7 +191,7 @@ var handleJqueryAutocomplete = function() {
 
 
 
-                    $('#mitabla tr:last').after("<tr class='fila_par' id="+ numero +"><td align='center'><input type=text size='1' onfocus='this.blur()' name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text size='3' onfocus='this.blur()' name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left'>"+desc+"</td><td align='center'><input type=text size='7' onfocus='this.blur()' name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input type=text size='7' onfocus='this.blur()' name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text size='7' name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " onfocus='this.blur()'></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
+                    $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text  name=cantidad"+ numero + " value=" + $('#cantidad').val() + "></td><td align='center'><input type=text name=idproducto"+ numero + "  value=" + $('#idproducto').val() + "></td><td align='left'>"+desc+"</td><td align='center'><input type=text  name=precio_producto"+ numero + "  value=" + $('#precio_producto').val() + "></td><td align='center'><input  name=descuento_producto"+ numero + "  value=" + $('#descuento_producto').val() + "></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=$(this).parent().parent().remove();>Quitar</a></td></tr>"); 
                     
                     
                 //  total_total = $('#precio_total1').val() ;
