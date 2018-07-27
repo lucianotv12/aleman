@@ -636,23 +636,7 @@ switch($accion):
 					$_variable = true;
 					
 				// ESPERA UN ID
-				$factura = new Factura();
-			
-					$mensaje_cabezera = "NUEVO PRESUPUESTO";  		
-					$boton=true;
-					$cambio = "nuevo";
-					$deshabilitado = "";
-                                        
-                                        if($_id_factura):
-                                        
-                                            Template::draw_header(true, $_id_factura);                                            
-                                        else:
-                                            Template::draw_header();                                                                                        
-                                        endif;
-                                        
-
-					include("../../view/facturacion/nueva_factura.php");					
-					$_variable = false;						
+				
 //					header("Location: index.php");				
 				}
 				break;
