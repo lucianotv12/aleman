@@ -13,7 +13,7 @@
                         </div>
                         <div class="panel-body">
   							<?php if($cambio == "nuevo"):?>
-		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_categoria.html">
+		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>insert_categorias.html">
                                 
 		  					<?php else:?>
 		  					       <form name="categoria_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>categoria_update/<?php echo $_GET['id'];?>/">
