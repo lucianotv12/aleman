@@ -252,7 +252,7 @@ var handleJqueryAutocomplete = function() {
     }
 
     function remover_fila(fila){
-        alert(fila);
+        $('#'+ fila +).remove();
     }
 
 	</script>
