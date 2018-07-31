@@ -19,7 +19,7 @@ class Producto
 	var $referencia;	
 	var $fechaActualizacion;	
 	var $bulto;	
-	var $iva_10;	
+	var $IIBB;	
 
         
 	function Producto($_id=0) 
@@ -50,7 +50,7 @@ class Producto
 		$this->referencia = $datos_carga['referencia'];
 		$this->fechaActualizacion = $datos_carga['fechaActualizacion'];
 		$this->bulto = $datos_carga['bulto'];
-		$this->iva_10 = $datos_carga['iva_10'];
+		$this->IIBB = $datos_carga['IIBB'];
 
 		$sql=null;
 		$conn=null;
@@ -63,13 +63,13 @@ class Producto
 
 		if ($this->id<>0) 
 			{ 
-			$sql = $conn->prepare("update productos set idMoneda = '$this->idMoneda', idCategoria = '$this->idCategoria', idSubCategoria = '$this->idSubCategoria', descripcion = '$this->descripcion', fechaCarga = '$this->fechaCarga', idUsuario = '$this->idUsuario', activo = '$this->activo', aviso_stock = '$this->aviso_stock', precio = '$this->precio', desc1 = '$this->desc1', desc2 = '$this->desc2', desc3 = '$this->desc3', utilidad = '$this->utilidad', iva = '$this->iva', referencia = '$this->referencia', fechaActualizacion = '$this->fechaActualizacion', bulto = '$this->bulto', iva_10 = '$this->iva_10' where id='$this->id'");
+			$sql = $conn->prepare("update productos set idMoneda = '$this->idMoneda', idCategoria = '$this->idCategoria', idSubCategoria = '$this->idSubCategoria', descripcion = '$this->descripcion', fechaCarga = '$this->fechaCarga', idUsuario = '$this->idUsuario', activo = '$this->activo', aviso_stock = '$this->aviso_stock', precio = '$this->precio', desc1 = '$this->desc1', desc2 = '$this->desc2', desc3 = '$this->desc3', utilidad = '$this->utilidad', iva = '$this->iva', referencia = '$this->referencia', fechaActualizacion = '$this->fechaActualizacion', bulto = '$this->bulto', IIBB = '$this->IIBB' where id='$this->id'");
 			$sql->execute();
 			
 			}
 		else
 			{
-			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', '$this->fechaActualizacion','$this->bulto', '$this->iva_10')");
+			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', '$this->fechaActualizacion','$this->bulto', '$this->IIBB')");
 			$sql->execute();
 			$this->id = $conn->lastInsertId();
 			} 
@@ -110,7 +110,7 @@ class Producto
 		$producto->set_referencia($_PARAM['referencia']);                
 		$producto->set_fechaActualizacion(0);                                
 		$producto->set_bulto($_PARAM['bulto']);                                
-		$producto->set_iva_10($_PARAM['iva_10']);                                
+		$producto->set_IIBB($_PARAM['IIBB']);                                
 		$producto->save();
 
 	
@@ -795,7 +795,7 @@ class Producto
 	function get_idMoneda() { return($this->idMoneda); } 
 	function get_fechaActualizacion() { return($this->fechaActualizacion); } 
 	function get_bulto() { return($this->bulto); } 
-	function get_iva_10() { return($this->iva_10); } 
+	function get_IIBB() { return($this->IIBB); } 
 
 
 	function get_precio_lista($_id){
@@ -817,6 +817,8 @@ class Producto
 		
 		$precio_utilidad = $desc3_desc + ($desc3_desc * $producto_actual->get_utilidad() / 100);
 		$precio_iva = $precio_utilidad + ($precio_utilidad * $producto_actual->get_iva() / 100);
+
+		$precio_iva = $precio_iva + ($precio_iva * $producto_actual->get_IIBB() / 100);
 
 		if($producto_actual->get_idMoneda() == 2):
                     $dolar_subcategoria = $producto_actual->get_subCategoria_dolar($producto_actual->get_idSubCategoria());
@@ -869,6 +871,7 @@ class Producto
 		
 		$precio_utilidad = $desc3_desc + ($desc3_desc * $producto_actual->get_utilidad() / 100);
 		$precio_iva = $precio_utilidad + ($precio_utilidad * $producto_actual->get_iva() / 100);
+		$precio_iva = $precio_iva + ($precio_iva * $producto_actual->get_IIBB() / 100);
 
 
 		return($precio_iva);
@@ -994,7 +997,7 @@ class Producto
     function set_idMoneda($_idMoneda) { $this->idMoneda = $_idMoneda; }	
     function set_fechaActualizacion($_fechaActualizacion) { $this->fechaActualizacion = $_fechaActualizacion; }	
     function set_bulto($_bulto) { $this->bulto = $_bulto; }	
-    function set_iva_10($_iva_10) { $this->iva_10 = $_iva_10; }	
+    function set_IIBB($_IIBB) { $this->IIBB = $_IIBB; }	
 
 	/*------------------------------------------------------------------------*/ 
 	

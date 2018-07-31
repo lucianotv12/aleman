@@ -125,8 +125,17 @@
                                        </select>
                                     </div>
                                 </div> 
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">IIBB</label>
+                                    <div class="col-md-9">
+                                        <select name="IIBB" class="form-control" >
+                                        <option value="0" <?php if($IIBB == "1") echo"selected";?>>0</option>
+                                        <option value="3.5"  <?php if($IIBB == "3.5") echo"selected";?>>3.5 %</option>
+                                       </select>
+                                    </div>
+                                </div> 
+
                                 <input type="hidden" name="bulto" value="1">
-                                <input type="hidden" name="iva_10" value="0">
                             
 
 								<div class="form-group">

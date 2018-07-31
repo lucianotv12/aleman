@@ -76,7 +76,7 @@ switch($accion):
 		$idMoneda="";
         $referencia="";
         $bulto="";
-        $iva_10="";
+        $IIBB="";
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
 		Template::draw_header(2, 'productos');
@@ -122,7 +122,7 @@ switch($accion):
 			$idMoneda=$producto->get_idMoneda();
 			$referencia = $producto->get_referencia();
 			$bulto = $producto->get_bulto();
-			$iva_10 = $producto->get_iva_10();
+			$IIBB = $producto->get_IIBB();
 		$cambio="edit";
 
 
@@ -153,7 +153,7 @@ switch($accion):
 					$producto->set_activo($_POST['activo']);
 					$producto->set_referencia($_POST['referencia']);
 					$producto->set_bulto($_POST['bulto']);
-					$producto->set_iva_10($_POST['iva_10']);
+					$producto->set_IIBB($_POST['IIBB']);
                                         
 					$producto->save();
 
@@ -161,7 +161,7 @@ switch($accion):
      	echo '<script type="text/javascript">window.location.assign("'. HOME .'home.html");</script>'; 
 		header('Location:' . HOME . 'home.html');
 
-		include("../view/producto_abm.php");
+		include("../view/productos/producto_abm.php");
 		}
 		break;			
 
