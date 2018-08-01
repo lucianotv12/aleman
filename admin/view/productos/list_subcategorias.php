@@ -24,7 +24,7 @@
                                 <thead>
 
 
-                                <tr><th colspan="3"><a href="<?php echo HOME?>producto_new.html">NUEVA SUBCATEGORIA</a></th></tr>
+                                <tr><th colspan="3"><a href="<?php echo HOME?>new_subcategoria.html">NUEVA SUBCATEGORIA</a></th></tr>
 
 								<tr style="color:gray;font-size: 11px">
 								
