@@ -541,6 +541,7 @@ class Producto
 	}
 	function get_subcategoria_byid($id_categoria=0)
 	{
+		echo "aca entrooo";die;
 		if($id_categoria)$whereclause2 = " and id = $id_categoria"; else $whereclause2 = "";
 		$conn = new Conexion();
 

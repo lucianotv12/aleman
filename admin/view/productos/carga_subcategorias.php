@@ -5,7 +5,16 @@ include_once("../../funciones.php");
 
 //$_GET["code"];
 $categoria = $_GET["code"];
-	$subcategorias = Producto::get_subcategoria_byid($categoria);
 
+if($_GET["code"] != "0"):
+	$subcategorias = Producto::get_subcategoria_byid($categoria);
+	
+?>     
+<?php foreach($subcategorias as $subcategoria): ?>
+		<option value="<?php echo $subcategoria["id"];?>"><?php echo $subcategoria["nombre"];?></option>	
+<?php endforeach;
+
+endif;
+?>
 
 
