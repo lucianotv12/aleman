@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Categorias</label>
                                     <div class="col-md-9">
-                                        <select name="idCategoria" class="form-control">
+                                        <select name="idCategoria" id="idCategoria" class="form-control">
                                             <option value="1" > Categoria</option>
                                             <?php foreach($categorias as $categoria):?>
                                             <option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
@@ -36,9 +36,9 @@
                                     </div>
                                 </div>    
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Categorias</label>
+                                    <label class="col-md-3 control-label">Subcategorias</label>
                                     <div class="col-md-9">
-                                        <select name="idSubCategoria" class="form-control">
+                                        <select name="idSubCategoria" id="idSubCategoria" class="form-control">
 
                                             <option value="1" > Subcategoria</option>
 
@@ -191,11 +191,41 @@
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo ADMIN?>assets/plugins/parsley/dist/parsley.js"></script>
+
 	<script src="<?php echo ADMIN?>assets/js/table-manage-buttons.demo.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
+    <script>
+        $(document).ready(function() {
+            App.init();
+            TableManageButtons.init();
+        $("#idCategoria").change(function(){dependencia_estado();});
 
+        });
+    function dependencia_estado()
+    {
+        var code = $("#idCategoria").val();
+        $.get("<?php echo VIEW?>carga_subcategorias.php", { code: code },
+            function(resultado)
+            {
+                if(resultado == false)
+                {
+                    alert(" Esta Categoria no posee Subcategorias");
+                }
+                else
+                {
+                    $("#idSubCategoria").attr("disabled",false);
+                    document.getElementById("idSubCategoria").options.length=1;
+                    $('#idSubCategoria').append(resultado);         
+                }
+            }
+
+        );
+    }
+
+    </script> 
 
 </body>
 </html>
