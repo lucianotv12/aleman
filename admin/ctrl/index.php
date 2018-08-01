@@ -402,6 +402,22 @@ switch($accion):
 				}
 				break;
 
+	case "subcategoria_insert":
+				{
+
+					Producto::admin_subcategoria($_POST)
+//						$producto = new Producto;
+//						Producto::nueva_categoria($_POST);
+					//ingreso un registro en el log
+					$hoy = date("Y-m-d G:i:s"); 
+					$texto = "Alta nueva categoria ";
+	//				mysql_query("insert into log values(null,".$_producto->get_idproducto().",'".$texto."', '".$hoy."')");
+					header("Location:".HOME ."list_subcategorias.html");								
+
+
+				}
+				break;
+
 /*************SUBCATEGORIAS *******************************************************/
 
 /*CLIENTESSSS*/

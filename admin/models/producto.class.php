@@ -568,7 +568,7 @@ class Producto
 	function admin_subcategoria($paramentros)
 	{
 	$idSub = $paramentros['id'];
-	$idCategoria = $paramentros['idCategoria'];
+	$idCategoria = $paramentros['categoria'];
 	$nombre = $paramentros['nombre'];
 	$descripcion = $paramentros['descripcion'];
 	$dolar = $paramentros['dolar'];        
