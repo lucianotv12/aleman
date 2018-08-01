@@ -541,7 +541,7 @@ class Producto
 	}
 	function get_subcategoria_byid($id_categoria=0)
 	{
-		if($id_categoria)$whereclause2 = " and id = $id_categoria"; else $whereclause2 = "";
+		if($id_categoria)$whereclause2 = " and idCategoria = $id_categoria"; else $whereclause2 = "";
 		$conn = new Conexion();
 
 		$sql = $conn->prepare("Select * FROM productos_subcategorias where 1 $whereclause2 order by id ");
