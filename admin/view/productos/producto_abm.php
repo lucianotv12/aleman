@@ -31,6 +31,7 @@
                                         </select>
                                     </div>
                                 </div>    
+                                <?php if($cambio == "new"):?>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Subcategorias</label>
                                     <div class="col-md-9">
@@ -40,7 +41,21 @@
 
                                         </select>
                                     </div>
-                                </div>                                
+                                </div>                       
+                                <?php else:?>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Subcategorias</label>
+                                    <div class="col-md-9">
+                                        <select name="idSubCategoria" id="idSubCategoria" class="form-control">
+                                            <option value="" > Ninguna</option>
+                                            <?php foreach($subcategorias as $subcategoria):?>
+                                            <option value="<?php echo $subcategoria["id"];?>" <?php if($idSubCategoria == $subcategoria["id"]) echo"selected";?>><?php echo $subcategoria["nombre"];?></option>
+                                            <?php endforeach;?>
+
+                                        </select>
+                                    </div>
+                                </div>                       
+                                <?php endif;?>         
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nombre</label>
                                     <div class="col-md-9">

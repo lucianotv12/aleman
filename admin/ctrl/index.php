@@ -106,6 +106,7 @@ switch($accion):
 			$deshabilitado = "";
 
 			$categorias = $producto->get_categorias_combo();
+			$subcategorias = $producto->get_subcategoria_byid();
 			$monedas = $producto->get_monedas();
 
 			$idCategoria = $producto->get_idCategoria();
@@ -123,7 +124,7 @@ switch($accion):
 			$referencia = $producto->get_referencia();
 			$bulto = $producto->get_bulto();
 			$IIBB = $producto->get_IIBB();
-		$cambio="edit";
+			$cambio="edit";
 
 
 		Template::draw_header(0, 'productos');
