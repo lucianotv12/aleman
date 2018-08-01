@@ -13,22 +13,18 @@
                         </div>
                         <div class="panel-body">
   							<?php if($cambio == "new"):?>
-		  					<form name="producto_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_insert.html">
+		  					<form name="producto_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_insert.html" data-parsley-validate="true">
                                 
 		  					<?php else:?>
-                                <?php if(!@$_GET["tipo"]):?>
-		  					       <form name="producto_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_update/<?php echo $_GET['id'];?>/">
+		  					       <form name="producto_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_update/<?php echo $_GET['id'];?>/" data-parsley-validate="true">
 		  					       <input name="_idProducto" type="hidden" value="<?php echo $_GET['id'];?>">
-		  					    <?php else:?>
-                                   <form name="producto_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_campania_update-<?php echo $_GET['id'];?>-<?php echo $_GET['tipo'];?>">
-                                   <input name="_idProducto" type="hidden" value="<?php echo $_GET['id'];?>">
-                                <?php endif;?>   
+
                             <?php endif;?>	
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Categorias</label>
                                     <div class="col-md-9">
-                                        <select name="idCategoria" id="idCategoria" class="form-control">
-                                            <option value="1" > Categoria</option>
+                                        <select name="idCategoria" id="idCategoria" class="form-control" data-parsley-required="true">
+                                            <option value="" > Categoria</option>
                                             <?php foreach($categorias as $categoria):?>
                                             <option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
                                             <?php endforeach;?>
@@ -40,7 +36,7 @@
                                     <div class="col-md-9">
                                         <select name="idSubCategoria" id="idSubCategoria" class="form-control">
 
-                                            <option value="1" > Subcategoria</option>
+                                            <option value="" > Ninguna</option>
 
                                         </select>
                                     </div>
@@ -48,7 +44,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nombre</label>
                                     <div class="col-md-9">
-									<input type="text" class="form-control" name="descripcion" value="<?php echo @$descripcion?>">
+									<input type="text" class="form-control" name="descripcion" value="<?php echo @$descripcion?>" data-parsley-required="true">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -67,7 +63,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Precio</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="precio" value="<?php echo @$precio?>">
+                                    <input type="text" class="form-control" name="precio" value="<?php echo @$precio?>" data-parsley-required="true">
                                     </div>
                                 </div> 
 
