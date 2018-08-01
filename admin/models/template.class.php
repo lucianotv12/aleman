@@ -36,6 +36,8 @@ class Template
           <link href="<?php echo ADMIN?>assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
           <link href="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css" rel="stylesheet" />
           <link href="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+          <link href="<?php echo ADMIN?>assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+          
           <!-- ================== END PAGE LEVEL STYLE ================== -->
           
           <!-- ================== BEGIN BASE JS ================== -->

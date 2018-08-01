@@ -13,7 +13,7 @@
                         </div>
                         <div class="panel-body">
   							<?php if($cambio == "new"):?>
-		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_subcategoria.html">
+		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_subcategoria.html" data-parsley-validate="true">
 		  					<?php else:?>
 		  					       <form name="categoria_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>subcategoria_update/<?php echo $_GET['id'];?>/">
 		  					       <input name="id" type="hidden" value="<?php echo $_GET['id'];?>">
@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Categoria</label>
                                     <div class="col-md-9">
-                                        <select name="categoria" class="form-control">                    
+                                        <select name="categoria" class="form-control" data-parsley-required="true">                    
                                             <option value ="0" selected>NINGUNO</option>    
                                             <?php foreach($categorias as $categoria):?>
                                             <option value="<?php echo $categoria["id"];?>" <?php if($categoria["id"] == $categoria) echo "selected";?> ><?php echo $categoria["nombre"];?></option>
@@ -128,6 +128,8 @@
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?php echo ADMIN?>assets/plugins/parsley/dist/parsley.js"></script>
+    
 	<script src="<?php echo ADMIN?>assets/js/table-manage-buttons.demo.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
