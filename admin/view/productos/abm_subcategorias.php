@@ -15,7 +15,7 @@
   							<?php if($cambio == "new"):?>
 		  					<form name="categoria_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>new_subcategoria.html" data-parsley-validate="true">
 		  					<?php else:?>
-		  					       <form name="categoria_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>subcategoria_update/<?php echo $_GET['id'];?>/">
+		  					       <form name="categoria_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>subcategoria_update/<?php echo $_GET['id'];?>/" data-parsley-validate="true">
 		  					       <input name="id" type="hidden" value="<?php echo $_GET['id'];?>">
 
                             <?php endif;?>	
@@ -134,7 +134,11 @@
 	<script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
-
-
+    <script>
+        $(document).ready(function() {
+            App.init();
+            TableManageButtons.init();
+        });
+    </script>        
 </body>
 </html>
