@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Nombre</label>
                                     <div class="col-md-9">
-									<input type="text" class="form-control" name="nombre" value="<?php echo @$nombre?>">
+									<input type="text" data-parsley-required="true" class="form-control" name="nombre" value="<?php echo @$nombre?>">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -129,7 +129,7 @@
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo ADMIN?>assets/plugins/parsley/dist/parsley.js"></script>
-    
+
 	<script src="<?php echo ADMIN?>assets/js/table-manage-buttons.demo.min.js"></script>
 	<script src="<?php echo ADMIN?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
