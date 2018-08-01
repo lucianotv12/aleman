@@ -533,7 +533,7 @@ class Producto
                                   INNER JOIN productos_categorias AS PC ON PC.id = PS.idCategoria
                                   where 1 $whereclause2 order by PS.id ");
 		$sql->execute();
-    	$resultado = $sql->fetchAll();
+    	$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 		$conn = null;
 		$sql = null;
@@ -546,8 +546,8 @@ class Producto
 
 		$sql = $conn->prepare("Select * FROM productos_subcategorias where 1 $whereclause2 order by id ");
 		$sql->execute();
-		print_r($sql);
-	    	$resultado = $sql->fetchAll();
+
+    	$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 		$conn = null;
 		$sql = null;
