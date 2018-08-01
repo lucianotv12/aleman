@@ -405,7 +405,7 @@ switch($accion):
 	case "subcategoria_insert":
 				{
 
-					Producto::admin_subcategoria($_POST)
+					Producto::admin_subcategoria($_POST);
 //						$producto = new Producto;
 //						Producto::nueva_categoria($_POST);
 					//ingreso un registro en el log
