@@ -339,8 +339,9 @@ switch($accion):
 	case "new_subcategoria" :
 				{
 				// Muestra el formulario de NUEVO
-			//	$producto = new Producto;
-				$mensaje_cabezera = "ALTA DE LA SUBCATEGORIA";
+				$producto = new Producto;
+				$subcategorias = Producto::get_subcategorias();
+				$mensaje_cabezera = "ALTA DE LA CATEGORIA";
 				$boton=true;
 				$cambio = "nuevo";
 				$deshabilitado = "";
@@ -349,10 +350,12 @@ switch($accion):
                                 $dolar="";
 				$descripcion="";
 				$activo="";
-				$idCategoria = $_GET["id"];
+                                $proveedores = Cliente::get_clientes(0,0,2);                                
 
+				Template::draw_header(0,'categorias');
+				include("../view/productos/abm_subcategorias.php");
 
-				include("../../view/productos/abm_subcategorias.php");
+		//		include("../../view/productos/abm_subcategorias.php");
 
 				}
 				break;
