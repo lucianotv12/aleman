@@ -546,6 +546,7 @@ class Producto
 
 		$sql = $conn->prepare("Select * FROM productos_subcategorias where 1 $whereclause2 order by id ");
 		$sql->execute();
+		print_r($sql);
 	    	$resultado = $sql->fetchAll();
 
 		$conn = null;
