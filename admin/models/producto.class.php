@@ -542,16 +542,6 @@ class Producto
 	function get_subcategoria_byid($id_categoria=0)
 	{
 		echo "aca entrooo";die;
-		if($id_categoria)$whereclause2 = " and id = $id_categoria"; else $whereclause2 = "";
-		$conn = new Conexion();
-
-		$sql = $conn->prepare("Select * FROM productos_subcategorias where 1 $whereclause2 order by id ");
-		$sql->execute();
-	    	$resultado = $sql->fetchAll();
-
-		$conn = null;
-		$sql = null;
-		return $resultado;
 	}
 
 	function delete_subcategoria($_id)
