@@ -207,7 +207,7 @@
     function dependencia_estado()
     {
         var code = $("#idCategoria").val();
-        $.get("<?php echo VIEW?>carga_subcategorias.php", { code: code },
+        $.get("<?php echo VIEW?>productos/carga_subcategorias.php", { code: code },
             function(resultado)
             {
                 if(resultado == false)
