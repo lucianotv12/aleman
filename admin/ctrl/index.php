@@ -350,7 +350,8 @@ switch($accion):
                                 $dolar="";
 				$descripcion="";
 				$activo="";
-                                $proveedores = Cliente::get_clientes(0,0,2);                                
+                $proveedores = Cliente::get_clientes(0,0,2);                                
+				$categorias = $producto->get_categorias_combo();
 
 				Template::draw_header(0,'categorias');
 				include("../view/productos/abm_subcategorias.php");
