@@ -415,7 +415,7 @@ class Producto
 	}
 
 	function producto_stock_abm($_PARAM, $_usuario_id=0){
-		print_r($_usuario_id)
+		print_r($_usuario_id);
 		echo "<br/>";
 		$conn = new Conexion();
 		print_r($_PARAM);
