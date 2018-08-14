@@ -58,7 +58,14 @@
 											<td><?php echo $producto["subcategoria_nombre"];?></td>
 											<td><?php echo Producto::get_precio_lista($producto["id"]);?></td>
 											<td><?php $date=date_create($producto["fechaActualizacion"]); echo date_format($date,"d/m/Y");?>
-											<td><?php echo Producto::get_producto_stock($producto["id"]);?></td>
+											<td><?php $stock = Producto::get_producto_stock($producto["id"]);
+											if($stock < $producto["aviso_stock"]):?>
+												<span style="color: red"><?php echo $stock;?></span>
+											<?php else: ?> 
+												<span style="color: green "><?php echo $stock;?></span>
+											<?php endif;?>
+
+											?></td>
 
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
 
