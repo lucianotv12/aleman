@@ -421,7 +421,7 @@ class Producto
 		print_r($_PARAM);
 		$sql = $conn->prepare("INSERT into aleman.productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,:PRODUCTO,:COMENTARIO, 1 , :CANTIDAD, CURDATE(), :USUARIO, :PRECIO)");
 
-		$sql->execute(array("idProducto"=> $_PARAM['idProducto'], "COMENTARIO" => $_PARAM['comentario'], "CANTIDAD"=> $_PARAM['cantidad'], "PRECIO"=> $_PARAM['precio'], "USUARIO" => $_usuario_id));
+		$sql->execute(array("PRODUCTO"=> $_PARAM["idProducto"], "COMENTARIO" => $_PARAM['comentario'], "CANTIDAD"=> $_PARAM['cantidad'], "PRECIO"=> $_PARAM['precio'], "USUARIO" => $_usuario_id));
 		print_r($sql);die;
 	}
 
