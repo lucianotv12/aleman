@@ -10,7 +10,7 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Producto : <?php echo @$producto->nombre?></h4>
+                            <h4 class="panel-title">Producto : <?php echo @$producto->descripcion?></h4>
                         </div>
                         <div class="panel-body">
                             <table class="table table-striped table-bordered">
@@ -29,7 +29,7 @@
                              
                                     <tr>
 
-                                       <td><?php echo $mov["fechaCarga"];?></td> 
+                                       <td><?php $date=date_create($mov["fechaCarga"]); echo date_format($date,"Y/m/d");?></td> 
                                        <td><?php echo $mov["comentario"];?></td> 
                                        <td><?php echo $mov["cantidad"];?></td> 
                                        <td><?php echo $mov["precio"];?></td> 
