@@ -415,7 +415,8 @@ class Producto
 	}
 
 	function producto_stock_abm($_PARAM, $_usuario_id=0){
-
+		print_r($_usuario_id)
+		echo "<br/>";
 		$conn = new Conexion();
 		print_r($_PARAM);
 		$sql = $conn->prepare("INSERT into aleman.productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,:PRODUCTO,:COMENTARIO, 1 , :CANTIDAD, CURDATE(), :USUARIO, :PRECIO)");
