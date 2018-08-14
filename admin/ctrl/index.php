@@ -705,7 +705,7 @@ switch($accion):
 				{
 				// ESPERA UN ID
 				//	$_usuario = unserialize(@$_SESSION["usuario"]);
-					print_r($_usuario);die;
+					print_r($_usuario->idUsuario);die;
 					$factura = new Factura($_GET["id"]);
 					$_id_factura =Factura::generar_factura2($_POST, $_usuario->id);
 					$mensaje_cabezera = "FACTURA GENERADA";
