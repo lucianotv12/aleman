@@ -22,15 +22,16 @@
                                     <th>Usuario</th>
 
                                 </tr>
-                                <tr>
-                                    <?php foreach($movimientos as $mov):?>
+                                <?php foreach($movimientos as $mov):?>
+                                    <tr>
+
                                        <td><?php echo $mov["fechaCarga"];?></td> 
                                        <td><?php echo $mov["comentario"];?></td> 
                                        <td><?php echo $mov["cantidad"];?></td> 
                                        <td><?php echo $mov["precio"];?></td> 
                                        <td><?php echo $mov["user"];?></td> 
-                                    <?php endforeach;?>    
-                                </tr>
+                                    </tr>
+                                <?php endforeach;?>    
 
                             </table>
 
