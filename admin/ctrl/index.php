@@ -4,7 +4,7 @@ $sess_name = session_name();
 if (session_start()) setcookie($sess_name, session_id(), null, '/', null, true, true);
 
 include_once("../../funciones.php");
-//validar_permanencia();	
+validar_permanencia();	
 
 if(!isset($_GET["accion"]))$accion= "home";
 else $accion = $_GET["accion"];
