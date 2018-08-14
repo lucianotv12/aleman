@@ -39,8 +39,30 @@
                                 </tbody>
                             </table>
 
+                            <form name="producto_stock" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>producto_stock_abm.html">
+                                <input type="hidden" name="idProducto" value="<?php echo $producto->id?>">
+                                <input type="hidden" name="precio" value="<?php echo $producto->precio?>">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Cantidad stock a agregar</label>
+                                    <div class="col-md-9">
+                                    <input type="number" class="form-control" name="cantidad">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Comentario</label>
+                                    <div class="col-md-9">
+                                    <input type="text" class="form-control" name="comentario" >
+                                    </div>
+                                </div>   
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Accion</label>
+                                    <div class="col-md-9">                          
+                                    <input type="submit" name="submit" class="btn btn-sm btn-success" value="GUARDAR">
+                                    </div>
+                                </div>  
 
-		  			
+
+                            </form>		  			
                         </div>
                     </div>
                     <!-- end panel -->

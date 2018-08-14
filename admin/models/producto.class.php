@@ -414,23 +414,16 @@ class Producto
 		return $movimientos;		
 	}
 
+	function producto_stock_abm($_PARAM, $_usuario_id=0){
 
-	function detalle_movimiento_stock($id_movimiento)
-	{
-		$query = "select * from productos_stock where id = " . $id_movimiento;
-	
-		$result = mysql_query($query) or die(mysql_error());
+		$conn = new Conexion();
 
-		$movimientos = array();
-		while ($dato_producto = @mysql_fetch_assoc($result))
-		{
-		$movimientos[] = $dato_producto;
-		}
-		@mysql_free_result($result);
+		$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,:PRODUCTO,:COMENTARIO, 1 , :CANTIDAD, CURDATE(), :USUARIO, :PRECIO)");
 
-		return($movimientos);
-	
+		$sql->execute(array("idProducto"=> $_PARAM['idProducto'], "COMENTARIO" => $_PARAM['comentario'], "CANTIDAD"=> $_PARAM['cantidad'], "PRECIO"=> $_PARAM['precio'], "USUARIO" => $_usuario_id);
+
 	}
+
 	
 
 	/*CATEGORIAS***********************************************************/
