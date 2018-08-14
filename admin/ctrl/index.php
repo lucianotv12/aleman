@@ -21,7 +21,7 @@ switch($accion):
 
 
 //		ECHO "ENTROOO";
-print_r($_usuario); die;
+
 
 
 				if(!isset($_GET["start"])){
@@ -704,7 +704,7 @@ print_r($_usuario); die;
 	case "generar_factura":
 				{
 				// ESPERA UN ID
-					$_usuario = unserialize(@$_SESSION["usuario"]);
+				//	$_usuario = unserialize(@$_SESSION["usuario"]);
 					print_r($_usuario);die;
 					$factura = new Factura($_GET["id"]);
 					$_id_factura =Factura::generar_factura2($_POST, $_usuario->id);
