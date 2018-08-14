@@ -416,12 +416,12 @@ class Producto
 
 	function producto_stock_abm($_PARAM, $_usuario_id=0){
 
-		$conn = new Conexion();
+/*		$conn = new Conexion();
 
 		$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,:PRODUCTO,:COMENTARIO, 1 , :CANTIDAD, CURDATE(), :USUARIO, :PRECIO)");
 
 		$sql->execute(array("idProducto"=> $_PARAM['idProducto'], "COMENTARIO" => $_PARAM['comentario'], "CANTIDAD"=> $_PARAM['cantidad'], "PRECIO"=> $_PARAM['precio'], "USUARIO" => $_usuario_id);
-
+*/
 	}
 
 	
