@@ -11,7 +11,7 @@ else $accion = $_GET["accion"];
 $detalle = false;
 
 $_usuario = unserialize(@$_SESSION["usuario"]);
-print_r($_usuario);
+print_r($_usuario); die;
 $site="";	
 error_reporting(0);
 
