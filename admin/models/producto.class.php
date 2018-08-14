@@ -404,7 +404,7 @@ class Producto
 	function producto_stock_movimientos($_idProducto){
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("SELECT * FROM productos_stock where idProducto = :ID");
+		$sql = $conn->prepare("SELECT PS.*, U.user  FROM productos_stock PS LEFT JOIN usuarios U ON PS.idUsuario = U.idUsuario where idProducto = :ID");
 		$sql->execute(array("ID" => $_idProducto));
 
 

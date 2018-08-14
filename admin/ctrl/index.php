@@ -171,7 +171,10 @@ switch($accion):
 	case "producto_stock":
 		{
 			$producto = new Producto($_GET["id"]);
+			$movimientos = Producto::producto_stock_movimientos($_GET["id"]);
+			Template::draw_header(0, 'productos');
 
+			include("../view/productos/producto_abm.php");
 
 		}	
 	break;	
