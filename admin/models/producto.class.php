@@ -424,7 +424,19 @@ class Producto
 //		print_r($sql);die;
 	}
 
-	
+	function get_producto_stock($_id){
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT sum(cantidad) as cantidad FROM aleman.productos_stock where idProducto = :PRODUCTO");
+
+		$sql->execute(array("PRODUCTO" => $_id));
+
+		$resultado = $sql->fetch(PDO::FETCH_ASSOC);
+		$conn = null;
+		$sql = null;
+		return$resultado["cantidad"];
+
+	}
 
 	/*CATEGORIAS***********************************************************/
 	

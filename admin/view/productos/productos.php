@@ -34,6 +34,8 @@
 									<th style="background-color: #5DBD90;">Subcategoria</th>
 									<th style="background-color: #5DBD90;">Precio</th>
 									<th style="background-color: #5DBD90;">Fecha</th>
+									<th style="background-color: #5DBD90;">Stock</th>
+									<th style="background-color: #5DBD90;">+ Stock</th>
 
 									<th style="background-color: #5DBD90;">Editar</th>
 								  	<?php if(@$_GET["id"]):?>
@@ -55,7 +57,11 @@
 											<td><?php echo $producto["categoria_nombre"];?></td>
 											<td><?php echo $producto["subcategoria_nombre"];?></td>
 											<td><?php echo Producto::get_precio_lista($producto["id"]);?></td>
-											<td><?php echo $producto["fechaActualizacion"];?></td>
+											<td><?php $date=date_create($producto["fechaActualizacion"]); echo date_format($date,"d/m/Y");?>
+											<td><?php echo Producto::get_producto_stock($producto["id"]);?></td>
+
+											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
+
 												
 											<?php if(@$_GET['id']):?>
 											<td><a href="<?php echo HOME?>producto_campania_edit-<?php echo $producto["id"];?>-<?php echo $_GET['id']?>">Editar</td>
