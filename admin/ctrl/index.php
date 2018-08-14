@@ -174,7 +174,7 @@ switch($accion):
 			$movimientos = Producto::producto_stock_movimientos($_GET["id"]);
 			Template::draw_header(0, 'productos');
 
-			include("../view/productos/producto_abm.php");
+			include("../view/productos/producto_stock.php");
 
 		}	
 	break;	
