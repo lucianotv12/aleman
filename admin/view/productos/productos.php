@@ -65,7 +65,7 @@
 												<span style="color: green "><?php echo $stock;?></span>
 											<?php endif;?>
 
-											?></td>
+											</td>
 
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
 
