@@ -29,7 +29,7 @@
                              
                                     <tr>
 
-                                       <td><?php $date=date_create($mov["fechaCarga"]); echo date_format($date,"Y/m/d");?></td> 
+                                       <td><?php $date=date_create($mov["fechaCarga"]); echo date_format($date,"d/m/Y");?></td> 
                                        <td><?php echo $mov["comentario"];?></td> 
                                        <td><?php echo $mov["cantidad"];?></td> 
                                        <td><?php echo $mov["precio"];?></td> 
