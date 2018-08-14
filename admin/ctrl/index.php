@@ -179,20 +179,7 @@ switch($accion):
 		}	
 	break;	
 
-	case "producto_stock_abm":
-		{
-			Producto::producto_stock_abm($_POST, $_usuario->idUsuario);
 
-			header("Location:".HOME ."producto_stock/" . $_POST["idProducto"] . "/" );								
-
-/*			$producto = new Producto($_GET["id"]);
-			$movimientos = Producto::producto_stock_movimientos($_GET["id"]);
-			Template::draw_header(0, 'productos');
-
-			include("../view/productos/producto_stock.php");
-*/
-		}	
-	break;	
 
 /*************CATEGORIAS *******************************************************/
 	case "list_categorias" :
