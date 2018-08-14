@@ -13,16 +13,20 @@
                             <h4 class="panel-title">Producto : <?php echo @$producto->nombre?></h4>
                         </div>
                         <div class="panel-body">
-                            <table>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>comentario</th>
-                                    <th>cantidad</th>
-                                    <th>precio</th>
-                                    <th>Usuario</th>
+                            <table class="table table-striped table-bordered">
+                                <thead>                         
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>comentario</th>
+                                        <th>cantidad</th>
+                                        <th>precio</th>
+                                        <th>Usuario</th>
 
-                                </tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <?php foreach($movimientos as $mov):?>
+                             
                                     <tr>
 
                                        <td><?php echo $mov["fechaCarga"];?></td> 
@@ -32,7 +36,7 @@
                                        <td><?php echo $mov["user"];?></td> 
                                     </tr>
                                 <?php endforeach;?>    
-
+                                </tbody>
                             </table>
 
 
