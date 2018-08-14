@@ -166,6 +166,13 @@ switch($accion):
 		}
 		break;			
 
+	case "producto_stock":
+		{
+			$producto = new Producto($_GET["id"]);
+
+
+		}	
+	break;	
 
 /*************CATEGORIAS *******************************************************/
 	case "list_categorias" :
@@ -695,8 +702,10 @@ switch($accion):
 	case "generar_factura":
 				{
 				// ESPERA UN ID
+					$_usuario = unserialize(@$_SESSION["usuario"]);
+
 					$factura = new Factura($_GET["id"]);
-					$_id_factura =Factura::generar_factura2($_POST);
+					$_id_factura =Factura::generar_factura2($_POST, $_usuario->id);
 					$mensaje_cabezera = "FACTURA GENERADA";
 					$boton=true;
 					$cambio = "nuevo";

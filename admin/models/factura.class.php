@@ -242,7 +242,7 @@ class Factura
 	}
 
 
-	function generar_factura2($_PARAM)
+	function generar_factura2($_PARAM,$_usuario_id=0)
 	{
 		$conn = new Conexion();			
             for ($i = 1; $i <= 30; $i++):
@@ -263,7 +263,7 @@ class Factura
                     $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
                     $descuento_producto = $_PARAM[$descuento_producto];
 
-					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','PROCESO DE FACTURA', 2 , '$cantidad_stock', CURDATE(), 0, '$precio_producto')");
+					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','PROCESO DE FACTURA', 2 , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
 					$sql->execute();
                     $insert_id = $conn->lastInsertId();
 

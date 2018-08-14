@@ -401,6 +401,18 @@ class Producto
 
 	}
 
+	function producto_stock_movimientos($_idProducto){
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT * FROM productos_stock where idProducto = :ID");
+		$sql->execute(array("ID" => $_idProducto));
+
+
+		$movimientos = $sql->fetchAll(PDO::FETCH_ASSOC);
+		$conn = null;
+		$sql = null;
+		return $movimientos;		
+	}
 
 
 	function detalle_movimiento_stock($id_movimiento)
