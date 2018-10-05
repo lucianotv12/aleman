@@ -138,8 +138,8 @@ class Template
               <!-- begin sidebar minify button -->
           <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
               <!-- end sidebar minify button -->
-          <li class="has-sub <?php if($Seccion == 'productos' or $Seccion == 'categorias' or $Seccion == 'subcategorias') echo "active"; ?>">
-            <a href="<?php echo HOME?>home.html">
+          <li class="has-sub ">
+            <a href="#">
                 <b class="caret pull-right"></b>
 
                 <i class="fa fa-pinterest" aria-hidden="true"></i>
