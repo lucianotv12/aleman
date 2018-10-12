@@ -94,10 +94,13 @@
                     <!-- end panel -->
                 </div>
                 <!-- end col-10 -->
+                <div class="col-xs-12">
+				<?php include("../view/productos/paginado.php");?>
+
+                </div>	
             </div>
             <!-- end row -->
 				
-<?php include("../view/productos/paginado.php");?>
 		</div>
 		<!-- end #content -->
 		
