@@ -30,7 +30,7 @@
 									<b>
 
 									<input type="submit" name="submit" value="BUSCAR" style="background: #5DBD90; color: white; border: none;">
-									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#5DBD90'" href="javaScript:busqueda('home','TODOS')">TODOS</a>	
+									<!--<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#5DBD90'" href="javaScript:busqueda('home','TODOS')">TODOS</a>	-->
 									</b></th>	
                                 	</tr>
 									</form>
@@ -138,6 +138,12 @@
 	//		App.init();
 	//		TableManageButtons.init();
 		});
+	$(function(){
+		$('#buscar_usuarios').autocomplete({
+		source:"<?php echo VIEW?>productos/ajax.php",				
+		});
+		
+	});
 
 
 	function busqueda(accion,buscador)
