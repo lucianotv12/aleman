@@ -130,8 +130,8 @@
 	
 	<script>
 		$(document).ready(function() {
-			App.init();
-			TableManageButtons.init();
+//			App.init();
+//			TableManageButtons.init();
 		});
 	</script>
 </body>
