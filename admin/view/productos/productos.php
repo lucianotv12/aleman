@@ -28,7 +28,8 @@
 									<form method="post" name="datos">
                                 	<th  colspan="9">BUSCAR <input type="text" size="70" name="buscador" id="buscar_usuarios" value="<?php echo  $_POST["buscador"]?>" >
 									<b>
-									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','<?php echo  $_POST['buscador'] ?>')">BUSCAR</a>
+									<button type="submit" style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','<?php echo  $_POST['buscador'] ?>')">BUSCAR</button>
+
 									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','TODOS')">TODOS</a>	
 									</b></th>	
 									</form>
