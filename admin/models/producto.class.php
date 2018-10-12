@@ -171,7 +171,7 @@ class Producto
 	*/
 	function buscarProductoAjax($palabra)
 	{
-		$palabra = mysql_real_escape_string($palabra);
+		$palabra = $palabra;
                 $palabras = explode(" ", $palabra);
                 $whereclause_referencia ="";
                 $contador = 0;
@@ -195,7 +195,7 @@ class Producto
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare(" Select P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia from productos as P
+		$sql = $conn->prepare(" SELECT P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia from productos as P
 			INNER JOIN productos_categorias PC ON P.idCategoria = PC.id
 			INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
                         WHERE 1 $whereclause_descripcion $whereclause_referencia $whereclause_id  $whereclause_categoria $whereclause_subcategoria
