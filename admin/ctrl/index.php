@@ -22,7 +22,7 @@ switch($accion):
 
 //		ECHO "ENTROOO";
 
-			print_r($_POST["buscador"]);
+			//print_r($_POST["buscador"]);
 
 				if(!isset($_GET["start"])){
 				$start = 0;
@@ -42,7 +42,7 @@ switch($accion):
 
 				$total_productos = Producto::total_productos($_GET["buscador"],$_GET["ordenar"],$_GET["tipo_orden"]);
 				
-				$_POST["buscador"] = ""; 
+			//	$_POST["buscador"] = ""; 
 			//	$_GET["buscador"] = "";
 				
 				Template::draw_header(0, 'productos');

@@ -30,7 +30,7 @@
 									<b>
 
 									<input type="submit" name="submit" value="BUSCAR">
-									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','TODOS')">TODOS</a>	
+									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('home','TODOS')">TODOS</a>	
 									</b></th>	
                                 	</tr>
 									</form>
