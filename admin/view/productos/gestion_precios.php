@@ -1,16 +1,4 @@
-<?php
-session_start();
 
-include_once("../../funciones.php");
-$_usuario = unserialize($_SESSION["usuario"]);
-
-
-validar_permanencia();
-conectar_bd();
-
-Template::draw_header();
-
-?>
 <script type="text/javascript">
 $(document).ready(function(){
 
