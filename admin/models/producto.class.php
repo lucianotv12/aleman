@@ -556,12 +556,12 @@ class Producto
 		$sql = null;
 		return $resultado;
 	}
-	function get_subcategoria_byid($id_categoria=0)
+	function get_subcategoria_byid($_id=0)
 	{
-		if($id_categoria)$whereclause2 = " and idCategoria = $id_categoria"; else $whereclause2 = "";
+		if($_id)$whereclause2 = " and id = $_id"; else $whereclause2 = "";
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("Select * FROM productos_subcategorias where 1 $whereclause2 order by id ");
+		$sql = $conn->prepare("SELECT * FROM productos_subcategorias where 1 $whereclause2 order by id ");
 		$sql->execute();
 
     	$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
