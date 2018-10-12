@@ -22,18 +22,18 @@
                         <div class="panel-body">
                             <table id="data-table" class="table table-striped table-bordered">
                                 <thead>
+									<form method="post" name="datos" action="<?php echo HOME?>home.html">
 
 
                                 	<tr><th colspan="1"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th>
-									<form method="post" name="datos" action="<?php echo HOME?>home.html">
                                 	<th  colspan="9">BUSCAR <input type="text" size="70" name="buscador" id="buscar_usuarios" value="<?php echo  $_POST["buscador"]?>" >
 									<b>
 
 									<input type="submit" name="submit" value="BUSCAR">
 									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','TODOS')">TODOS</a>	
 									</b></th>	
-									</form>
                                 	</tr>
+									</form>
 
                                     <tr style="font-size: 11px">
 									<th style="background-color: #5DBD90;">ID</th>
