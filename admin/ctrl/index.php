@@ -954,7 +954,14 @@ switch($accion):
 				break;				
 
 /* CLIENTESSSSSS*/
+	case "gestion_precios":
+	{
 
+		Template::draw_header();
+
+		include("../../view/productos/gestion_precios.php");		
+
+	}	
 
 endswitch;
 ?>
