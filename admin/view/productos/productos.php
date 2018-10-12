@@ -24,7 +24,14 @@
                                 <thead>
 
 
-                                	<tr><th colspan="3"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th></tr>
+                                	<tr><th colspan="2"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th>
+									<form method="post" name="datos">
+                                	<th>INGRESE DATOS DEL PRODUCTO <input type="text" size="70" name="buscador" id="buscar_usuarios" value="<?php echo  $_POST["buscador"]?>" >
+									<b>
+									<a style="color:white" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','<?php echo  $_POST['buscador'] ?>')">BUSCAR</a>
+									<a style="color:white" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','TODOS')">TODOS</a>	
+									</b></th>	
+                                	</tr>
 
                                     <tr style="font-size: 11px">
 									<th style="background-color: #5DBD90;">ID</th>

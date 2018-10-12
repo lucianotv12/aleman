@@ -1,8 +1,8 @@
 <?php
 
-include_once("../../funciones.php");
-include_once("../../models/producto.class.php");
-conectar_bd();
+include_once("../../../funciones.php");
+//include_once("../../models/producto.class.php");
+//conectar_bd();
 //echo "holaaaaa";
 
 $_producto = new Producto();
