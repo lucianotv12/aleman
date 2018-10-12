@@ -48,7 +48,6 @@ switch($accion):
 				Template::draw_header(0, 'productos');
 				
 				include("../view/productos/productos.php");
-				include("../view/productos/paginado.php");
 
 
 

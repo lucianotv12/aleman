@@ -96,7 +96,8 @@
                 <!-- end col-10 -->
             </div>
             <!-- end row -->
-
+				
+<?php include("../view/productos/paginado.php");?>
 		</div>
 		<!-- end #content -->
 		
