@@ -1,5 +1,4 @@
 <?php
-echo "aca entrooo";
 $cant_datos["count"] = $total_productos;
 
 if($end== 0) $end= 1; 
@@ -15,7 +14,7 @@ if($_GET["accion"]) $pagina = $_GET["accion"]; else $pagina="home";
 	<TD class="paginado" colspan="20" align="left"> 
 		<?php
 		if($start > 0) 
-		printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($start - $end) . "\"><font class=Paginado color=blue><<< Anterior |</font></a>");
+		printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($start - $end) . "\"><font class=Paginado color=#5DBD90><<< Anterior |</font></a>");
 		if($cant_datos["count"] > $end):
 			for ($i = 1; $i <= ceil($cant_datos["count"]/$end); $i++)
 			{
@@ -23,7 +22,7 @@ if($_GET["accion"]) $pagina = $_GET["accion"]; else $pagina="home";
 				{
 					printf("<font class=\"Paginado\"><font color=\"red\"> ".$i."</font>	 |</font>");
 				} else {
-					printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($end*($i-1)) . "\"><font class=\"Paginado\" color=\"blue\"> ".$i." |</font></a>");
+					printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($end*($i-1)) . "\"><font class=\"Paginado\" color=\"#5DBD90\"> ".$i." |</font></a>");
                                                                                                  
 				}
                          if($i == 35):
@@ -40,7 +39,7 @@ if($_GET["accion"]) $pagina = $_GET["accion"]; else $pagina="home";
 		endif;
 		if($cant_datos["count"] > ($start + $end))
 		{
-			printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($start + $end) . "\"><font class=\"Paginado\" color=\"blue\"> Siguiente >>> </font></a>");
+			printf("<a href=\"". CTRL ."index.php?accion=".$pagina."&ordenar=".$_GET["ordenar"]."&tipo_orden=".$_GET["tipo_orden"]."&buscador=".$_GET["buscador"]."&start=" . ($start + $end) . "\"><font class=\"Paginado\" color=\"#5DBD90\"> Siguiente >>> </font></a>");
 		}
 		?>
 	</TD>
