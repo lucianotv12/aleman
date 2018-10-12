@@ -26,11 +26,11 @@
 
 
                                 	<tr><th colspan="1"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th>
-                                	<th  colspan="9">BUSCAR <input type="text" size="70" name="buscador" id="buscar_usuarios" value="<?php echo  $_POST["buscador"]?>" >
+                                	<th  colspan="9">BUSCAR <input type="text" size="70" name="buscador" id="buscar_usuarios" value="<?php echo  @$_POST["buscador"]?>" >
 									<b>
 
-									<input type="submit" name="submit" value="BUSCAR">
-									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('home','TODOS')">TODOS</a>	
+									<input type="submit" name="submit" value="BUSCAR" style="background: #5DBD90; color: white; border: none;">
+									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#5DBD90'" href="javaScript:busqueda('home','TODOS')">TODOS</a>	
 									</b></th>	
                                 	</tr>
 									</form>
