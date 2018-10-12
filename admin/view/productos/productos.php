@@ -133,7 +133,7 @@
 
 	var table = $('#data-table').dataTable({
 	"bProcessing": true,
-	"sAjaxSource": "data.php",
+	"sAjaxSource": "<?php echo VIEW?>productos/data.php",
 	"bPaginate":true,
 	"sPaginationType":"full_numbers",
 	"iDisplayLength": 5,
