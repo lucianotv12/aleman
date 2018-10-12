@@ -94,7 +94,7 @@
                     <!-- end panel -->
                 </div>
                 <!-- end col-10 -->
-                <div class="col-xs-12">
+                <div class="col-xs-12" style="background: white">
 				<?php include("../view/productos/paginado.php");?>
 
                 </div>	
