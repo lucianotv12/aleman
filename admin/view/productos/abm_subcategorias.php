@@ -26,7 +26,7 @@
                                         <select name="categoria" class="form-control" data-parsley-required="true">                    
                                             <option value ="" selected>NINGUNO</option>    
                                             <?php foreach($categorias as $categoria):?>
-                                            <option value="<?php echo $categoria["id"];?>" <?php if($categoria["id"] == $categoria) echo "selected";?> ><?php echo $categoria["nombre"];?></option>
+                                            <option value="<?php echo $categoria["id"];?>" <?php if($categoria["id"] == $idCategoria) echo "selected";?> ><?php echo $categoria["nombre"];?></option>
                                             
                                             <?php endforeach;?>    
                                         </select>   
