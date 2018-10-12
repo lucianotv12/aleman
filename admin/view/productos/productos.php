@@ -31,6 +31,7 @@
 									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','<?php echo  $_POST['buscador'] ?>')">BUSCAR</a>
 									<a style="color:#5DBD90" onmouseover="this.style.color='blue'" onmouseout="this.style.color='white'" href="javaScript:busqueda('list','TODOS')">TODOS</a>	
 									</b></th>	
+									</form>
                                 	</tr>
 
                                     <tr style="font-size: 11px">
