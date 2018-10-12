@@ -135,8 +135,8 @@
 	
 	<script>
 		$(document).ready(function() {
-			App.init();
-			TableManageButtons.init();
+	//		App.init();
+	//		TableManageButtons.init();
 		});
 	$(function(){
 		$('#buscar_usuarios').autocomplete({
