@@ -138,6 +138,17 @@
 			App.init();
 			TableManageButtons.init();
 		});
+
+
+	function busqueda(accion,buscador)
+	{
+
+	document.datos.action="index.php?accion="+ accion +"&buscador=" + buscador ;
+	document.datos.submit();
+
+	}
+
+
 	</script>
 </body>
 </html>
