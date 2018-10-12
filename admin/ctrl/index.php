@@ -22,7 +22,7 @@ switch($accion):
 
 //		ECHO "ENTROOO";
 
-
+			print_r($_POST["buscador"]);
 
 				if(!isset($_GET["start"])){
 				$start = 0;
