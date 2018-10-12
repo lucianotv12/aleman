@@ -297,7 +297,7 @@ class Producto
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("select count(P.id) as cuenta from productos P
+		$sql = $conn->prepare("SELECT count(P.id) as cuenta from productos P
 				INNER JOIN productos_categorias PC ON P.idCategoria = PC.id  
 				INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
 				$whereclause");
