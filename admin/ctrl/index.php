@@ -397,19 +397,17 @@ switch($accion):
 				$detalle = false;
 				$boton=true;							
 				$deshabilitado = "";
-
-				$categorias = Producto::get_subcategoria_byid($_GET["id"]);
-				foreach($categorias as $categoria):
-				$id= $categoria["id"];
-				$idCategoria = $categoria["idCategoria"];
-				$nombre= $categoria["nombre"];
-				$descripcion= $categoria["descripcion"];
-				$dolar= $categoria["dolar"];                                
-				$activo= $categoria["activo"];
-                                $idProveedor = $categoria["idProveedor"];
-                                $proveedores = Cliente::get_clientes(0,0,2);
+				$categorias = Producto::get_categorias();
+				$subcategoria = Producto::get_subcategoria_byid($_GET["id"]);
+				$id= $subcategoria["id"];
+				$idCategoria = $subcategoria["idCategoria"];
+				$nombre= $subcategoria["nombre"];
+				$descripcion= $subcategoria["descripcion"];
+				$dolar= $subcategoria["dolar"];                                
+				$activo= $subcategoria["activo"];
+                $idProveedor = $subcategoria["idProveedor"];
+                $proveedores = Cliente::get_clientes(0,0,2);
                                 
-				endforeach;
 				Template::draw_header(0,'subcategorias');
 
 				include("../view/productos/abm_subcategorias.php");
