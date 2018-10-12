@@ -117,11 +117,11 @@ class Producto
 	}
 
 	function get_productos($start=0, $end=0,$busqueda=0,$ordenar=0,$tipo_orden=0, $listado=null)
-	{
+	{ 
 		if($listado == "listado") $activo_clause = " AND P.activo = 1";
 		if($start==0 and $end== 0)	$limit ="" ; else $limit = "LIMIT $start , $end";
 		if($busqueda):
-		 		$busqueda = mysql_real_escape_string($busqueda);
+		 		$busqueda = $busqueda;
 
 		//		$whereclause =" AND ";
 				$whereclause = " AND P.id like '%$busqueda%' or P.descripcion like '%$busqueda%' or P.referencia like '%$busqueda%' or PC.nombre like '%$busqueda%' or PS.nombre like '%$busqueda%' ";				
