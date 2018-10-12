@@ -29,7 +29,7 @@ switch($accion):
 				}else{
 				$start = $_GET["start"];
 				}
-				$end = 500 ; 
+				$end = 100 ; 
 
 				if($_GET["buscador"]== "TODOS") 
 				{
