@@ -116,7 +116,7 @@ class Producto
 	
 	}
 
-	function 	get_productos($start=0, $end=0,$busqueda=0,$ordenar=0,$tipo_orden=0, $listado=null)
+	function get_productos($start=0, $end=0,$busqueda=0,$ordenar=0,$tipo_orden=0, $listado=null)
 	{
 		if($listado == "listado") $activo_clause = " AND P.activo = 1";
 		if($start==0 and $end== 0)	$limit ="" ; else $limit = "LIMIT $start , $end";
@@ -147,7 +147,7 @@ class Producto
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("Select P.id, P.nombre, P.referencia, PC.nombre as categoria_nombre, PS.nombre as subcategoria_nombre, M.simbolo, DATE_FORMAT(P.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion_muestra, P.stock
+		$sql = $conn->prepare("Select P.*, PC.nombre as categoria_nombre, PS.nombre as subcategoria_nombre, M.simbolo, DATE_FORMAT(P.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion_muestra
 						FROM productos P 
 						left JOIN productos_categorias PC ON P.idCategoria = PC.id  
 						left JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id

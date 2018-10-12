@@ -42,7 +42,7 @@
 
                                     </tr>
                                 </thead>
-<!--                                <tbody>
+                                <tbody>
 									<?php foreach($productos as $producto):?>
 										<tr style="color:gray;font-size: 11px">
 										<form name="orden" method="post" action="<?php echo HOME?>cambio_orden/<?php echo $_GET['id']?>/">
@@ -80,7 +80,7 @@
 										</tr>
 									<?php endforeach;?>
 
-                                </tbody>-->
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
 	<!--[if lt IE 9]>
 		<script src="assets/crossbrowserjs/html5shiv.js"></script>
 		<script src="assets/crossbrowserjs/respond.min.js"></script>
-			<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
 	<script src="<?php echo HOME?>assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?php echo HOME?>assets/plugins/jquery-cookie/jquery.cookie.js"></script>
@@ -130,27 +130,6 @@
 		$(document).ready(function() {
 			App.init();
 			TableManageButtons.init();
-
-	var table = $('#data-table').dataTable({
-	"bProcessing": true,
-	"sAjaxSource": "<?php echo VIEW?>productos/data.php",
-	"bPaginate":true,
-	"sPaginationType":"full_numbers",
-	"iDisplayLength": 5,
-	"aoColumns": [
-	{ mData: 'id' } ,
-	{ mData: 'Nombre' },
-	{ mData: 'Referencia' },
-	{ mData: 'Categoria' },
-	{ mData: 'Subcategoria' },
-	{ mData: 'fecha' },
-	{ mData: 'stock' }
-
-	]
-	});
-
-
-
 		});
 	</script>
 </body>
