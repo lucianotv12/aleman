@@ -54,7 +54,6 @@
                                 <tbody>
 									<?php foreach($productos as $producto):?>
 										<tr style="color:gray;font-size: 11px">
-										<form name="orden" method="post" action="<?php echo HOME?>cambio_orden/<?php echo $_GET['id']?>/">
 											<input type="hidden" name="integrante" value="<?php echo $producto["id"];?>">
 
 
@@ -85,7 +84,6 @@
 											
 
 
-											</form>										
 										</tr>
 									<?php endforeach;?>
 
@@ -137,8 +135,8 @@
 	
 	<script>
 		$(document).ready(function() {
-			App.init();
-			TableManageButtons.init();
+	//		App.init();
+	//		TableManageButtons.init();
 		});
 
 
