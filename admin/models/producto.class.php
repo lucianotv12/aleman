@@ -117,7 +117,7 @@ class Producto
 	}
 
 	function get_productos($start=0, $end=0,$busqueda=0,$ordenar=0,$tipo_orden=0, $listado=null)
-	{ echo "aca entroooo";die;
+	{
 		if($listado == "listado") $activo_clause = " AND P.activo = 1";
 		if($start==0 and $end== 0)	$limit ="" ; else $limit = "LIMIT $start , $end";
 		if($busqueda):
@@ -144,10 +144,10 @@ class Producto
 		endif;
 		if($ordenar) $order_clause = $ordenar; else $order_clause = "id";
 		if($tipo_orden) $order_tipo = $tipo_orden; else $order_tipo = "ASC";
-
+ echo "aca entroooo";die;
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("Select P.*, PC.nombre as categoria_nombre, PS.nombre as subcategoria_nombre, M.simbolo, DATE_FORMAT(P.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion_muestra
+		$sql = $conn->prepare("SELECT P.*, PC.nombre as categoria_nombre, PS.nombre as subcategoria_nombre, M.simbolo, DATE_FORMAT(P.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion_muestra
 						FROM productos P 
 						left JOIN productos_categorias PC ON P.idCategoria = PC.id  
 						left JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
@@ -158,7 +158,7 @@ class Producto
 						order by $order_clause $order_tipo $limit");
 		$sql->execute();
 
-		 $resultado = $sql->fetchAll();
+		 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
 		$conn = null;
