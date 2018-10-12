@@ -126,7 +126,7 @@ class Producto
 		//		$whereclause =" AND ";
 				$whereclause = " AND P.id like '%$busqueda%' or P.descripcion like '%$busqueda%' or P.referencia like '%$busqueda%' or PC.nombre like '%$busqueda%' or PS.nombre like '%$busqueda%' ";				
 		//SPLIT DE BUSQUEDAS whereclause2
-				$busquedas = split(" ",$busqueda);		
+				$busquedas = explode(" ",$busqueda);		
 				$contador = 0;
 				foreach($busquedas as $busqueda):
 				if($contador == 0) $whereclause2 .= " AND ("; else $whereclause2 .= " OR";
@@ -144,7 +144,7 @@ class Producto
 		endif;
 		if($ordenar) $order_clause = $ordenar; else $order_clause = "id";
 		if($tipo_orden) $order_tipo = $tipo_orden; else $order_tipo = "ASC";
- echo "aca entroooo";die;
+
 		$conn = new Conexion();
 
 		$sql = $conn->prepare("SELECT P.*, PC.nombre as categoria_nombre, PS.nombre as subcategoria_nombre, M.simbolo, DATE_FORMAT(P.fechaActualizacion,'%d/%m/%Y') as fechaActualizacion_muestra
