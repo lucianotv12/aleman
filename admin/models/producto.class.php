@@ -117,7 +117,7 @@ class Producto
 	}
 
 	function get_productos($start=0, $end=0,$busqueda=0,$ordenar=0,$tipo_orden=0, $listado=null)
-	{ 
+	{ echo "aca entroooo";die;
 		if($listado == "listado") $activo_clause = " AND P.activo = 1";
 		if($start==0 and $end== 0)	$limit ="" ; else $limit = "LIMIT $start , $end";
 		if($busqueda):
