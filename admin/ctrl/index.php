@@ -959,7 +959,7 @@ switch($accion):
 
 		Template::draw_header();
 
-		include("../../view/productos/gestion_precios.php");		
+		include("../view/productos/gestion_precios.php");		
 
 	}	
 
