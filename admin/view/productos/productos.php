@@ -140,7 +140,7 @@
 	"aoColumns": [
 	{ mData: 'id' } ,
 	{ mData: 'Nombre' },
-	{ mData: 'Referencia' }
+	{ mData: 'Referencia' },
 	{ mData: 'Categoria' },
 	{ mData: 'Subcategoria' },
 	{ mData: 'fecha' },
