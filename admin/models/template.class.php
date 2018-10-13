@@ -107,6 +107,8 @@ class Template
                 <li class="<?php if($Seccion == 'productos') echo "active"; ?>"><a href="<?php echo HOME?>home.html">Productos</a></li>
                 <li class="<?php if($Seccion == 'categorias') echo "active"; ?>"><a href="<?php echo HOME?>list_categorias.html">Categorias</a></li>
                 <li class="<?php if($Seccion == 'subcategorias') echo "active"; ?>"><a href="<?php echo HOME?>list_subcategorias.html">SubCategorias</a></li>
+                <li class="<?php if($Seccion == 'gestion_precios') echo "active"; ?>"><a href="<?php echo HOME?>gestion_precios.html">Gestion de precios</a></li>
+
             </ul>              
           </li>
 
