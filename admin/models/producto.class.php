@@ -558,13 +558,28 @@ class Producto
 	}
 	function get_subcategoria_byid($_id=0)
 	{
-		if($_id)$whereclause2 = " and idCategoria = $_id"; else $whereclause2 = "";
+		if($_id)$whereclause2 = " and id = $_id"; else $whereclause2 = "";
 		$conn = new Conexion();
 
 		$sql = $conn->prepare("SELECT * FROM productos_subcategorias where 1 $whereclause2 order by id ");
 		$sql->execute();
 
     	$resultado = $sql->fetch(PDO::FETCH_ASSOC);
+
+		$conn = null;
+		$sql = null;
+		return $resultado;
+	}
+
+	function get_subcategoria_bycategoria($_id=0)
+	{
+		if($_id)$whereclause2 = " and idCategoria = $_id"; else $whereclause2 = "";
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT * FROM productos_subcategorias where 1 $whereclause2 order by id ");
+		$sql->execute();
+
+    	$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 		$conn = null;
 		$sql = null;

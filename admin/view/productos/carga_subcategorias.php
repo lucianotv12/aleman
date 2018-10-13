@@ -8,7 +8,7 @@ $categoria = $_GET["code"];
 
 if($_GET["code"] != "0"):
 	//echo "aca entrooo"; die;
-	$subcategorias = Producto::get_subcategoria_byid($categoria);
+	$subcategorias = Producto::get_subcategoria_bycategoria($categoria);
 
 ?>     
 <?php foreach($subcategorias as $subcategoria): ?>
