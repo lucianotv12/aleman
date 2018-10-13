@@ -149,7 +149,7 @@ class Template
                 <span>Configuraciones</span>
               </a>
             <ul class="sub-menu">
-                <li class="<?php if($Seccion == 'productos') echo "active"; ?>"><a href="<?php echo HOME?>view/dolar.php">Valor dolar</a></li>
+                <li class="<?php if($Seccion == 'dolar') echo "active"; ?>"><a href="<?php echo HOME?>view/dolar.php">Valor dolar</a></li>
             </ul>              
           </li>
 
