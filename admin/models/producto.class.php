@@ -564,7 +564,7 @@ class Producto
 		$sql = $conn->prepare("SELECT * FROM productos_subcategorias where 1 $whereclause2 order by id ");
 		$sql->execute();
 
-    	$resultado = $sql->fetch(PDO::FETCH_ASSOC);
+    	$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 		$conn = null;
 		$sql = null;
