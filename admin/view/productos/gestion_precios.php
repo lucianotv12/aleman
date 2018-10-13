@@ -12,7 +12,7 @@ $(document).ready(function(){
 function dependencia_estado()
 {
 	var code = $("#idCategoria").val();
-	$.get("<?=VIEW?>productos/carga_subcategorias.php", { code: code },
+	$.get("<?php echo VIEW?>productos/carga_subcategorias.php", { code: code },
 		function(resultado)
 		{
 	/*		if(resultado == false)
@@ -93,7 +93,7 @@ return (key <= 13 || (key >= 48 && key <= 57) || key == 46);
 </script>
 
 
-<?
+<?php
 if($_GET["accion"] == "cambiar"):
    // print_r($_POST); DIE();
 		Producto::modificacion_precios($_POST);
@@ -101,7 +101,7 @@ if($_GET["accion"] == "cambiar"):
 endif;
 ?>
 
-<?
+<?php
 $categorias= Producto::get_categorias_combo();
 
 ?>
@@ -124,7 +124,7 @@ $categorias= Producto::get_categorias_combo();
 
 
 				<form name="datos" method="post" >
-				<input type="hidden" name="idUsuario" value="<?=$_usuario->idUsuario?>">
+				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
 				<TABLE border="0" cellspacing ="10px;" >
 				<tr>
 					<td colspan="5"><FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
@@ -145,15 +145,15 @@ $categorias= Producto::get_categorias_combo();
 				</tr>
 				<tr>
 					<td colspan="5">
-					<select name="idCategoria" id="idCategoria" onFocus="foco(this);" onBlur="no_foco(this);" size="10">
+					<select name="idCategoria" id="idCategoria" onFocus="foco(this);" onBlur="no_foco(this);" size="10" style="background: #5DBD90; color: white;">
 						<option value="-1" >Seleccione una Categoria... </option>
 						<option value="-2" >Todos los Productos </option>
-						<? foreach($categorias as $categoria):?>
-						<option value="<?=$categoria["id"];?>" <? if($idCategoria == $categoria["id"]) echo"selected";?>><?=$categoria["nombre"];?></option>
-						<? endforeach;?>
+						<?php  foreach($categorias as $categoria):?>
+						<option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
+						<?php endforeach;?>
 					</select>		
 					
-					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10">
+					   <select style="background: #5DBD90; color: white;" multiple id="idSubCategoria" name="idSubCategoria[]" size="10">
 							<option value="-1">Selecciona Uno...</option>
 
 						</select>
