@@ -147,7 +147,7 @@ $categorias= Producto::get_categorias_combo();
 						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT>
 					</div>	
 					<div class="col-xs-12">
-						<select name="idCategoria" id="idCategoria" onFocus="foco(this);" onBlur="no_foco(this);" size="10" style="background: #5DBD90; color: white;">
+						<select name="idCategoria" id="idCategoria"  size="10" style="background: #5DBD90; color: white;">
 							<option value="-1" >Seleccione una Categoria... </option>
 							<option value="-2" >Todos los Productos </option>
 							<?php  foreach($categorias as $categoria):?>
