@@ -962,7 +962,7 @@ switch($accion):
 		include("../view/productos/gestion_precios.php");		
 
 	}	
-
+	break;
 	case "modificar_precios":
 	{
 		Producto::modificacion_precios($_POST);
@@ -976,6 +976,7 @@ switch($accion):
 		include("../view/productos/gestion_precios.php");		
 
 	}	
+	break;
 		
 endswitch;
 ?>
