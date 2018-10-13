@@ -153,7 +153,7 @@ $categorias= Producto::get_categorias_combo();
 						<?php endforeach;?>
 					</select>		
 					
-					   <select style="background: #5DBD90; color: white;" multiple id="idSubCategoria" name="idSubCategoria[]" size="10">
+					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10" style="background: #5DBD90; color: white;">
 							<option value="-1">Selecciona Uno...</option>
 
 						</select>
