@@ -127,17 +127,17 @@ $categorias= Producto::get_categorias_combo();
 						<FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
 					</div>
 					<div class="row">
-						<div class="col-xs-3">
+						<div class="col-xs-12">
 							<input type="radio" name="radio" value="1" onclick="javaScript:mostrar_utilidad();"><FONT SIZE="" COLOR="white">Modificar utilidad</FONT>
 						</div>	
-						<div class="col-xs-3">
+						<div class="col-xs-12">
 							<input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT>
 						</div>
 		
-						<div class="col-xs-3">
+						<div class="col-xs-12">
 						<input type="radio" name="radio" value="5" onclick="javaScript:mostrar_precio();"><FONT SIZE="" COLOR="white">Modificar Precio</FONT>
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-12">
 							<input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT>
 						</div>	
 			   		 </div>
