@@ -118,7 +118,7 @@ $categorias= Producto::get_categorias_combo();
                 </div>
                 <h4 class="panel-title">MODIFICACION MASIVA DE PRECIOS</h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="background: #5DBD90; color: white;">
 
 
 
