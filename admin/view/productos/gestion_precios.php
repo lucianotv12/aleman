@@ -105,118 +105,129 @@ endif;
 $categorias= Producto::get_categorias_combo();
 
 ?>
-<div class="contentArea"> 
+<div class="row">
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">MODIFICACION MASIVA DE PRECIOS</h4>
+            </div>
+            <div class="panel-body">
 
-<div class="header">
 
-	<div class="pageTitle">
-	MODIFICACION MASIVA DE PRECIOS
-	</div>
-	<form name="datos" method="post" >
-	<input type="hidden" name="idUsuario" value="<?=$_usuario->idUsuario?>">
-	<TABLE border="0" cellspacing ="10px;" >
-	<tr>
-		<td colspan="5"><FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
-	</tr>
-	<TR>
-		<TD>
-			<input type="radio" name="radio" value="1" onclick="javaScript:mostrar_utilidad();"><FONT SIZE="" COLOR="white">Modificar utilidad</FONT>
-		</TD>
-		<TD><input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT></TD>
-		<TD><input type="radio" name="radio" value="3" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 2"</FONT></TD>
-		<TD><input type="radio" name="radio" value="4" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 3"</FONT></TD>
-		<TD><input type="radio" name="radio" value="5" onclick="javaScript:mostrar_precio();"><FONT SIZE="" COLOR="white">Modificar Precio</FONT></TD>
-		<TD><input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT></TD>
 
-        </TR>
-	<tr>
-		<td colspan="5"><FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT></td>
-	</tr>
-	<tr>
-		<td colspan="5">
-		<select name="idCategoria" id="idCategoria" onFocus="foco(this);" onBlur="no_foco(this);" size="10">
-			<option value="-1" >Seleccione una Categoria... </option>
-			<option value="-2" >Todos los Productos </option>
-			<? foreach($categorias as $categoria):?>
-			<option value="<?=$categoria["id"];?>" <? if($idCategoria == $categoria["id"]) echo"selected";?>><?=$categoria["nombre"];?></option>
-			<? endforeach;?>
-		</select>		
-		
-		   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10">
-				<option value="-1">Selecciona Uno...</option>
 
-			</select>
-		
-		</td>
-	</tr>
-	<tr id="utilidad" style="display:none;">
-		<td colspan="10">
-			<table>
+				<form name="datos" method="post" >
+				<input type="hidden" name="idUsuario" value="<?=$_usuario->idUsuario?>">
+				<TABLE border="0" cellspacing ="10px;" >
 				<tr>
-					<td>
+					<td colspan="5"><FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
+				</tr>
+				<TR>
+					<TD>
+						<input type="radio" name="radio" value="1" onclick="javaScript:mostrar_utilidad();"><FONT SIZE="" COLOR="white">Modificar utilidad</FONT>
+					</TD>
+					<TD><input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT></TD>
+					<TD><input type="radio" name="radio" value="3" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 2"</FONT></TD>
+					<TD><input type="radio" name="radio" value="4" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 3"</FONT></TD>
+					<TD><input type="radio" name="radio" value="5" onclick="javaScript:mostrar_precio();"><FONT SIZE="" COLOR="white">Modificar Precio</FONT></TD>
+					<TD><input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT></TD>
 
-						<FONT SIZE="" COLOR="white">Utilidad:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5>
-						<input type="radio" name="tipo_valor" checked value="1"><FONT SIZE="" COLOR="white">Aumentar</font>
-						<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</font>
-						<input type="radio" name="tipo_valor" value="3"><FONT SIZE="" COLOR="white">Definir porcentaje exacto</font>
-						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar">		
+			        </TR>
+				<tr>
+					<td colspan="5"><FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT></td>
+				</tr>
+				<tr>
+					<td colspan="5">
+					<select name="idCategoria" id="idCategoria" onFocus="foco(this);" onBlur="no_foco(this);" size="10">
+						<option value="-1" >Seleccione una Categoria... </option>
+						<option value="-2" >Todos los Productos </option>
+						<? foreach($categorias as $categoria):?>
+						<option value="<?=$categoria["id"];?>" <? if($idCategoria == $categoria["id"]) echo"selected";?>><?=$categoria["nombre"];?></option>
+						<? endforeach;?>
+					</select>		
+					
+					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10">
+							<option value="-1">Selecciona Uno...</option>
+
+						</select>
+					
 					</td>
 				</tr>
-			</table>
-		</td>		
-	</tr>
+				<tr id="utilidad" style="display:none;">
+					<td colspan="10">
+						<table>
+							<tr>
+								<td>
 
-	<tr id="descuentos" style="display:none;">
-		<td colspan="10">
-			<table>
-				<tr>
-					<td>		
-						<FONT SIZE="" COLOR="white">Descuento:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5>
-						<input type="radio" name="tipo_valor" value="1"><FONT SIZE="" COLOR="white">Aumentar</FONT>
-						<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</FONT>
-						<input type="radio" name="tipo_valor" value="3"><FONT SIZE="" COLOR="white">Definir porcentaje exacto</FONT>
-						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar">
+									<FONT SIZE="" COLOR="white">Utilidad:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5>
+									<input type="radio" name="tipo_valor" checked value="1"><FONT SIZE="" COLOR="white">Aumentar</font>
+									<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</font>
+									<input type="radio" name="tipo_valor" value="3"><FONT SIZE="" COLOR="white">Definir porcentaje exacto</font>
+									<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar">		
+								</td>
+							</tr>
+						</table>
+					</td>		
+				</tr>
+
+				<tr id="descuentos" style="display:none;">
+					<td colspan="10">
+						<table>
+							<tr>
+								<td>		
+									<FONT SIZE="" COLOR="white">Descuento:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5>
+									<input type="radio" name="tipo_valor" value="1"><FONT SIZE="" COLOR="white">Aumentar</FONT>
+									<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</FONT>
+									<input type="radio" name="tipo_valor" value="3"><FONT SIZE="" COLOR="white">Definir porcentaje exacto</FONT>
+									<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar">
+								</td>
+							</tr>
+						</table>
+					</td>		
+				</tr>
+
+				<tr id="precio" style="display:none;">
+					<td colspan="10">
+						<table>
+							<tr>
+								<td>
+									<FONT SIZE="" COLOR="white">Precio:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5>
+									<input type="radio" name="tipo_valor" value="1"><FONT SIZE="" COLOR="white">Aumentar</FONT>
+									<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</FONT>
+									<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar">
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
-			</table>
-		</td>		
-	</tr>
-
-	<tr id="precio" style="display:none;">
-		<td colspan="10">
-			<table>
-				<tr>
-					<td>
-						<FONT SIZE="" COLOR="white">Precio:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5>
-						<input type="radio" name="tipo_valor" value="1"><FONT SIZE="" COLOR="white">Aumentar</FONT>
-						<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</FONT>
-						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar">
+				<tr id="iva" style="display:none;">
+					<td colspan="10">
+						<table>
+							<tr>
+								<td>
+									<font SIZE="" COLOR="white">IVA: </font>
+			                                                <select name="cantidad_iva">
+			                                                    <option value="0">0</option>
+			                                                    <option value="10.5">10.5</option>
+			                                                    <option value="21">21</option>                                                    
+			                                                </select>
+									<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar">
+								</td>
+							</tr>
+						</table>
 					</td>
 				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr id="iva" style="display:none;">
-		<td colspan="10">
-			<table>
-				<tr>
-					<td>
-						<FONT SIZE="" COLOR="white">IVA: </font>
-                                                <select name="cantidad_iva">
-                                                    <option value="0">0</option>
-                                                    <option value="10.5">10.5</option>
-                                                    <option value="21">21</option>                                                    
-                                                </select>
-						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar">
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
 
-	</TABLE>
+				</TABLE>
 
-	</form>
+				</form>
 </div>
 </div>
-
+</div></div>
