@@ -971,6 +971,10 @@ switch($accion):
 
 //		include("../view/productos/gestion_precios.php");		
 
+		Template::draw_header();
+
+		include("../view/productos/gestion_precios.php");		
+
 	}	
 		
 endswitch;

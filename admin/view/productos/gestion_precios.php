@@ -190,6 +190,7 @@ $categorias= Producto::get_categorias_combo();
                             <option value="0">0</option>
                             <option value="10.5">10.5</option>
                             <option value="21">21</option>                                                    
+                            <option value="24">24</option>                                                    
                         </select>
 						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
 				</div>
