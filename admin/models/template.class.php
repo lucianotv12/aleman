@@ -43,6 +43,7 @@ class Template
           <!-- ================== BEGIN BASE JS ================== -->
           <script src="<?php echo ADMIN?>assets/plugins/pace/pace.min.js"></script>
           <!-- ================== END BASE JS ================== -->
+          <script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 
 
         </head>
