@@ -171,11 +171,11 @@ $categorias= Producto::get_categorias_combo();
 				</div>
 
 				<div class="row" id="descuentos" style="display:none;">
-					<FONT SIZE="" COLOR="white">Descuento:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5>
-					<input type="radio" name="tipo_valor" value="1"><FONT SIZE="" COLOR="white">Aumentar</FONT>
-					<input type="radio" name="tipo_valor" value="2"><FONT SIZE="" COLOR="white">Disminuir</FONT>
-					<input type="radio" name="tipo_valor" value="3"><FONT SIZE="" COLOR="white">Definir porcentaje exacto</FONT>
-					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar">
+					Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5>
+					<input type="radio" name="tipo_valor" value="1">Aumentar
+					<input type="radio" name="tipo_valor" value="2">Disminuir
+					<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
+					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: #5DBD90; color: white; border: none;">
 				</div>	
 
 				<div class="row" id="precio" style="display:none;">
