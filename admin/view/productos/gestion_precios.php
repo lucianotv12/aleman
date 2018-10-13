@@ -140,7 +140,8 @@ $categorias= Producto::get_categorias_combo();
 						<div class="col-xs-3">
 							<input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT>
 						</div>	
-			    </div>
+			   		 </div>
+			   	</div>	 
 			    <div class="col-xs-6">    
 					<div class="row">
 						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT>
