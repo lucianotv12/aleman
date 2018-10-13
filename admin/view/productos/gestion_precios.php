@@ -95,7 +95,7 @@ return (key <= 13 || (key >= 48 && key <= 57) || key == 46);
 
 <?php
 if($_GET["accion"] == "cambiar"):
-   // print_r($_POST); DIE();
+    print_r($_POST); DIE();
 		Producto::modificacion_precios($_POST);
 
 endif;
