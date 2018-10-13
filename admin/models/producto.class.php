@@ -640,7 +640,7 @@ class Producto
 	/****************MODIFICACION DE PRECIOS****************************/
 	function modificacion_precios($_PARAM)
 	{		                 
-				$conn = new Conexion();
+		$conn = new Conexion();
 		$idCategoria = $_PARAM["idCategoria"];
 		$idSubCategoria = $_PARAM["idSubCategoria"];
 		$idUsuario = $_PARAM["idUsuario"];
