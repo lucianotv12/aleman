@@ -120,7 +120,7 @@ $categorias= Producto::get_categorias_combo();
             </div>
             <div class="panel-body" style="background: #5DBD90; color: white;">
 
-				<form name="datos" method="post" >
+				<form name="datos" method="post" action="<?php echo HOME?>modificar_precios.html" >
 				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
 				<div class="col-xs-6">
 					<div class="row">

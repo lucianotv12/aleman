@@ -963,5 +963,15 @@ switch($accion):
 
 	}	
 
+	case "modificar_precios":
+	{
+		Producto::modificacion_precios($_POST);
+
+//		Template::draw_header();
+
+//		include("../view/productos/gestion_precios.php");		
+
+	}	
+		
 endswitch;
 ?>
