@@ -175,7 +175,7 @@ $categorias= Producto::get_categorias_combo();
 					<input type="radio" name="tipo_valor" value="1">Aumentar
 					<input type="radio" name="tipo_valor" value="2">Disminuir
 					<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: #5DBD90; color: white; border: none;">
+					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
 				</div>	
 
 				<div class="row" id="precio" style="display:none;">
