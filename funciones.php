@@ -31,19 +31,6 @@ define('BOOTSTRAP_JS',$URL.'/template/js/bootstrap/');
 
 
 
-/*function conectar_bd()
-	{
-		try{
-			$conn = new PDO("mysql:host=".ROOT.";dbname=".DATABASE, USER, PASS);
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		
-		}catch(PDOException $e){
-			echo "ERROR: " . $e->getMessage();
-		}
-	}*/
-
-
 /*----------------------------------------------------------------------------*/
 /* funcion que hace una inclusion automatica de las clases
 /*----------------------------------------------------------------------------*/

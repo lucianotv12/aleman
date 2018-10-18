@@ -23,8 +23,12 @@
                             <table id="data-table" class="table table-striped table-bordered">
                                 <thead>
 
+                                	<?php if($tipo == "clientes"):?>
+    	                            	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO CLIENTE</a></th></tr>
+                                	<?php else:?>
+	                                	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO PROVEEDOR</a></th></tr>
 
-                                	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO CLIENTE</a></th></tr>
+                                	<?php endif;?>	
 
                                     <tr style="font-size: 11px">
 									<th style="background-color: #5DBD90;">ID</th>
