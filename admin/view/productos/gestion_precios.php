@@ -124,9 +124,9 @@ $categorias= Producto::get_categorias_combo();
 				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
 			    <div class="col-xs-12">    
 					<div class="row">
-						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT><br/>
+						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT><br/><br/>
 					</div>	
-					<div class="col-xs-6">
+					<div class="col-xs-12">
 						<select name="idCategoria" id="idCategoria"  size="10" style="background: #5DBD90; color: white;">
 							<option value="-1" >Seleccione una Categoria... </option>
 							<option value="-2" >Todos los Productos </option>
@@ -134,8 +134,10 @@ $categorias= Producto::get_categorias_combo();
 							<option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
 							<?php endforeach;?>
 						</select>		
-					</div>
-					<div class="col-xs-6">
+						&nbsp;
+						&nbsp;
+						&nbsp;
+						&nbsp;
 
 					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10" style="background: #5DBD90; color: white;">
 							<option value="-1">Selecciona Uno...</option>
