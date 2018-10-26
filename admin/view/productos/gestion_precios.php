@@ -155,6 +155,13 @@ $categorias= Producto::get_categorias_combo();
 					<div class="row">
 						<div class="col-xs-12">
 							<input type="radio" name="radio" value="1" onclick="javaScript:mostrar_utilidad();"><FONT SIZE="" COLOR="white">Modificar utilidad</FONT>
+						<div class="row" id="utilidad" style="display:none;">
+							Utilidad:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5 style="color: black">
+							<input type="radio" name="tipo_valor" checked value="1">Aumentar
+							<input type="radio" name="tipo_valor" value="2">Disminuir
+							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
+							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
+						</div>							
 						</div>	
 						<div class="col-xs-12">
 							<input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT>
@@ -170,13 +177,7 @@ $categorias= Producto::get_categorias_combo();
 			   	</div>	 
 
 			   	<div class="col-xs-6">
-					<div class="row" id="utilidad" style="display:none;">
-						Utilidad:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5 style="color: black">
-						<input type="radio" name="tipo_valor" checked value="1">Aumentar
-						<input type="radio" name="tipo_valor" value="2">Disminuir
-						<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
-					</div>
+
 
 					<div class="row" id="descuentos" style="display:none;">
 						Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5 style="color: black">
