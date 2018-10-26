@@ -145,7 +145,7 @@ $categorias= Producto::get_categorias_combo();
 						</select>
 					</div>
 				</div>				
-				<div class="col-xs-6">
+				<div class="col-xs-12">
 					<div class="row">
 						<br/>
 						<p style="color: white; font-size: 16px">Selecciones Opcion a modificar</p>
