@@ -164,47 +164,42 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
 							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
 						</div>	
-						<div class="col-xs-12">
+						<div class="col-xs-3">
 							<input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT>
 						</div>
+						<div class="col-xs-9" id="descuentos" style="display:none;">
+							Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5 style="color: black">
+							<input type="radio" name="tipo_valor" value="1">Aumentar
+							<input type="radio" name="tipo_valor" value="2">Disminuir
+							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
+							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
+						</div>						
 		
-						<div class="col-xs-12">
+						<div class="col-xs-3">
 						<input type="radio" name="radio" value="5" onclick="javaScript:mostrar_precio();"><FONT SIZE="" COLOR="white">Modificar Precio</FONT>
 						</div>
-						<div class="col-xs-12">
+						<div class="col-xs-9" id="precio" style="display:none;">
+							Precio:% <input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5 style="color: black">
+							<input type="radio" name="tipo_valor" value="1">Aumentar
+							<input type="radio" name="tipo_valor" value="2">Disminuir
+							<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
+						</div>							
+
+						<div class="col-xs-3">
 							<input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT>
 						</div>	
+						<div class="col-xs-9" id="iva" style="display:none;">
+							IVA: 
+		                        <select name="cantidad_iva" style="color: black">
+		                            <option value="0">0</option>
+		                            <option value="10.5">10.5</option>
+		                            <option value="21">21</option>            
+		                            <option value="24">24</option>                                                    
+		                        </select>
+								<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
+						</div>						
 			   		 </div>
 			   	</div>	 
-
-			   	<div class="col-xs-6">
-
-
-					<div class="row" id="descuentos" style="display:none;">
-						Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5 style="color: black">
-						<input type="radio" name="tipo_valor" value="1">Aumentar
-						<input type="radio" name="tipo_valor" value="2">Disminuir
-						<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
-					</div>	
-
-					<div class="row" id="precio" style="display:none;">
-						Precio:% <input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5 style="color: black">
-						<input type="radio" name="tipo_valor" value="1">Aumentar
-						<input type="radio" name="tipo_valor" value="2">Disminuir
-						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
-					</div>	
-					<div class="row" id="iva" style="display:none;">
-						IVA: 
-	                        <select name="cantidad_iva" style="color: black">
-	                            <option value="0">0</option>
-	                            <option value="10.5">10.5</option>
-	                            <option value="21">21</option>                                                    
-	                            <option value="24">24</option>                                                    
-	                        </select>
-							<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
-					</div>
-				</div>
 
 				</form>
 </div>

@@ -111,6 +111,7 @@
                                     <label class="col-md-3 control-label">IVA</label>
                                     <div class="col-md-9">
                                         <select name="iva" class="form-control" >
+                                        <option value="24" <?php if($iva == "24") echo"selected";?>>24</option>
                                         <option value="21" <?php if($iva == "21") echo"selected";?>>21</option>
                                         <option value="10.5"  <?php if($iva == "10.5") echo"selected";?>>10.5</option>
                                         <option value="0"  <?php if($iva == "0") echo"selected";?>>0</option>
