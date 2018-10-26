@@ -36,10 +36,7 @@
 									<th>Precio</th>
 						          <?php if($_usuario->gerarquia == 1): ?>
 									<th>Editar</th>
-									<th> Replicar</th>
-								  	<?php if(@$_GET["id"]):?>
-										<th>Orden</th>
-									<?php endif;?>		
+	
 								  <?php endif;?>	
 
                                     </tr>
@@ -60,34 +57,10 @@
 											<td><?php echo $producto["precio"];?></td>
     									    <?php if($_usuario->gerarquia == 1): ?>
 												
-											<?php if(@$_GET['id']):?>
-											<td><a href="<?php echo HOME?>producto_campania_edit-<?php echo $producto["id"];?>-<?php echo $_GET['id']?>">Editar</td>
-											<?php else:?>
+
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
-											<?php endif;?>		
-											<td>
-												<?php
-												$referencia_shopper_id = explode("_", $producto["referencia_shopper"] );
-												$referencia_shopper_id = $referencia_shopper_id[2];
-												 if($producto["id"] == $referencia_shopper_id ):?>
-												<a href="<?php echo HOME?>producto_new/<?php echo $producto["id"];?>/">REPLICAR</a>
-												<?php endif;?>
-												 </td>										
-									  	<?php if(@$_GET["id"]):?>
-											<td>
-												<select name="orden_<?php echo $producto["id"];?>" onchange="this.form.submit()">
-
-												<?php for($i=1;$i <= $total_productos;$i++ ): ?>
-
-													<option value="<?php echo $i ?>" <?php if($i == $producto["orden"]) echo "selected"; ?>  > <?php echo $i?></option>
-
-												<?php endfor;?>	
-
-											</select>
-												
-											</td>
-											
-										<?php endif;?>	
+									
+	
 										<?php endif;?>
 
 											</form>										
