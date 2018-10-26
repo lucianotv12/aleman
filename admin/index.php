@@ -1,12 +1,11 @@
 <?php
-session_start();
+session_start(); /* SESSIONES DE PHP, ESTO TRABAJA CON LA SESSION QUE TENES EN EL NAVEGADOR WEB "CHROME, FIREFOX, ETC"*/
 session_destroy();
 session_start();
 
 include_once("../funciones.php");
 
 
-//conectar_bd();
 
 if (isset($_POST["email"]) && isset($_POST["clave"]))
 	{

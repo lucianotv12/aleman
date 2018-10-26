@@ -449,7 +449,9 @@ switch($accion):
 /*CLIENTESSSS*/
 
 	case "clientes" :
-				{				
+				{	
+				$tipo= "clientes";	
+
 				if(!isset($_GET["start"])){		
 				$start = 0;
 				}else{
@@ -486,6 +488,8 @@ switch($accion):
 				{
 				// Muestra el formulario de NUEVO
 				$cliente = new Cliente;
+				$tipo= "clientes";	
+
 #				$template->draw_header();
 #				include($template->get_vista_url ("cliente/navegador.php"));
 #				include($template->get_vista_url ("CLIENTE/panel/navegador.php"));
@@ -525,6 +529,8 @@ switch($accion):
 	case "cliente_modify" :
 				{
 				// ESPERA UN ID
+					$tipo= "clientes";	
+
 					$cliente = new Cliente($_GET["id"]);
 				
 					$mensaje_cabezera = "MODIFICACION DEL CLIENTE";
@@ -623,7 +629,10 @@ switch($accion):
 /*PROVEEDORES*/				
 
 	case "proveedores" :
-				{				
+				{			
+
+				$tipo= "proveedores";	
+
 				if(!isset($_GET["start"])){		
 				$start = 0;
 				}else{
@@ -656,6 +665,152 @@ switch($accion):
 				#				$template->draw_footer();	
 				}
 				break;
+
+	case "proveedor_new" :
+				{
+				$tipo= "proveedores";	
+
+				// Muestra el formulario de NUEVO
+				$cliente = new Cliente;
+#				$template->draw_header();
+#				include($template->get_vista_url ("cliente/navegador.php"));
+#				include($template->get_vista_url ("CLIENTE/panel/navegador.php"));
+				$mensaje_cabezera = "ALTA DEL PROVEEDOR";
+				$boton=true;
+				$cambio = "new";
+				$provincias = Cliente::get_provincias();
+				$vendedores = Cliente::get_vendedores();
+				$deshabilitado = "";
+				$idTipo = "";
+				$nombre="";
+				$domicilio="";
+				$idLocalidad = "";
+				$idProvincia=1;
+				$pais="";
+				$cp="";
+				$telefono="";
+				$telefono2="";
+				$contacto="";
+				$mail = "";
+				$web="";
+				$activo="";
+				$observaciones="";
+				$idVendedor="";
+				$descuento="";
+				$nro_cuit="";
+				$condicion_iva="";
+
+			//	$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
+				Template::draw_header(2,'clientes');
+					include("../view/clientes/cliente_abm.php");
+#				$template->draw_footer();
+				}
+				break;
+
+
+	case "proveedor_modify" :
+				{
+				// ESPERA UN ID
+					$tipo= "proveedores";	
+
+					$cliente = new Cliente($_GET["id"]);
+				
+					$mensaje_cabezera = "MODIFICACION DEL PROVEEDOR";
+					$cambio = "modificar";
+					$detalle = false;
+					$boton=true;							
+					$deshabilitado = "";
+	
+					$provincias = Cliente::get_provincias();
+					$vendedores = Cliente::get_vendedores();				
+					$idTipo = $cliente->get_idTipo();
+					$nombre= $cliente->get_nombre();
+					$domicilio= $cliente->get_domicilio();
+					$idLocalidad = $cliente->get_idLocalidad();
+					$idProvincia= $cliente->get_idProvincia();
+					$pais= $cliente->get_pais();
+					$cp= $cliente->get_cp();
+					$telefono= $cliente->get_telefono();
+					$telefono2= $cliente->get_telefono2();
+					$contacto= $cliente->get_contacto();
+					$mail = $cliente->get_mail();
+					$web= $cliente->get_web();
+					$activo= $cliente->get_activo();
+					$observaciones=$cliente->get_observaciones();
+					$idVendedor=$cliente->get_idVendedor();
+					$descuento=$cliente->get_descuento();
+					$nro_cuit=$cliente->get_nro_cuit();
+					$condicion_iva=$cliente->get_condicion_iva();
+
+					Template::draw_header(2, 'clientes');
+
+					include("../view/clientes/cliente_abm.php");
+
+				}
+				break;
+
+	case "proveedor_delete" :
+				{
+				// ESPERA UN ID
+				// No icluye Vista, Borra directo..
+				$proveedor = new Cliente($_GET["id"]);
+				$proveedor->erase();
+				//ingreso un registro en el log
+				$hoy = date("Y-m-d G:i:s"); 
+				$texto = "Baja Proveedor".$_GET["id"];
+		//		mysql_query("insert into log values(null,".$_Cliente->get_id().",'".$texto."', '".$hoy."')");
+				header("Location: index.php");
+				}
+				break;
+				
+	case "proveedor_insert":
+				{
+				//	ECHO "MMMMMM";DIE;
+						$proveedor = new Cliente;
+						$proveedor->nuevo_cliente($_POST,2);
+					//ingreso un registro en el log
+					$hoy = date("Y-m-d G:i:s"); 
+					$texto = "Alta nuevo Proveedor ";
+			     	echo '<script type="text/javascript">window.location.assign("proveedores.html");</script>'; 
+					header('Location:' . HOME . 'proveedores.html');
+
+				}
+				break;
+				
+				
+	case "proveedor_update":
+				{
+					$cliente = new Cliente($_GET["id"]);
+
+					$cliente->set_nombre($_POST['nombre']);
+					$cliente->set_domicilio($_POST['domicilio']);
+					$cliente->set_idLocalidad($_POST['cmbLocalidad']);
+					$cliente->set_idProvincia($_POST['cmbProvincia']);
+					$cliente->set_cp($_POST['cp']);
+					$cliente->set_telefono($_POST['telefono']);
+					$cliente->set_telefono2($_POST['telefono2']);
+					$cliente->set_contacto($_POST['contacto']);
+					$cliente->set_mail($_POST['mail']);
+					$cliente->set_web($_POST['web']);
+					$cliente->set_observaciones($_POST['observaciones']);
+					$cliente->set_idVendedor($_POST['idVendedor']);
+					$cliente->set_descuento($_POST['descuento']);
+					$cliente->set_nro_cuit($_POST['nro_cuit']);
+					$cliente->set_condicion_iva($_POST['condicion_iva']);
+
+					$cliente->save();
+
+					//ingreso un registro en el log
+					$hoy = date("Y-m-d G:i:s"); 
+					$texto = "Modificacion Proveedor ".$_GET["id"];
+			     	echo '<script type="text/javascript">window.location.assign("proveedores.html");</script>'; 
+					header('Location:' . HOME . 'proveedores.html');                                    
+				}
+				break;
+
+
+
+
 
 	case "facturas":
 		{

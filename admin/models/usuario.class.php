@@ -11,7 +11,7 @@ class Usuario
 	var $password; 
 	var $gerarquia; 
 
-	function Usuario($_id=0) 
+	function Usuario($_id=0)  // METODO CONSTRUCTOR DEL USUARIO
 	{
 		if ($_id<>0) 
 		{
@@ -69,18 +69,7 @@ class Usuario
 	/*------------------------------------------------------------------------*/		
 	function nuevo_usuario($_PARAM)
 		{
-//		$nombreyapellido = mysql_num_rows( mysql_query ("Select idUsuario From usuarios WHERE nombre = '" .$_PARAM["nombre"]."' AND  apellido = '".$_PARAM["apellido"]."'"));
-//		$email = mysql_num_rows( mysql_query ("Select idUsuario From usuarios WHERE email = '" .$_PARAM["email"]."'"));		
-	//	$usuario= mysql_num_rows( mysql_query ("Select idUsuario From usuarios WHERE user = '" .$_PARAM["user"]."'"));
 
-	//	if(
-
-	//			$nombreyapellido == 0	AND	
-	//			$email == 0	AND
-	//			$usuario == 0		
-	//		)	
-	//		{
-	//				echo "entro aca"; die();
 			$usuario = new Usuario ();
 			$usuario->set_nombre($_PARAM['nombre']);
 			$usuario->set_apellido($_PARAM['apellido']);
@@ -98,9 +87,11 @@ class Usuario
 	function login_admin($_user,$_password)
 		{
 		$conn = new Conexion();
+		$_password_SHA = sha1($_password);
 
-		$sql = $conn->prepare("select idUsuario from usuarios where user = '$_user' AND password = '$_password'");
-		$sql->execute();
+		$sql = $conn->prepare('SELECT idUsuario FROM usuarios WHERE email = :User and (password = :Pass OR password = :PassSHA)' );
+		$sql->execute(array('User' => $_user,  'PassSHA' => $_password_SHA, 'Pass' => $_password));
+
 		$resultado = $sql->fetch(PDO::FETCH_ASSOC);	
 //		print_r($sql);die;
 		if($resultado):
