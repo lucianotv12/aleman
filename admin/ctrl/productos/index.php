@@ -37,7 +37,6 @@ switch($accion)
 				
 				Template::draw_header();
 				include("../../view/productos/list.php");
-				include("../../view/productos/paginado.php");
 				
 				#				$template->draw_footer();	
 				}
