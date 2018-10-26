@@ -97,7 +97,7 @@ class Template
 
           <li class="nav-header">Panel General Productos</li>
           <li class="has-sub <?php if($Seccion == 'productos' or $Seccion == 'categorias' or $Seccion == 'subcategorias') echo "active"; ?>">
-            <a href="<?php echo HOME?>home.html">
+            <a href="#">
                 <b class="caret pull-right"></b>
 
                 <i class="fa fa-pinterest" aria-hidden="true"></i>
