@@ -164,6 +164,9 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
 							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
 						</div>	
+					</div>
+					<div class="row">
+						
 						<div class="col-xs-3">
 							<input type="radio" name="radio" value="2" onclick="javaScript:mostrar_descuentos();"><FONT SIZE="" COLOR="white">Modificar "Descuento 1"</FONT>
 						</div>
@@ -174,7 +177,9 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
 							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
 						</div>						
-		
+					</div>
+					<div class="row">
+
 						<div class="col-xs-3">
 						<input type="radio" name="radio" value="5" onclick="javaScript:mostrar_precio();"><FONT SIZE="" COLOR="white">Modificar Precio</FONT>
 						</div>
@@ -184,6 +189,8 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" value="2">Disminuir
 							<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
 						</div>							
+					</div>	
+					<div class="row">
 
 						<div class="col-xs-3">
 							<input type="radio" name="radio" value="6" onclick="javaScript:mostrar_iva();"><FONT SIZE="" COLOR="white">Modificar IVA</FONT>
