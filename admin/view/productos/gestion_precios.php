@@ -124,7 +124,7 @@ $categorias= Producto::get_categorias_combo();
 				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
 			    <div class="col-xs-12">    
 					<div class="row">
-						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT><br/><br/>
+						<p style="color: white; font-size: 16px">Seleccione sobre que productos se aplicara el cambio</p><br/><br/>
 					</div>	
 					<div class="col-xs-12">
 						<select name="idCategoria" id="idCategoria"  size="10" style="background: #5DBD90; color: white;">
