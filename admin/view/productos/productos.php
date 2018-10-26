@@ -89,7 +89,6 @@
 
                                 </tbody>
                             </table>
-						<?php include("../view/productos/paginado.php");?>
 
                         </div>
                     </div>
