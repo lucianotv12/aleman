@@ -96,7 +96,7 @@ class Template
         <ul class="nav">
 
           <li class="nav-header">Panel General Productos</li>
-          <li class="has-sub <?php if($Seccion == 'productos' or $Seccion == 'categorias' or $Seccion == 'subcategorias') echo "active"; ?>">
+          <li class="has-sub ">
             <a href="#">
                 <b class="caret pull-right"></b>
 
