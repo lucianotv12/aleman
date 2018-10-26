@@ -20,7 +20,7 @@
                             </button>
                         </div>
                         <div class="panel-body">
-                            <table id="data-table" class="table table-striped table-bordered">
+                            <table  class="table table-striped table-bordered">
                                 <thead>
 									<form method="post" name="datos" action="<?php echo HOME?>home.html">
 
@@ -76,11 +76,9 @@
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
 
 												
-											<?php if(@$_GET['id']):?>
-											<td><a href="<?php echo HOME?>producto_campania_edit-<?php echo $producto["id"];?>-<?php echo $_GET['id']?>">Editar</td>
-											<?php else:?>
+
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
-											<?php endif;?>		
+	
 											
 
 
@@ -120,24 +118,14 @@
 	<!-- ================== END BASE JS ================== -->
 	
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="<?php echo HOME?>assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-	<script src="<?php echo HOME?>assets/js/table-manage-buttons.demo.min.js"></script>
+
+
 	<script src="<?php echo HOME?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>
 		$(document).ready(function() {
-	//		App.init();
+			App.init();
 	//		TableManageButtons.init();
 		});
 	$(function(){
