@@ -147,7 +147,10 @@ $categorias= Producto::get_categorias_combo();
 				</div>				
 				<div class="col-xs-6">
 					<div class="row">
-						<FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
+						<br/>
+						<p style="color: white; font-size: 16px">Selecciones Opcion a modificar</p>
+						<br/>
+
 					</div>
 					<div class="row">
 						<div class="col-xs-12">
