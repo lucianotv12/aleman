@@ -122,6 +122,25 @@ $categorias= Producto::get_categorias_combo();
 
 				<form name="datos" method="post" action="<?php echo HOME?>modificar_precios.html" >
 				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
+			    <div class="col-xs-12">    
+					<div class="row">
+						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT>
+					</div>	
+					<div class="col-xs-12">
+						<select name="idCategoria" id="idCategoria"  size="10" style="background: #5DBD90; color: white;">
+							<option value="-1" >Seleccione una Categoria... </option>
+							<option value="-2" >Todos los Productos </option>
+							<?php  foreach($categorias as $categoria):?>
+							<option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
+							<?php endforeach;?>
+						</select>		
+					
+					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10" style="background: #5DBD90; color: white;">
+							<option value="-1">Selecciona Uno...</option>
+
+						</select>
+					</div>
+				</div>				
 				<div class="col-xs-6">
 					<div class="row">
 						<FONT SIZE="" COLOR="white">Selecciones Opcion a modificar</FONT></td>
@@ -142,59 +161,41 @@ $categorias= Producto::get_categorias_combo();
 						</div>	
 			   		 </div>
 			   	</div>	 
-			    <div class="col-xs-6">    
-					<div class="row">
-						<FONT SIZE="" COLOR="white">Seleccione sobre que productos se aplicara el cambio</FONT>
-					</div>	
-					<div class="col-xs-12">
-						<select name="idCategoria" id="idCategoria"  size="10" style="background: #5DBD90; color: white;">
-							<option value="-1" >Seleccione una Categoria... </option>
-							<option value="-2" >Todos los Productos </option>
-							<?php  foreach($categorias as $categoria):?>
-							<option value="<?php echo $categoria["id"];?>" <?php if($idCategoria == $categoria["id"]) echo"selected";?>><?php echo $categoria["nombre"];?></option>
-							<?php endforeach;?>
-						</select>		
-					
-					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10" style="background: #5DBD90; color: white;">
-							<option value="-1">Selecciona Uno...</option>
 
-						</select>
+			   	<div class="col-xs-6">
+					<div class="row" id="utilidad" style="display:none;">
+						Utilidad:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5 style="color: black">
+						<input type="radio" name="tipo_valor" checked value="1">Aumentar
+						<input type="radio" name="tipo_valor" value="2">Disminuir
+						<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
+						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
+					</div>
+
+					<div class="row" id="descuentos" style="display:none;">
+						Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5 style="color: black">
+						<input type="radio" name="tipo_valor" value="1">Aumentar
+						<input type="radio" name="tipo_valor" value="2">Disminuir
+						<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
+						<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
+					</div>	
+
+					<div class="row" id="precio" style="display:none;">
+						Precio:% <input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5 style="color: black">
+						<input type="radio" name="tipo_valor" value="1">Aumentar
+						<input type="radio" name="tipo_valor" value="2">Disminuir
+						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
+					</div>	
+					<div class="row" id="iva" style="display:none;">
+						IVA: 
+	                        <select name="cantidad_iva" style="color: black">
+	                            <option value="0">0</option>
+	                            <option value="10.5">10.5</option>
+	                            <option value="21">21</option>                                                    
+	                            <option value="24">24</option>                                                    
+	                        </select>
+							<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
 					</div>
 				</div>
-
-				<div class="row" id="utilidad" style="display:none;">
-					<FONT SIZE="" COLOR="white">Utilidad:%</font><input onKeyPress="return acceptNum(event)" type="text" name="cantidad_utilidad" size="4" maxlength=5 style="color: black">
-					<input type="radio" name="tipo_valor" checked value="1">Aumentar
-					<input type="radio" name="tipo_valor" value="2">Disminuir
-					<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
-				</div>
-
-				<div class="row" id="descuentos" style="display:none;">
-					Descuento:%<input onKeyPress="return acceptNum(event)" type="text" name="cantidad_descuento" size="4" maxlength=5 style="color: black">
-					<input type="radio" name="tipo_valor" value="1">Aumentar
-					<input type="radio" name="tipo_valor" value="2">Disminuir
-					<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-					<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
-				</div>	
-
-				<div class="row" id="precio" style="display:none;">
-					Precio:% <input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5 style="color: black">
-					<input type="radio" name="tipo_valor" value="1">Aumentar
-					<input type="radio" name="tipo_valor" value="2">Disminuir
-					<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
-				</div>	
-				<div class="row" id="iva" style="display:none;">
-					IVA: 
-                        <select name="cantidad_iva" style="color: black">
-                            <option value="0">0</option>
-                            <option value="10.5">10.5</option>
-                            <option value="21">21</option>                                                    
-                            <option value="24">24</option>                                                    
-                        </select>
-						<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
-				</div>
-
 
 				</form>
 </div>
