@@ -47,7 +47,7 @@ switch($accion):
 			//	ECHO $total_productos;die;
 				Template::draw_header(0, 'productos');
 				
-			//	include("../view/productos/productos.php");
+				include("../view/productos/productos.php");
 
 
 
