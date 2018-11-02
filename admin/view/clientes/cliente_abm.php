@@ -9,15 +9,27 @@
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                             </div>
-                            <h4 class="panel-title">Cliente : <?php echo @$nombre?></h4>
+                            <?php if($tipo == "proveedores"):?>
+                                <h4 class="panel-title">Proveedor : <?php echo @$nombre?></h4>
+                            <?php else:?>
+                                <h4 class="panel-title">Cliente : <?php echo @$nombre?></h4>
+                            <?php endif;?>
                         </div>
                         <div class="panel-body">
   							<?php if($cambio == "new"):?>
-		  					<form name="cliente_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>cliente_insert.html">
-                                
+                                <?php if($tipo == "proveedores"):?>
+        		  					<form name="cliente_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>proveedor_insert.html">
+                                <?php else:?>
+                                    <form name="cliente_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>cliente_insert.html">                                    
+                                <?php endif;?>    
 		  					<?php else:?>
+                                <?php if($tipo == "proveedores"):?>
 		  					       <form name="cliente_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>cliente_update/<?php echo $_GET['id'];?>/">
 		  					       <input name="_idcliente" type="hidden" value="<?php echo $_GET['id'];?>">
+                                <?php else:?>
+                                   <form name="cliente_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>proveedor_update/<?php echo $_GET['id'];?>/">
+                                   <input name="_idcliente" type="hidden" value="<?php echo $_GET['id'];?>">
+                                <?php endif;?>    
   
                             <?php endif;?>	
                           
