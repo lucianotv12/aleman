@@ -26,7 +26,7 @@
                                 	<?php if($tipo == "clientes"):?>
     	                            	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO CLIENTE</a></th></tr>
                                 	<?php else:?>
-	                                	<tr><th colspan="3"><a href="<?php echo HOME?>cliente_new.html">NUEVO PROVEEDOR</a></th></tr>
+	                                	<tr><th colspan="3"><a href="<?php echo HOME?>proveedor_new.html">NUEVO PROVEEDOR</a></th></tr>
 
                                 	<?php endif;?>	
 
