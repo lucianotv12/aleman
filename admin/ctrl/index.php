@@ -701,7 +701,7 @@ switch($accion):
 				$condicion_iva="";
 
 			//	$gerarquia = Cliente::gerarquia_Cliente($_Cliente->id);
-				Template::draw_header(2,'clientes');
+				Template::draw_header(2,'proveedores');
 					include("../view/clientes/cliente_abm.php");
 #				$template->draw_footer();
 				}
