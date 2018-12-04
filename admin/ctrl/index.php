@@ -872,6 +872,17 @@ switch($accion):
 
 		}			
 		break;
+
+	case "proveedor_factura":
+		{
+			$proveedores = Cliente::get_clientes(0,0,2);				
+
+			Template::draw_header(0,'proveedores');
+			include("../view/facturacion/proveedor_factura.php");
+
+		}			
+		break;
+
 	case "generar_factura":
 				{
 				// ESPERA UN ID
@@ -897,6 +908,30 @@ switch($accion):
 				}
 				break;
 
+	case "generar_factura_proveedor":
+		{
+		// ESPERA UN ID
+		//	$_usuario = unserialize(@$_SESSION["usuario"]);
+//			print_r($_usuario->idUsuario);die;
+			$factura = new Factura($_GET["id"]);
+			$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario,2);
+			$mensaje_cabezera = "FACTURA GENERADA";
+			$boton=true;
+			$cambio = "nuevo";
+			$deshabilitado = "";
+//					$productos_virtuales =	Factura::get_productos_virtuales();
+//			jsCommand(javascript:popUp('../../pdf/presupuesto.php?idFactura=<?= $factura["id"] ? >'));
+			$_id=$_GET["id"];
+
+	//		jsCommand("alert('holaaaaaa');");					
+			$_variable = true;
+			
+		// ESPERA UN ID
+	     	echo '<script type="text/javascript">window.location.assign("detalle_factura/$_id_factura/");</script>'; 
+			header('Location:' . HOME . 'detalle_factura/'.$_id_factura .'/');				
+//					header("Location: index.php");				
+		}
+		break;
 
 
 /*PROVEEDORES*/
@@ -1106,7 +1141,20 @@ switch($accion):
 				include("../../view/clientes/listado_clientes.php");
 				#				$template->draw_footer();	
 				}
-				break;				
+				break;		
+
+	case "facturas_proveedor" :
+		{
+				$cliente = new Cliente($_GET["id"]);
+				$nombre= $cliente->get_nombre();
+
+				$facturas = Factura::facturas_x_proveedor($cliente->id);	
+
+				Template::draw_header();
+//				include("../../view/clientes/facturas.php");
+			include("../view/facturacion/facturas.php");				
+		}
+		break;						
 
 /* CLIENTESSSSSS*/
 	case "gestion_precios":

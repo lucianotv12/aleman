@@ -36,6 +36,9 @@
 									<th style="background-color: #5DBD90;">Telefono</th>
 									<th style="background-color: #5DBD90;">Email</th>
 									<th style="background-color: #5DBD90;">Estado</th>
+									<?php if($tipo == "proveedores"):?>
+									<th style="background-color: #5DBD90;">Facturas</th>
+									<?php endif;?>
 									<th style="background-color: #5DBD90;">Editar</th>
 									<th style="background-color: #5DBD90;">Borrar</th>
 	
@@ -55,7 +58,11 @@
 											<td><?php echo $cliente->get_mail();?></td>
 											<td><?php echo $cliente_deudor = Factura::get_cliente_deudor($cliente->get_id());?></td>
 												
-
+											<?php if($tipo == "proveedores"):?>
+											<td><?php echo Factura::facturas_cantidad($cliente->get_id(),2);?>
+											 <a href="<?php echo HOME?>facturas_proveedor/<?php echo $cliente->get_id()?>/">Ver</a> 	
+											</td>
+											<?php endif;?>
 											<td><a href="<?php echo HOME?>cliente_modify/<?php echo $cliente->get_id();?>/">
 											<i class="fa fa-edit" aria-hidden="true"></i>
 											</a></td>

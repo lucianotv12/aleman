@@ -123,6 +123,10 @@ class Template
                 <i class="fa fa-product-hunt" aria-hidden="true"></i>
                 <span>Proveedores</span>
               </a>
+            <ul class="sub-menu">
+                <li class="<?php if($Seccion == 'proveedores') echo "active"; ?>"><a href="<?php echo HOME?>proveedores.html">Listado Proveedores</a></li>
+                <li class="<?php if($Seccion == 'proveedores') echo "active"; ?>"><a href="<?php echo HOME?>proveedor_factura.html">Factura Proveedor</a></li>
+            </ul>              
           </li>    
            <li class="has-sub">
             <a href="<?php echo HOME?>facturas.html">

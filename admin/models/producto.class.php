@@ -230,7 +230,7 @@ class Producto
 	/*BUSCAR PRODUCTOS AJAX
 	FUNCION QUE UTILIZA AUTOCOMPLETE
 	*/
-	function buscarProductoAjax_factura($palabra)
+	function buscarProductoAjax_factura($palabra,$_tipo=0)
 	{
 	//	$palabra = mysql_real_escape_string($palabra);
 		$whereclause_id = "";
@@ -259,7 +259,7 @@ class Producto
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare(" SELECT P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia from productos as P
+		$sql = $conn->prepare(" SELECT P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia, P.precio from productos as P
 			LEFT JOIN productos_categorias PC ON P.idCategoria = PC.id
 			LEFT JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
                         WHERE 1 $whereclause_descripcion $whereclause_referencia $whereclause_id  $whereclause_categoria $whereclause_subcategoria
@@ -270,6 +270,11 @@ class Producto
 	//	print_r($sql);die;	
 		$productos = array();
 		foreach($result as $row):
+			if(!$_tipo):
+				$precio_enviar = redondear_dos_decimal(Producto::get_precio_lista($row['id']));
+			else:
+				$precio_enviar = redondear_dos_decimal($row['precio']);
+			endif;	
 
 	// ARREGLAR EL TEMA DEL VALUEEEE, PONER SOLO DESCRIPCION EN EL LIST.
 		$productos[] = array("value" => $row['id'] . ' - ' .
@@ -279,7 +284,7 @@ class Producto
 							 "referencia" => $row['referencia'],                    
 							 "categoria"	 =>	$row['categoria'],
 							 "subcategoria"	 =>	$row['subcategoria'],
-							 "precio"		=> redondear_dos_decimal(Producto::get_precio_lista($row['id']))
+							 "precio"		=> $precio_enviar
 							);
 		
 		endforeach;

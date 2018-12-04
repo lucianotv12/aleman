@@ -242,8 +242,11 @@ class Factura
 	}
 
 
-	function generar_factura2($_PARAM,$_usuario_id=0)
+	function generar_factura2($_PARAM,$_usuario_id=0,$_tipo=0)
 	{
+		if($_tipo==0):
+			$_tipo=1;
+		endif;	
 		$conn = new Conexion();			
             for ($i = 1; $i <= 30; $i++):
 
@@ -255,15 +258,27 @@ class Factura
                 $descuento_producto = "descuento_producto" . $i;
 
                 if($_PARAM[$cantidad]):
-
+                	if($_tipo == 1):
                     $cantidad = $_PARAM[$cantidad];
                     $cantidad_stock = "-" . $cantidad;
                     $idproducto = $_PARAM[$idproducto];
                     $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
                     $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
                     $descuento_producto = $_PARAM[$descuento_producto];
+                    $mov=2;
+                    $msj = "PROCESO DE FACTURA";
+	                else:
+                    $cantidad = $_PARAM[$cantidad];
+                    $cantidad_stock =  $cantidad;
+                    $idproducto = $_PARAM[$idproducto];
+                    $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
+                    $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
+                    $descuento_producto = $_PARAM[$descuento_producto];
+                    $mov=1;
+                    $msj = "PROCESO DE FACTURA PROVEEDOR";
 
-					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','PROCESO DE FACTURA', 2 , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
+	                endif;	
+					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', $mov , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
 					$sql->execute();
                     $insert_id = $conn->lastInsertId();
 
@@ -287,10 +302,11 @@ class Factura
 			$datos_carga = $sql->fetch(PDO::FETCH_ASSOC);  				
 			$importe_total = $datos_carga["precio_total"];
 
+			if(!$_PARAM["proveedorId"]): $_PARAM["proveedorId"] =1; endif;
 
 			$factura = new Factura();
-			$factura->set_idCliente(1);
-			$factura->set_idTipo(1);
+			$factura->set_idCliente($_PARAM["proveedorId"]);
+			$factura->set_idTipo($_tipo);
 			$factura->set_n_remito($_PARAM["n_remito"]);
 			$factura->set_n_factura($_PARAM["n_factura"]);
 			$factura->set_descuento($_PARAM["descuento"]);
@@ -418,7 +434,7 @@ class Factura
 	function facturas_x_cliente($_idcliente)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("select * from clientes_facturas where idCliente = " . $_idcliente . " and (idTipo = 1 or idTipo = 5)");
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idCliente = " . $_idcliente . " and (idTipo = 1 or idTipo = 5)");
 		$sql->execute();
 		$result = $sql->fetchAll();
 		
@@ -431,6 +447,48 @@ class Factura
 		return($facturas);
 
 	}
+	function facturas_x_proveedor($_idcliente)
+	{
+		$conn = new Conexion();					
+		$sql = $conn->prepare("SELECT * from aleman.clientes_facturas where idCliente = " . $_idcliente  );
+		$sql->execute();
+
+		$result = $sql->fetchAll();
+		
+		$facturas = array();
+		foreach($result as $row):
+			$facturas[] = $row;
+		endforeach;
+		$sql=null;
+		$conn=null;
+		return($facturas);
+
+	}
+
+	function facturas_cantidad($_idcliente=0, $tipo=0)
+	{
+		if($id_cliente):
+			$whereclause = " and idCliente = ".$_idcliente;
+		endif;	
+		if($tipo):
+			$whereclauseTipo = " and idTipo = ".$tipo;
+		endif;			
+		$conn = new Conexion();					
+		$sql = $conn->prepare("select * from clientes_facturas where 1 $whereclause $whereclauseTipo");
+		$sql->execute();
+	/*	$result = $sql->fetchAll();
+		
+		$facturas = array();
+		foreach($result as $row):
+			$facturas[] = $row;
+		endforeach;*/
+		$resultado = $sql->rowCount();
+
+		$sql=null;
+		$conn=null;
+		return($resultado);
+
+	}	
 
 
 	function get_facturas($busqueda=0,$tipo_factura=0,$anio_sel=0,$mes_sel=0,$idcliente=0)
