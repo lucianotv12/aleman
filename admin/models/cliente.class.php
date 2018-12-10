@@ -103,7 +103,7 @@ class Cliente
 		$cliente->set_telefono($_PARAM['telefono']);
 		$cliente->set_telefono2($_PARAM['telefono2']);
 		$cliente->set_contacto($_PARAM['contacto']);
-		$cliente->set_mail($_PARAM['mail']);
+		$cliente->set_mail($_PARAM['email']);
 		$cliente->set_web($_PARAM['web']);
 		$cliente->set_fechaCarga('0');
 		$cliente->set_idUsuario($_PARAM['idUsuario']);

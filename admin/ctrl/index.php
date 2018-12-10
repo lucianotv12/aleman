@@ -608,7 +608,7 @@ switch($accion):
 					$cliente->set_telefono($_POST['telefono']);
 					$cliente->set_telefono2($_POST['telefono2']);
 					$cliente->set_contacto($_POST['contacto']);
-					$cliente->set_mail($_POST['mail']);
+					$cliente->set_mail($_POST['email']);
 					$cliente->set_web($_POST['web']);
 					$cliente->set_observaciones($_POST['observaciones']);
 					$cliente->set_idVendedor($_POST['idVendedor']);
@@ -790,7 +790,7 @@ switch($accion):
 					$cliente->set_telefono($_POST['telefono']);
 					$cliente->set_telefono2($_POST['telefono2']);
 					$cliente->set_contacto($_POST['contacto']);
-					$cliente->set_mail($_POST['mail']);
+					$cliente->set_mail($_POST['email']);
 					$cliente->set_web($_POST['web']);
 					$cliente->set_observaciones($_POST['observaciones']);
 					$cliente->set_idVendedor($_POST['idVendedor']);
