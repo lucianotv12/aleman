@@ -123,7 +123,7 @@
                                     <div class="col-md-9">
                                         <select name="idMoneda" class="form-control">
                                         <?php foreach($monedas as $moneda):?>
-                                            <option value="<?php echo $moneda['id']?>" <?php if(@$monedaId == $moneda['id']) echo "selected"; ?> > <?php echo $moneda['nombre']?></option>
+                                            <option value="<?php echo $moneda['id']?>" <?php if(@$idMoneda == $moneda['id']) echo "selected"; ?> > <?php echo $moneda['nombre']?></option>
                                         <?php endforeach;?> 
                                         </select>
                                     </div>
