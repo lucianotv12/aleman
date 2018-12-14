@@ -194,6 +194,19 @@ switch($accion):
 		}	
 	break;	
 
+	case "producto_delete" :
+		{
+//			echo "entrooo"; die;
+		// ESPERA UN ID
+		// No icluye Vista, Borra directo..
+		$producto = new Producto($_GET["id"]);
+		$producto->erase();
+		//ingreso un registro en el log
+     	echo '<script type="text/javascript">window.location.assign("'. HOME .'home.html");</script>'; 
+		header('Location:' . HOME . 'home.html');
+		}
+	break;
+
 /*************CATEGORIAS *******************************************************/
 	case "list_categorias" :
 				{

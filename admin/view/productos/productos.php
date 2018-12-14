@@ -1,4 +1,16 @@
+<script type="text/javascript">
+	function pregunta_borrar(_id)
+	{
+	var update=window.confirm("Esta a punto de borrar el producto " + _id + ", desea continuar?");
 
+		if (update){
+
+			window.location="<?php echo HOME?>producto_delete/" + _id + "/";
+
+		}
+	}
+
+</script>
 
 			<!-- begin row -->
 			<div class="row">
@@ -22,7 +34,7 @@
                         <div class="panel-body">
                             <table  class="table table-striped table-bordered">
                                 <thead>
-									<form method="post" name="datos" action="<?php echo HOME?>home.html">
+									<form method="post" name="datos" id="formulario" action="">
 
 
                                 	<tr><th colspan="1"><a href="<?php echo HOME?>producto_new.html">NUEVO PRODUCTO</a></th>
@@ -47,6 +59,7 @@
 									<th style="background-color: #5DBD90;">+ Stock</th>
 
 									<th style="background-color: #5DBD90;">Editar</th>
+									<th style="background-color: #5DBD90;">Borrar</th>
 
 
                                     </tr>
@@ -74,10 +87,8 @@
 											</td>
 
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
-
-												
-
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
+											<td><a onclick="pregunta_borrar(<?php echo $producto['id'];?>);">Borrar</td>
 	
 											
 
