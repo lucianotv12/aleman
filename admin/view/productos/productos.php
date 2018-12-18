@@ -88,7 +88,7 @@
 
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
-											<td><a onclick="pregunta_borrar(<?php echo $producto['id'];?>);">Borrar</td>
+											<td><a onclick="pregunta_borrar(<?php echo $producto["id"];?>);">Borrar</td>
 	
 											
 
