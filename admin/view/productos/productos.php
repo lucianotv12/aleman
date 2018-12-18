@@ -88,7 +88,7 @@
 
 											<td><a href="<?php echo HOME?>producto_stock/<?php echo $producto["id"];?>/">Agregar Stock</a></td>
 											<td><a href="<?php echo HOME?>producto_edit/<?php echo $producto["id"];?>/">Ver mas</td>
-											<td><a onclick="pregunta_borrar(<?php echo $producto["id"];?>);">Borrar</td>
+											<td><a href="#" data-href="<?php echo HOME?>producto_delete/<?php echo $producto["id"];?>/" data-toggle="modal" data-target="#confirm-delete">Borrar </a></td>
 	
 											
 
@@ -112,6 +112,38 @@
 		</div>
 		<!-- end #content -->
 		
+
+	</div>
+
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	    <div class="modal-dialog">
+
+	        <div class="modal-content">
+
+	            <div class="modal-header">
+
+	                Eliminación de producto
+
+	            </div>
+
+	            <div class="modal-body">
+
+	                ¿Confirma que quiere eliminar este producto?
+
+	            </div>
+
+	            <div class="modal-footer">
+
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+	                <a class="btn btn-danger btn-ok">Borrar</a>
+
+	            </div>
+
+	        </div>
+
+	    </div>
 
 	</div>
 	<!-- end page container -->
@@ -157,5 +189,18 @@
 
 
 	</script>
+    <script type="text/javascript">
+
+		$('#confirm-delete').on('show.bs.modal', function(e) {
+
+		    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+		});    	
+
+    	
+
+    </script>	
+
+
 </body>
 </html>
