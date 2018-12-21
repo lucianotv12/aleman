@@ -1165,7 +1165,9 @@ switch($accion):
 
 				Template::draw_header();
 //				include("../../view/clientes/facturas.php");
-			include("../view/facturacion/facturas.php");				
+	//		include("../view/facturacion/facturas.php");
+			include("../view/facturacion/facturas.php");			
+
 		}
 		break;						
 

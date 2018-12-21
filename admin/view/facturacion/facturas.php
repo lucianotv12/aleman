@@ -78,7 +78,7 @@
 
 												
 											<?php if(@$_GET['id']):?>
-											<td><a href="<?php echo HOME?>producto_campania_edit-<?php echo $producto["id"];?>-<?php echo $_GET['id']?>">Editar</td>
+											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Editar</td>
 											<?php else:?>
 											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver mas</td>
 											<?php endif;?>		
