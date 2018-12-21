@@ -80,6 +80,13 @@
                                     <th>Importe</th>
                                     <th></th>
                                 </tr>
+                                <tr id="0">
+                                    <td><input type="text" size=1 name="cantidad_generico" id="cantidad_generico"></td>
+                                    <td>x</td>
+                                    <td colspan="4"><input type="text" name="nombre_generico" id="nombre_generico"></td>
+                                    <td><input type="text" id="precio_generico" name="precio_generico"></td>
+                                    <th><a href="#" onclick="addTemporal_generico()">AGREGAR</a></th>
+                                </tr>
 
                         </table>
                     </div>
@@ -284,6 +291,98 @@ var handleJqueryAutocomplete = function() {
             $("#cantidad").focus();
             }
     }
+
+    function addTemporal_generico()
+    {
+
+        if($('#cantidad_generico').val())
+            {
+
+                var desc = $('#nombre_generico').val();
+         //      alert(desc);    
+                var numero = $('#mitabla tr:last').attr("id");
+                var numero = Number(numero.replace(/[^0-9\.]+/g,""));
+    //          var lucho = $(this).parent("tr").remove();
+                var lucho = '"tr"'; 
+                //crear tabla manualmente
+            //  var table = document.getElementById('mitabla');   
+            //  var rows = table.getElementsByTagName("tr");   
+                //crear tabla manualmente
+                numero = numero + parseInt(1);
+                var precio_descuento = $('#precio_generico').val()  ;
+
+                var precio_total = precio_descuento * $('#cantidad_generico').val();
+                precio_total = (precio_total).toFixed(2); // valor con 2 decimales          
+
+
+
+                $('#mitabla tr:last').after("<tr id="+ numero +"><td align='center'><input type=text size=1 name=cantidad"+ numero + " value=" + $('#cantidad_generico').val() + "></td><td align='center'><input type=text name=idproducto"+ numero + "  value=0></td><td align='left' colspan=4 style='min-width:320px' ><input type=text  name=descripcion_producto"+ numero + "  value='" + $('#nombre_generico').val() + "''></td><td align='center'><input type=text  name=precio_producto"+ numero + "  value=" + $('#precio_generico').val() + "></td><td align='center'><input size=1 name=descuento_producto"+ numero + "  value=0   ></td><td align='center'><input type=text  name=precio_total"+ numero + " id=precio_total"+ numero + "  value=" + precio_total + " ></td><td><a href='#' onClick=remover_fila("+ numero + ");>Quitar</a></td></tr>"); 
+                
+             //<a href='#' onClick=$(this).parent().parent().remove();>Quitar</a>   
+            //  total_total = $('#precio_total1').val() ;
+                if(numero > 1){
+                var total_total=0;
+
+                    var i=0;                        
+    //                      var total_total=parseInt($('#precio_total'+i).val());
+                    for(i=1;i<=numero;i++){ 
+                        parcial = 'precio_total'+i; 
+                    //  total_total = parseInt(precio_total);
+                        if($('#'+parcial+'').length > 0) {
+                            total_total = parseFloat(total_total) + parseFloat($('#'+parcial+'').val());
+                        }    
+                    }
+
+                }else{
+                var total_total=0;    
+                total_total = $('#precio_total1').val() ;
+                $("#cantidad_generico").attr('value', '1');
+//                $("#idproducto").attr('value', '');
+                $("#detalle_producto").attr('value', '');
+                $("#precio_producto").attr('value', '');
+                $("#jquery-autocomplete").attr('value', '');
+                $("#descuento_producto").attr('value', 0);
+                $("#subtotal_final").html(total_total);
+                $("#total_final").html(total_total);
+                $("#jquery-autocomplete").focus();
+                    $("#cantidad_generico").attr('value', '1');
+                    $("#cantidad_generico").focus();
+                    $("#nombre_generico").attr('value', '');
+                    $("#precio_generico").attr('value', '');                
+                    
+                }
+
+
+                $("#cantidad").attr('value', '1');
+                $("#idproducto").attr('value', '');
+                $("#detalle_producto").attr('value', '');
+                $("#precio_producto").attr('value', '');
+                $("#jquery-autocomplete").attr('value', '');
+                $("#descuento_producto").attr('value', 0);
+                $("#jquery-autocomplete").focus();
+                 $("#seleccionado").css("display", "none");            
+                    $("#cantidad_generico").attr('value', '1');
+                    $("#cantidad_generico").focus();
+                    $("#nombre_generico").attr('value', '');
+                    $("#precio_generico").attr('value', '');
+                total_total = (total_total).toFixed(2); // valor con 2 decimales            
+
+
+                $("#subtotal_final").html(total_total);
+                $("#total_final").html(total_total);
+
+
+
+
+            }
+        else
+            {
+            window.alert('Tiene que cargar la cantidad de productos para poder ingresar el producto');       
+            $("#cantidad").focus();
+            }
+    }
+
+
 
     function remover_fila(fila){
       var total_final = parseFloat( $('#total_final').html());

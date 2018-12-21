@@ -56,7 +56,11 @@
                                     <tr>
                                         <td><?php echo $producto["cantidad"]?></td>
                                         <td><?php echo $producto["idProducto"]?></td>
-                                        <td><?php echo $producto["descripcion"]?></td>
+                                        <td><?php if($producto["idProducto"] == 0):
+                                            echo $producto["nombre_producto"];
+                                        else: 
+                                            echo $producto["descripcion"];
+                                        endif;?></td>
                                         <td><?php echo $producto["precio_unitario"]?></td>
                                         <td><?php echo $producto["descuento"]?></td>
                                         <td><?php echo $producto["precio_total"]?></td>

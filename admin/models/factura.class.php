@@ -256,6 +256,7 @@ class Factura
                 $precio_producto = "precio_producto" . $i;
                 $precio_total = "precio_total" . $i;
                 $descuento_producto = "descuento_producto" . $i;
+                $descripcion_producto = "descripcion_producto" . $i;
 
                 if($_PARAM[$cantidad]):
                 	if($_tipo == 1):
@@ -265,6 +266,7 @@ class Factura
                     $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
                     $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
                     $descuento_producto = $_PARAM[$descuento_producto];
+                    $descripcion_producto = $_PARAM[$descripcion_producto];
                     $mov=2;
                     $msj = "PROCESO DE FACTURA";
 	                else:
@@ -274,6 +276,7 @@ class Factura
                     $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
                     $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
                     $descuento_producto = $_PARAM[$descuento_producto];
+                    $descripcion_producto = $_PARAM[$descripcion_producto];
                     $mov=1;
                     $msj = "PROCESO DE FACTURA PROVEEDOR";
 
@@ -282,7 +285,7 @@ class Factura
 					$sql->execute();
                     $insert_id = $conn->lastInsertId();
 
-                    $sql = $conn->prepare("INSERT into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto')");
+                    $sql = $conn->prepare("INSERT into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento, descripcion) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto', '$descripcion_producto')");
 					$sql->execute();
 
 
@@ -706,7 +709,7 @@ class Factura
 	function get_productos_x_factura($id_factura)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT CFP.idProducto, CFP.cantidad, P.descripcion, CFP.precio_unitario, CFP.precio_total, P.iva, CFP.descuento FROM clientes_factura_productos as CFP INNER JOIN productos as P ON P.id = CFP.idProducto where idFactura = $id_factura");
+		$sql = $conn->prepare("SELECT CFP.idProducto, CFP.cantidad, P.descripcion, CFP.precio_unitario, CFP.precio_total, P.iva, CFP.descuento, CFP.descripcion as nombre_producto FROM clientes_factura_productos as CFP left JOIN productos as P ON P.id = CFP.idProducto where idFactura = $id_factura");
 
 		$sql->execute();
 		$result = $sql->fetchAll();			
