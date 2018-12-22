@@ -470,7 +470,7 @@ class Factura
 
 	function facturas_cantidad($_idcliente=0, $tipo=0)
 	{
-		if($id_cliente):
+		if($_idcliente):
 			$whereclause = " and idCliente = ".$_idcliente;
 		endif;	
 		if($tipo):
@@ -478,6 +478,7 @@ class Factura
 		endif;			
 		$conn = new Conexion();					
 		$sql = $conn->prepare("select * from clientes_facturas where 1 $whereclause $whereclauseTipo");
+	//	print_r($sql);die;
 		$sql->execute();
 	/*	$result = $sql->fetchAll();
 		
