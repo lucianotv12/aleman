@@ -1162,6 +1162,7 @@ switch($accion):
 				$nombre= $cliente->get_nombre();
 
 				$facturas = Factura::facturas_x_proveedor($cliente->id);	
+				$bancos = Pago::get_bancos();
 
 				Template::draw_header();
 //				include("../../view/clientes/facturas.php");
@@ -1169,7 +1170,18 @@ switch($accion):
 			include("../view/facturacion/facturas.php");			
 
 		}
-		break;						
+		break;				
+
+	case "registrar_pago":
+	{
+		Pago::nuevo_pago($_POST);
+
+//     	echo '<script type="text/javascript">window.location.assign("home.html");</script>'; 
+		header('Location:' . HOME . 'facturas_proveedor/'. $_GET["id"].'/');
+
+		
+	}
+	break;
 
 /* CLIENTESSSSSS*/
 	case "gestion_precios":

@@ -76,4 +76,9 @@ function redondear_dos_decimal($valor) {
    $float_redondeado=round($valor * 100) / 100; 
    return $float_redondeado; 
 } 
+function convertir_fecha($fecha){
+    $fecha = explode("/", $fecha);
+    $fecha_retorno = $fecha[2] . "-" . $fecha[1] . "-" . $fecha[0];	
+    return $fecha_retorno;
+} 
 ?>

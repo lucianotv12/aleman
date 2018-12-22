@@ -33,7 +33,7 @@
 									<th style="background-color: #5DBD90;">Saldo</th>
 									<th style="background-color: #5DBD90;">Estado</th>
 									<th style="background-color: #5DBD90;">Comprobante</th>
-
+									<th style="background-color: #5DBD90;">Pagos</th>
 
                                     </tr>
                                 </thead>
@@ -82,7 +82,7 @@
 											<?php else:?>
 											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver mas</td>
 											<?php endif;?>		
-										
+											<td><a data-toggle="modal" data-target="#pagos" data-book-id="<?php echo $factura["id"];?>"  >pagar</a></td>
 
 
 											</form>										
@@ -104,6 +104,88 @@
 		
 
 	</div>
+
+		<div class="modal fade" id="pagos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	               Registrar Pago
+	            </div>
+
+	            <div class="modal-body">
+	            	<form name="pago" method="post" action="<?php echo HOME?>registrar_pago/<?php echo $_GET["id"]?>/">
+	            						<table >
+					<input type="hidden" name="idFactura" >
+                    <tr>
+                        <td >Forma Pago:</td>
+                        <td>
+			                <?php foreach(Pago::get_tipos_pagos() as $tipo_pago): ?>
+
+			                    <input type="radio" name="idTipoPago" value="<?php echo $tipo_pago["id"];?>" onclick="<?php if($tipo_pago["id"] == 2) echo 'javascript:mostrardiv();'; else echo 'javascript:cerrar();'; ?>">
+			                    <?php echo $tipo_pago["nombre"];?>
+			                <?php endforeach;?>
+                        </td>
+                    </tr>
+
+						
+					<!-- DATOS DEL CHEQUE -->        
+					        <tr id="flotante" style="display:none;">
+					            <td colspan="2">
+					                <table class="tabla_list" >    
+					                    <tr>
+					                            <td class="td_text">N° Cheque :</td><td class="td_text"><input class="solo-numero" name="numero_cheque"  type="text"  onFocus="foco(this);" onBlur="no_foco(this);"></td>
+					                    </tr>
+					                    <tr>
+					                            <td class="td_text">Banco :</td>
+					                            <td class="td_text" colspan="2">
+					                                <select name="banco">
+					                                    <? foreach($bancos as $banco):?>
+					                                    <option value="<?php echo $banco["id"]?>"><?php echo $banco["nombre"];?></option> 
+					                                 
+					                                    <? endforeach;?>
+					                                </select>
+					                            </td>
+					                    </tr>
+					                    <tr>
+					                            <td class="td_text">Titular :</td><td class="td_text"><input name="titular"  type="text"  onFocus="foco(this);" onBlur="no_foco(this);"></td>
+					                            <td class="td_text">Destinatario :</td><td class="td_text"><input name="destinatario"  type="text"  onFocus="foco(this);" onBlur="no_foco(this);"></td>
+					                    </tr>
+					                    <tr>
+					                            <td class="td_text">Fecha Emisi&oacute;n :</td><td class="td_text"><input name="fecha_emision" id="datepicker" type="text"  onFocus="foco(this);" onBlur="no_foco(this);"></td>
+					                            <td class="td_text">Fecha Cobro :</td><td class="td_text"><input name="fecha_cobro" id="datepicker1"  type="text" onFocus="foco(this);" onBlur="no_foco(this);"></td>
+					                    </tr>
+					                </table>
+
+					            </td>
+					        </tr>
+					        
+					<!-- FIN DATOS DEL CHEQUE -->        
+					        
+					        <tr>
+							<td class="td_text">Importe :</td><td class="td_text"><input class="solo-numero" name="importe"  type="text" <?= $deshabilitado?> value="<?=$importe?>" onFocus="foco(this);" onBlur="no_foco(this);"></td>
+						</tr>
+
+						<tr>
+							<td class="td_text">Descripcion:</td><td class="td_area"><textarea name="descripcion" rows="4" cols="60"   onFocus="foco(this);" onBlur="no_foco(this);"><?=$descripcion?></textarea></td>
+						</tr>	
+						
+						<tr>
+						<td class="submit" align="center" colspan="10" ><input type="submit" name="submit" value="GUARDAR" ></td>
+						</tr>
+					</table>
+					</form>
+	            </div>
+
+	            <div class="modal-footer">
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
 	<!-- end page container -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -141,5 +223,46 @@
 			TableManageButtons.init();
 		});
 	</script>
+	<script>
+  $(document).ready(function() {
+    $("#datepicker").datepicker();
+  });
+  $(document).ready(function() {
+    $("#datepicker1").datepicker();
+  });  
+//SOLO NUMEROS
+	$(document).ready(function(){
+	$(".solo-numero").keyup(function(){
+	if ($(this).val() != '')
+	$(this).val($(this).attr('value').replace(/[^0-9\.]/g, ""));
+	});
+	});
+
+function mostrardiv() {
+
+div = document.getElementById('flotante');
+
+div.style.display = '';
+
+}
+
+function cerrar() {
+
+div = document.getElementById('flotante');
+
+div.style.display='none';
+
+}
+
+</script>
+
+<script type="text/javascript"> 
+$('#pagos').on('show.bs.modal', function(e) { 
+    var bookId = $(e.relatedTarget).data('book-id'); 
+    $(e.currentTarget).find('input[name="idFactura"]').val(bookId); 
+
+}); 
+</script>  
+
 </body>
 </html>

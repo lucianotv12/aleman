@@ -12,9 +12,13 @@ class Pago
 	{
 		if ($_id<>0)
 		{
-		$query_carga= "select * from clientes_facturas_pagos where id=$_id"; 
-		$result_carga = mysql_query($query_carga); 
-		$datos_carga = mysql_fetch_assoc($result_carga); 
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT * from clientes_facturas_pagos where id=:ID");
+
+		$sql->execute(array("ID" => $_id));
+		$datos_carga = $sql->fetch(PDO::FETCH_ASSOC);					
+
 		$this->id = $datos_carga['id']; 
 		$this->idFactura = $datos_carga['idFactura']; 
 		$this->idTipoPago = $datos_carga['idTipoPago']; 
@@ -26,20 +30,23 @@ class Pago
 	
 	function save() 
 	{//Guarda o inserta segun corresponda 
+		$conn = new Conexion();
+
 		if ($this->id<>0) 
 			{
-			$query_save = "update clientes_facturas_pagos set idFactura = '$this->idFactura', idTipoPago = '$this->idTipoPago', importe = '$this->importe', descripcion = '$this->descripcion', fecha = '$this->fecha' where id='$this->id'"; 
-			mysql_query($query_save) or die(mysql_error()); 
+			$sql = $conn->prepare("UPDATE clientes_facturas_pagos set idFactura = '$this->idFactura', idTipoPago = '$this->idTipoPago', importe = '$this->importe', descripcion = '$this->descripcion', fecha = '$this->fecha' where id='$this->id'"); 
+			$sql->execute();
+			
 			}
 		else 
 			{
-			$query_save = "insert into clientes_facturas_pagos values (null, '$this->idFactura', '$this->idTipoPago', '$this->importe', '$this->descripcion', CURDATE())"; 
-			mysql_query($query_save) or die(mysql_error()); 
-                        $id_insert = mysql_insert_id(); 
-                        return($id_insert);
+			$sql = $conn->prepare("insert into clientes_facturas_pagos values (null, '$this->idFactura', '$this->idTipoPago', '$this->importe', '$this->descripcion', CURDATE())"); 
+			$sql->execute();
+			$id_insert = $conn->lastInsertId();
+			return($id_insert);
+			}
 
-                        } 
-	}
+		}
 	
 
 	function nuevo_pago($_PARAM)
@@ -62,13 +69,32 @@ class Pago
             $fecha_cobro = convertir_fecha($_PARAM['fecha_cobro']);                
             $importe = $_PARAM['importe'];                
 
+			$conn = new Conexion();
             
-            $query =mysql_query("insert into cheques values(null, '$id_pago', '$fecha_emision', '$fecha_cobro', '$numero_cheque', '$titular', '$destinatario', '$banco', 1, '$importe')");
+            $sql = $conn->prepare("INSERT INTO cheques values(null, '$id_pago', '$fecha_emision', '$fecha_cobro', '$numero_cheque', '$titular', '$destinatario', '$banco', 1, '$importe')");
                 
             endif;
+		$sql->execute();
                 
                 
 	}
+
+	function get_pagos_factura($_idFactura)
+	{
+		$conn = new Conexion();
+
+		$sql = $conn->prepare( "SELECT *,date_format(CFP.fecha,'%d/%m/%Y')as fecha from clientes_facturas_pagos AS CFP
+				  INNER JOIN tipos_pagos as TP ON TP.id = CFP.idTipoPago
+				  WHERE CFP.idFactura = $_idFactura");
+
+		$sql->execute(array("FACT" => $_idFactura));
+		$result = $sql->fetchAll();		
+ 		
+ 		return $result;
+
+	}
+
+
 
         function modificar_cheque($_PARAM)
         {
@@ -131,20 +157,7 @@ class Pago
             
         }
         
-	function get_pagos_factura($_idFactura)
-	{
-		$query = "SELECT *,date_format(CFP.fecha,'%d/%m/%Y')as fecha from clientes_facturas_pagos AS CFP
-				  INNER JOIN tipos_pagos as TP ON TP.id = CFP.idTipoPago
-				  WHERE CFP.idFactura = $_idFactura";
-		$result_listado = mysql_query($query);
-		$tipos = array();
-		while ($row = @mysql_fetch_assoc($result_listado))
-		{
-		$tipos[] = $row;
-		}
-		@mysql_free_result($result_listado);
-		return($tipos);	
-	}
+
 
 	function get_pagos()
 	{
@@ -296,28 +309,29 @@ class Pago
         
 	function get_tipos_pagos()
 	{
-		$query = "SELECT * from tipos_pagos   order by nombre";
-		$result_listado = mysql_query($query);
-		$tipos = array();
-		while ($row = @mysql_fetch_assoc($result_listado))
-		{
-		$tipos[] = $row;
-		}
-		@mysql_free_result($result_listado);
-		return($tipos);	
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT * from tipos_pagos   order by nombre");
+
+		$sql->execute();
+		$result = $sql->fetchAll();		
+		$sql = null;
+		$conn = null;
+		return $result;
 	}
 
 	function get_bancos()
 	{
-		$query = "SELECT * from bancos   order by nombre";
-		$result_listado = mysql_query($query);
-		$bancos = array();
-		while ($row = @mysql_fetch_assoc($result_listado))
-		{
-		$bancos[] = $row;
-		}
-		@mysql_free_result($result_listado);
-		return($bancos);	
+		$conn = new Conexion();
+
+		$sql = $conn->prepare("SELECT * from bancos   order by nombre");
+		$sql->execute();
+		$result = $sql->fetchAll();		
+		$sql = null;
+		$conn = null;
+		return $result;
+
+	
 	}        
         
 
