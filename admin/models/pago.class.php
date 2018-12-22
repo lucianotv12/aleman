@@ -72,9 +72,9 @@ class Pago
 			$conn = new Conexion();
             
             $sql = $conn->prepare("INSERT INTO cheques values(null, '$id_pago', '$fecha_emision', '$fecha_cobro', '$numero_cheque', '$titular', '$destinatario', '$banco', 1, '$importe')");
+			$sql->execute();
                 
             endif;
-		$sql->execute();
                 
                 
 	}
