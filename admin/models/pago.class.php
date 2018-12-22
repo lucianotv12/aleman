@@ -1,4 +1,4 @@
-<?
+<?php
 class Pago 
 { 
 	var $id; 
