@@ -1176,7 +1176,7 @@ switch($accion):
 	{
 		Pago::nuevo_pago($_POST);
 
-//     	echo '<script type="text/javascript">window.location.assign("home.html");</script>'; 
+     	echo '<script type="text/javascript">window.location.assign("'.HOME.'facturas_proveedor/'.$_GET["id"].'/");</script>'; 
 		header('Location:' . HOME . 'facturas_proveedor/'. $_GET["id"].'/');
 
 		
