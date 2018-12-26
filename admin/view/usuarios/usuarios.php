@@ -40,7 +40,6 @@
 										<th>Nombre</th>
 										<th>Apellido</th>
 										<th>Email</th>
-										<th>Usuario</th>
 										<th>Tipo</th>
 										<th>Ver</th>
 										<th>Borrar</th>
@@ -54,7 +53,6 @@
 											<td><?php echo $usuario->get_nombre() ?></td>
 											<td><?php echo $usuario->get_apellido() ?></td>
 											<td><a href="mailto:<?php echo $usuario->get_email()?>"><?php echo $usuario->get_email() ?></a></td>		
-											<td><?php echo $usuario->get_user() ?></td>	
 											<td><?php if($usuario->get_gerarquia() == 1) echo "Administrador"; else echo "Vendedor"; ?></td>	
 
 											<td><a href="<?php echo HOME?>usuario_modify/<?php echo $usuario->get_idUsuario() ?>/">
