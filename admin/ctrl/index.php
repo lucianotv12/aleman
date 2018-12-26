@@ -1207,6 +1207,170 @@ switch($accion):
 
 	}	
 	break;
-		
+
+	case "usuarios" :
+				{				
+				if(!isset($_GET["start"])){		
+				$start = 0;
+				}else{
+				$start = $_GET["start"];
+				}
+				$end = 5 ; 
+				$usuarios = Usuario::get_usuarios($start,$end);	
+				$total_usuarios = Usuario::total_usuarios();
+				Template::draw_header();
+				include("../view/usuarios/usuarios.php");
+				}
+				break;
+	case "usuario_new" :
+				{
+				// Muestra el formulario de NUEVO
+				$usuario = new Usuario;
+				$mensaje_cabezera = "ALTA DEL USUARIO";
+				$boton=true;		
+				$cambio = "nuevo";
+				$deshabilitado = "";
+				$nombre = "";
+				$apellido="";
+				$telefono="";
+				$email="";
+				$user="";
+				$pass="";
+				$gerarquia="";
+					
+					Template::draw_header();
+					include("../view/usuarios/usuario_abm.php");
+
+				}
+				break;
+
+	case "usuario_modify" :
+				{
+				// ESPERA UN ID
+					$usuario = new Usuario($_GET["id"]);
+				
+					$mensaje_cabezera = "MODIFICACION DEL USUARIO";
+					$cambio = "modificar";
+					$detalle = false;
+					$boton=true;							
+					$deshabilitado = "";
+					$nombre = $usuario->get_nombre();
+					$apellido=$usuario->get_apellido();
+					$telefono = $usuario->get_telefono();
+					$email=$usuario->get_email();
+					$user=$usuario->get_user();
+					$pass=$usuario->get_password();	
+					$gerarquia=$usuario->get_gerarquia();
+
+					Template::draw_header();
+					include("../view/usuarios/usuario_abm.php");
+
+				}
+				break;
+
+	case "usuario_delete" :
+				{
+				// ESPERA UN ID
+				// No icluye Vista, Borra directo..
+				$usuario = new Usuario($_GET["id"]);
+				$usuario->erase();
+				//ingreso un registro en el log
+				$hoy = date("Y-m-d G:i:s"); 
+				$texto = "Baja usuario".$_GET["id"];
+
+				header("Location: " .HOME. "usuarios.html");
+				}
+				break;
+				
+	case "usuario_insert":
+				{
+				if($_POST['pass'] == $_POST['pass1'])
+					{	
+						$usuario = new Usuario;
+						$usuario->nuevo_usuario($_POST);
+					//ingreso un registro en el log
+					$hoy = date("Y-m-d G:i:s"); 
+					$texto = "Alta nuevo usuario ";
+	//				mysql_query("insert into log values(null,".$_usuario->get_idUsuario().",'".$texto."', '".$hoy."')");
+					header("Location: " .HOME. "usuarios.html");
+					}
+				else	
+					{
+					$usuario = new Usuario;
+					$mensaje_cabezera = "ALTA DEL USUARIO";
+					$boton=true;		
+					$cambio = "nuevo";
+					$deshabilitado = "";
+					$nombre = $_POST["nombre"];
+					$apellido=$_POST["apellido"];
+					$telefono=$_POST["telefono"];
+					$user = $_POST["usuario"];	
+					$email=$_POST["email"];
+		//			$gerarquia = Usuario::gerarquia_usuario($_usuario->id);
+					Template::draw_header();
+
+						$mensaje_error = "Las contraseñas ingresadas no coinciden";					
+					include("../view/usuarios/usuario_abm.php");
+					}	
+#					$_SESSION["usuario"] = serialize($usuario);
+
+				}
+				break;
+				
+				
+	case "usuario_update":
+				{
+				if($_POST['pass'] == $_POST['pass1'])
+					{					
+					$usuario = new Usuario($_GET["id"]);
+					$usuario->set_nombre($_POST['nombre']);
+					$usuario->set_apellido($_POST['apellido']);
+					$usuario->set_telefono($_POST['telefono']);
+					$usuario->set_email($_POST['email']);
+					$usuario->set_user($_POST['usuario']);
+					$usuario->set_password($_POST['pass']);
+					$usuario->set_gerarquia($_POST['gerarquia']);
+#				$usuario->set_user($_POST['user']);
+#				$usuario->set_pass($_POST['pass']);
+					$usuario->save();
+
+					//ingreso un registro en el log
+					$hoy = date("Y-m-d G:i:s"); 
+					$texto = "Modificacion usuario ".$_GET["id"];
+//					mysql_query("insert into log values(null,".$_usuario->get_id().",'".$texto."', '".$hoy."')");
+
+					//	if($usuario->get_id_tipo() != 1 ){
+					header("Location: " .HOME. "usuarios.html");
+
+					//	}else{
+					//	header("Location: index.php?accion=detail&id=".$_usuario->idUsuario);
+					//	}
+					}
+				else
+					{
+					$mensaje_cabezera = "MODIFICACION DEL USUARIO";
+					$cambio = "modificar";
+					$detalle = false;
+					$boton=true;							
+					$deshabilitado = "";
+					$usuario = new Usuario($_GET["id"]);
+					$nombre = $usuario->get_nombre();
+					$apellido=$usuario->get_apellido();
+					$telefono = $usuario->get_telefono();
+					$email=$usuario->get_email();
+					$user=$usuario->get_user();
+					$pass=$usuario->get_password();					
+					$gerarquia=$usuario->get_gerarquia();					
+
+		//			$gerarquia = Usuario::gerarquia_usuario($_usuario->id);
+	//				include("../../../../view/usuario/usuarios/menu.php");
+					Template::draw_header();
+
+						$mensaje_error = "Las contraseñas ingresadas no coinciden";					
+					include("../view/usuarios/usuario_abm.php");
+					}
+	
+				}
+		break;				
 endswitch;
 ?>

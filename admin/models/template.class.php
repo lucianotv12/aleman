@@ -156,7 +156,14 @@ class Template
                 <li class="<?php if($Seccion == 'dolar') echo "active"; ?>"><a href="<?php echo HOME?>view/dolar.php">Valor dolar</a></li>
             </ul>              
           </li>
-
+          <?php if($_usuario->gerarquia == 1):?>
+           <li class="has-sub">
+            <a href="<?php echo HOME?>usuarios.html">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Usuarios</span>
+              </a>
+          </li>  
+          <?php endif;?>
 
         </ul>
         <!-- end sidebar nav -->
