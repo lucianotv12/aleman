@@ -62,7 +62,7 @@ class Template
       <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-          <a href="<?php echo HOME?>" class="navbar-brand"><span class="navbar-logo"></span> Maderera el Alemán</a>
+          <a href="<?php echo HOME?>" class="navbar-brand" style="font-size: 14px"><span class="navbar-logo"></span> Madereras el Alemán</a>
           <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
