@@ -62,7 +62,7 @@ class Template
       <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-          <a href="<?php echo HOME?>" class="navbar-brand"><span class="navbar-logo"></span> Administrador</a>
+          <a href="<?php echo HOME?>" class="navbar-brand"><span class="navbar-logo"></span> Maderera el Alemán</a>
           <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -86,8 +86,8 @@ class Template
               <a href="javascript:;"><img src="assets/img/user-13.jpg" alt="" /></a>
             </div>-->
             <div class="info">
-              Administrador
-              <small>Maderera el Alemán</small>
+              <?php if($_usuario->gerarquia == 1) echo "Administador"; else echo "Vendedor";?>
+              <small><?php echo $_usuario->email?></small>
             </div>
           </li>
         </ul>
