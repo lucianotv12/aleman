@@ -166,7 +166,7 @@ class Template
           <?php endif;?>
            <li class="has-sub">
             <a href="<?php echo HOME?>">
-                <i class="fa fa-back" aria-hidden="true"></i>
+                <i class="fa fa-close" aria-hidden="true"></i>
                 <span>salir</span>
               </a>
           </li>  
