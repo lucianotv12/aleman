@@ -164,7 +164,12 @@ class Template
               </a>
           </li>  
           <?php endif;?>
-
+           <li class="has-sub">
+            <a href="<?php echo HOME?>">
+                <i class="fa fa-back" aria-hidden="true"></i>
+                <span>salir</span>
+              </a>
+          </li>  
         </ul>
         <!-- end sidebar nav -->
       </div>
