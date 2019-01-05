@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Cantidad stock a agregar</label>
                                     <div class="col-md-9">
-                                    <input type="number" class="form-control" name="cantidad">
+                                    <input type="number" step=".1" class="form-control" name="cantidad">
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -280,6 +280,8 @@ class Factura
                     $mov=1;
                     $msj = "PROCESO DE FACTURA PROVEEDOR";
 
+					$sql = $conn->prepare("UPDATE productos set precio = '$precio_producto' where id = '$idproducto'");
+					$sql->execute();
 	                endif;	
 					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', $mov , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
 					$sql->execute();
@@ -331,6 +333,16 @@ class Factura
 
 			$sql = $conn->prepare("UPDATE clientes_factura_productos set activo = 1, idFactura = '$respuesta' where activo = 2");
 			$sql->execute();
+			//REGISTRO PAGO FACTURA
+			if($_PARAM["pagoId"] == 1):
+	            $pago = new Pago();
+	            $pago->set_idFactura($respuesta);
+	            $pago->set_idTipoPago(1);
+	            $pago->set_importe($importe_total);
+	            $pago->set_descripcion("PAGO CON LA FACTURA");
+
+	            $id_pago = $pago->save();
+			endif;	
 
 			return($respuesta);
 		endif;

@@ -110,7 +110,7 @@ class Producto
 		$producto->set_referencia($_PARAM['referencia']);                
 		$producto->set_fechaActualizacion(0);                                
 		$producto->set_bulto($_PARAM['bulto']);                                
-		$producto->set_IIBB($_PARAM['IIBB']);                                
+		$producto->set_IIBB(0);                                
 		$producto->save();
 
 	
