@@ -1,4 +1,15 @@
+<script type="text/javascript">
+$( document ).ready(function() {
 
+  $('#proveedorSelect').on('change', function() {
+  var valor_actual = this.value ;
+    $('.clientes').css('display','none');
+    $('#cliente_' + valor_actual ).css('display','block');
+    $('#proveedorId' ).val(valor_actual);
+
+  });
+});
+</script>
 			<!-- begin invoice -->
 			<div class="invoice">
 <!--                <div class="invoice-company">
@@ -7,7 +18,7 @@
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
                     </span>
                     Maderas "El Aleman"
-                </div>
+                </div>-->
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <small>De</small>
@@ -20,12 +31,22 @@
                         </address>
                     </div>
                     <div class="invoice-to">
-                        <small>Para</small>
+                        <small>Para <select name="proveedorSelect" id="proveedorSelect">    
+                                <option value="0">Seleccione Cliente</option>
+                            <?php foreach($clientes as $cliente):?>
+                                <option value="<?php echo $cliente->id?>"><?php echo $cliente->nombre?></option>
+                             <?php endforeach;?>
+                            </select></small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Cliente datos</strong><br />
-                            domicilio<br />
-                            Ciudad<br />
-                            Telefono: (123) 456-7890<br />
+                            <?php foreach($clientes as $cliente):?>
+                            
+                            <div class="clientes" id="cliente_<?php echo $cliente->id?>" style="display: none;">
+                                <strong><?php echo $cliente->nombre?></strong><br />
+                                <?php echo $cliente->domicilio?> <?php echo $cliente->cp?><br />
+                                Email:<?php echo $cliente->email?><br />
+                                Telefono: <?php echo $cliente->telefono?><br />                                
+                            </div>    
+                             <?php endforeach;?>
                         </address>
                     </div>
                     <div class="invoice-date">
@@ -36,7 +57,7 @@
                             Productos varios
                         </div>
                     </div>
-                </div>-->
+                </div>
                 <div class="" style="background: #5DBD90;padding: 20px; color: white">
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered">
@@ -67,6 +88,7 @@
                 <div class="invoice-content">
 
                     <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura.html" onKeyPress="return disableEnterKey(event)" >
+                        <input type="hidden" name="proveedorId" id="proveedorId">
 
                     <div class="table-responsive">
                         <table id="mitabla" class="table table-invoice" >
@@ -110,6 +132,17 @@
                             $<span id="total_final">0</span>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-4">
+                        Saldo factura :
+                        <select name="pagoId" id="pagoId">    
+                            <option value="1">Pago</option>
+                            <option value="2">Impago</option>
+                        </select>
+                    </div>                    
+
                 </div>
 <!--                <div class="invoice-note">
                     * Nota 1<br />

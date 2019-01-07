@@ -156,7 +156,7 @@ switch($accion):
 					$producto->set_activo($_POST['activo']);
 					$producto->set_referencia($_POST['referencia']);
 					$producto->set_bulto($_POST['bulto']);
-					$producto->set_IIBB($_POST['IIBB']);
+					$producto->set_IIBB(0);
                                         
 					$producto->save();
 
@@ -876,6 +876,8 @@ switch($accion):
 
 	case "modelo_factura":
 		{
+				$clientes = Cliente::get_clientes(0,0,1);				
+
 				Template::draw_header();
 				include("../view/facturacion/modelo_factura.php");
 

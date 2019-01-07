@@ -1,33 +1,56 @@
+<script type="text/javascript">
+$( document ).ready(function() {
 
+  $('#proveedorSelect').on('change', function() {
+  var valor_actual = this.value ;
+    $('.proveedores').css('display','none');
+    $('#proveedor_' + valor_actual ).css('display','block');
+    $('#proveedorId' ).val(valor_actual);
+
+  });
+});
+</script>
 			<!-- begin invoice -->
 			<div class="invoice">
-   
-<!--                <div class="invoice-company">
+   <!--
+               <div class="invoice-company">
                     <span class="pull-right hidden-print">
                     <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
                     </span>
                     Maderas "El Aleman"
-                </div>
+                </div>-->
                 <div class="invoice-header">
                     <div class="invoice-from">
-                        <small>De</small>
+                        <small>De <select name="proveedorSelect" id="proveedorSelect">    
+                                <option value="0">Seleccione Proveedor</option>
+                            <?php foreach($proveedores as $proveedor):?>
+                                <option value="<?php echo $proveedor->id?>"><?php echo $proveedor->nombre?></option>
+                             <?php endforeach;?>
+                            </select></small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Maderas "El Aleman"</strong><br />
-                            Direccion<br />
-                            General Rodriguez, Buenos Aires<br />
-                            Telefono: (123) 456-7890<br />
-                            Fax: (123) 456-7890
+                            <?php foreach($proveedores as $proveedor):?>
+                            
+                            <div class="proveedores" id="proveedor_<?php echo $proveedor->id?>" style="display: none;">
+                                <strong><?php echo $proveedor->nombre?></strong><br />
+                                <?php echo $proveedor->domicilio?> <?php echo $proveedor->cp?><br />
+                                Email:<?php echo $proveedor->email?><br />
+                                Telefono: <?php echo $proveedor->telefono?><br />                                
+                            </div>    
+                             <?php endforeach;?>
+                            
                         </address>
                     </div>
                     <div class="invoice-to">
                         <small>Para</small>
                         <address class="m-t-5 m-b-5">
-                            <strong>Cliente datos</strong><br />
-                            domicilio<br />
-                            Ciudad<br />
-                            Telefono: (123) 456-7890<br />
+                            <strong>Maderas "El Aleman"</strong><br />
+                            Ruta 5 Km 55200, B1748<br />
+                            General Rodriguez, Buenos Aires<br />
+                            Telefono: 011 2184-4813
+
                         </address>
+
                     </div>
                     <div class="invoice-date">
                         <small>Remito / ....</small>
@@ -37,7 +60,7 @@
                             Productos varios
                         </div>
                     </div>
-                </div>-->
+                </div>
                 <div class="" style="background: #5DBD90;padding: 20px; color: white">
                         <div class="panel-body panel-form">
                             <form class="form-horizontal form-bordered">
@@ -68,7 +91,7 @@
                 <div class="invoice-content">
 
                     <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura_proveedor.html" onKeyPress="return disableEnterKey(event)" >
-
+                        <input type="hidden" name="proveedorId" id="proveedorId">
                     <div class="table-responsive">
                         <table id="mitabla" class="table table-invoice" >
                                 <tr id="0">
@@ -129,12 +152,10 @@
                 </div>-->
                 <div class="row">
                     <div class="col-xs-4">
-                        Proveedor :
-                        <select name="proveedorId">    
-                            <option value="0">Seleccione Proveedor</option>
-                        <?php foreach($proveedores as $proveedor):?>
-                            <option value="<?php echo $proveedor->id?>"><?php echo $proveedor->nombre?></option>
-                         <?php endforeach;?>
+                        Saldo factura :
+                        <select name="pagoId" id="pagoId">    
+                            <option value="1">Pago</option>
+                            <option value="2">Impago</option>
                         </select>
                     </div>
                     <div class="col-xs-4">

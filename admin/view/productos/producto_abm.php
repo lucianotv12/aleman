@@ -108,14 +108,14 @@
                                     </div>
                                 </div>      
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">IVA</label>
+                                    <label class="col-md-3 control-label">IVA %</label>
                                     <div class="col-md-9">
                                         <select name="iva" class="form-control" >
                                         <option value="24" <?php if($iva == "24") echo"selected";?>>24</option>
                                         <option value="21" <?php if($iva == "21") echo"selected";?>>21</option>
                                         <option value="10.5"  <?php if($iva == "10.5") echo"selected";?>>10.5</option>
                                         <option value="0"  <?php if($iva == "0") echo"selected";?>>0</option>
-                                        </select>%
+                                        </select>
                                     </div>
                                 </div> 
                                 <div class="form-group">
@@ -137,16 +137,16 @@
                                        </select>
                                     </div>
                                 </div> 
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label class="col-md-3 control-label">IIBB</label>
                                     <div class="col-md-9">
                                         <select name="IIBB" class="form-control" >
-                                        <option value="0" <?php if($IIBB == "1") echo"selected";?>>0</option>
-                                        <option value="3.5"  <?php if($IIBB == "3.5") echo"selected";?>>3.5 %</option>
+                                        <option value="0" < ?php if($IIBB == "1") echo"selected";?>>0</option>
+                                        <option value="3.5"  < ?php if($IIBB == "3.5") echo"selected";?>>3.5 %</option>
                                        </select>
                                     </div>
                                 </div> 
-
+-->
                                 <input type="hidden" name="bulto" value="1">
                             
 
