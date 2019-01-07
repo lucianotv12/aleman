@@ -587,10 +587,9 @@ switch($accion):
 				$Cliente = new Cliente($_GET["id"]);
 				$Cliente->erase();
 				//ingreso un registro en el log
-				$hoy = date("Y-m-d G:i:s"); 
-				$texto = "Baja Cliente".$_GET["id"];
-		//		mysql_query("insert into log values(null,".$_Cliente->get_id().",'".$texto."', '".$hoy."')");
-				header("Location: index.php");
+
+		     	echo '<script type="text/javascript">window.location.assign("'. HOME .'clientes.html");</script>'; 
+				header('Location:' . HOME . 'clientes.html');
 				}
 				break;
 				
@@ -769,11 +768,8 @@ switch($accion):
 				$proveedor = new Cliente($_GET["id"]);
 				$proveedor->erase();
 				//ingreso un registro en el log
-				$hoy = date("Y-m-d G:i:s"); 
-				$texto = "Baja Proveedor".$_GET["id"];
-		//		mysql_query("insert into log values(null,".$_Cliente->get_id().",'".$texto."', '".$hoy."')");
-				header("Location: index.php");
-				}
+		     	echo '<script type="text/javascript">window.location.assign("'. HOME .'proveedores.html");</script>'; 
+				header('Location:' . HOME . 'proveedores.html');				}
 				break;
 				
 	case "proveedor_insert":

@@ -67,9 +67,17 @@
 											<i class="fa fa-edit" aria-hidden="true"></i>
 											</a></td>
 											
-											<td align="center"><a href="javaScript:pregunta('<?php echo  $producto["id"]?>','Categoria','delete_categoria')">
+											<td align="center">
+											<?php if($tipo == "proveedores"):?>
+
+												<a href="#" data-href="<?php echo HOME?>proveedor_delete/<?php echo $cliente->get_id();?>/" data-toggle="modal" data-target="#confirm-delete">
 											<i class="fa fa-trash" aria-hidden="true"></i>									
-											</a></td>
+											</a>
+											<?php else:?>
+												<a href="#" data-href="<?php echo HOME?>cliente_delete/<?php echo $cliente->get_id();?>/" data-toggle="modal" data-target="#confirm-delete">
+												<i class="fa fa-trash" aria-hidden="true"></i>								</a>												
+											<?php endif;?>
+										</td>
 
 											</form>										
 										</tr>
@@ -90,6 +98,39 @@
 		
 
 	</div>
+
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	    <div class="modal-dialog">
+
+	        <div class="modal-content">
+
+	            <div class="modal-header">
+
+	                Eliminar dato
+
+	            </div>
+
+	            <div class="modal-body">
+
+	                ¿Confirma que quiere eliminar?
+
+	            </div>
+
+	            <div class="modal-footer">
+
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+	                <a class="btn btn-danger btn-ok">Borrar</a>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
 	<!-- end page container -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -127,5 +168,18 @@
 			TableManageButtons.init();
 		});
 	</script>
+
+    <script type="text/javascript">
+
+		$('#confirm-delete').on('show.bs.modal', function(e) {
+
+		    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+		});    	
+
+    	
+
+    </script>
+
 </body>
 </html>
