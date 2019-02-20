@@ -126,6 +126,7 @@ switch($accion):
 			$referencia = $producto->get_referencia();
 			$bulto = $producto->get_bulto();
 			$IIBB = $producto->get_IIBB();
+			$precio_final =  Producto::get_precio_lista($producto->id);
 			$cambio="edit";
 
 

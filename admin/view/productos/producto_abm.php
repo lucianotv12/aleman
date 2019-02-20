@@ -78,39 +78,39 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Precio</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="precio" value="<?php echo @$precio?>" data-parsley-required="true">
+                                    <input type="text" class="form-control" name="precio" value="<?php echo @$precio?>" id="precio" data-parsley-required="true" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </div> 
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Descuento 1</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="desc1" value="<?php echo @$desc1?>">
+                                    <input type="text" class="form-control" name="desc1" id="desc1" value="<?php echo @$desc1?>" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </div>       
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Descuento 2</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="desc2" value="<?php echo @$desc2?>">
+                                    <input type="text" class="form-control" name="desc2" id="desc2" value="<?php echo @$desc2?>" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </div>      
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Descuento 3</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="desc3" value="<?php echo @$desc3?>">
+                                    <input type="text" class="form-control" name="desc3" id="desc3" value="<?php echo @$desc3?>" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </div>                                      
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Utilidad</label>
                                     <div class="col-md-9">
-                                    <input type="text" class="form-control" name="utilidad" value="<?php echo @$utilidad?>">
+                                    <input type="text" class="form-control" name="utilidad" id="utilidad" value="<?php echo @$utilidad?>" onkeypress="return filterFloat(event,this);">
                                     </div>
                                 </div>      
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">IVA %</label>
                                     <div class="col-md-9">
-                                        <select name="iva" class="form-control" >
+                                        <select name="iva" class="form-control" id="iva" >
                                         <option value="24" <?php if($iva == "24") echo"selected";?>>24</option>
                                         <option value="21" <?php if($iva == "21") echo"selected";?>>21</option>
                                         <option value="10.5"  <?php if($iva == "10.5") echo"selected";?>>10.5</option>
@@ -156,6 +156,13 @@
 									<input type="submit" name="submit" class="btn btn-sm btn-success" value="GUARDAR">
 									</div>
 								</div>	
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Precio final</label>
+                                    <div class="col-md-9">                          
+                                    <input type="text" disabled="disabled" class="btn btn-sm btn-danger" id="cuenta_final" value="<?php echo $precio_final;?>">
+                                    </div>
+                                </div>  
 
 
                             </form>
@@ -214,6 +221,15 @@
             App.init();
             TableManageButtons.init();
         $("#idCategoria").change(function(){dependencia_estado();});
+            
+            $("#precio").change(function(){calcula_precio();});
+            $("#desc1").change(function(){calcula_precio();});
+            $("#desc2").change(function(){calcula_precio();});
+            $("#desc3").change(function(){calcula_precio();});
+            $("#utilidad").change(function(){calcula_precio();});
+            $("#iva").change(function(){calcula_precio();});
+
+
 
         });
     function dependencia_estado()
@@ -235,6 +251,59 @@
             }
 
         );
+    }
+
+    function calcula_precio(){
+        var precio = parseFloat($('#precio').val());
+        var desc1 = parseFloat($('#desc1').val());
+        var desc2 = parseFloat($('#desc2').val());
+        var desc3 = parseFloat($('#desc3').val());
+        var utilidad = parseFloat($('#utilidad').val());
+        var iva = parseFloat($('#iva').val());
+        var cuenta = precio;
+        if(desc1 != 0){ cuenta = cuenta - (cuenta * desc1 / 100);}
+        if(desc2 != 0){ cuenta = cuenta - (cuenta * desc2 / 100);}
+        if(desc3 != 0){ cuenta = cuenta - (cuenta * desc3 / 100);}
+        if(utilidad != 0){ cuenta = cuenta + (cuenta * utilidad / 100);}
+        if(iva != 0){ cuenta = cuenta + (cuenta * iva / 100);}
+        cuenta = cuenta.toFixed(2);
+
+        $('#cuenta_final').val(cuenta);
+    }   
+
+    function filterFloat(evt,input){
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;    
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value+chark;
+        if(key >= 48 && key <= 57){
+            if(filter(tempValue)=== false){
+                return false;
+            }else{       
+                return true;
+            }
+        }else{
+              if(key == 8 || key == 13 || key == 0) {     
+                  return true;              
+              }else if(key == 46){
+                    if(filter(tempValue)=== false){
+                        return false;
+                    }else{       
+                        return true;
+                    }
+              }else{
+                  return false;
+              }
+        }
+    }
+    function filter(__val__){
+        var preg = /^([0-9]+\.?[0-9]{0,3})$/; 
+        if(preg.test(__val__) === true){
+            return true;
+        }else{
+           return false;
+        }
+        
     }
 
     </script> 
