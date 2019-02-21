@@ -30,25 +30,40 @@ $( document ).ready(function() {
                             Fax: (123) 456-7890
                         </address>
                     </div>
-                    <div class="invoice-to">
-                        <small>Para <select name="proveedorSelect" id="proveedorSelect">    
-                                <option value="0">Seleccione Cliente</option>
-                            <?php foreach($clientes as $cliente):?>
-                                <option value="<?php echo $cliente->id?>"><?php echo $cliente->nombre?></option>
-                             <?php endforeach;?>
-                            </select></small>
-                        <address class="m-t-5 m-b-5">
-                            <?php foreach($clientes as $cliente):?>
-                            
-                            <div class="clientes" id="cliente_<?php echo $cliente->id?>" style="display: none;">
-                                <strong><?php echo $cliente->nombre?></strong><br />
-                                <?php echo $cliente->domicilio?> <?php echo $cliente->cp?><br />
-                                Email:<?php echo $cliente->email?><br />
-                                Telefono: <?php echo $cliente->telefono?><br />                                
-                            </div>    
-                             <?php endforeach;?>
-                        </address>
-                    </div>
+                    <?php if(@$_cliente):?>
+                            <div class="invoice-to">
+                                <small>Para</small>
+                                <address class="m-t-5 m-b-5">                                  
+                                    <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
+                                        <strong><?php echo $_cliente->nombre?></strong><br />
+                                        <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
+                                        Email:<?php echo $_cliente->email?><br />
+                                        Telefono: <?php echo $_cliente->telefono?><br />                                
+                                    </div>    
+                                </address>
+                            </div>
+                    <?php else:?>
+                        <div class="invoice-to">
+                            <small>Para <select name="proveedorSelect" id="proveedorSelect">    
+                                    <option value="0">Seleccione Cliente</option>
+                                <?php foreach($clientes as $cliente):?>
+                                    <option value="<?php echo $cliente->id?>"><?php echo $cliente->nombre?></option>
+                                 <?php endforeach;?>
+                                </select></small>
+                            <address class="m-t-5 m-b-5">
+                                <?php foreach($clientes as $cliente):?>
+                                
+                                <div class="clientes" id="cliente_<?php echo $cliente->id?>" style="display: none;">
+                                    <strong><?php echo $cliente->nombre?></strong><br />
+                                    <?php echo $cliente->domicilio?> <?php echo $cliente->cp?><br />
+                                    Email:<?php echo $cliente->email?><br />
+                                    Telefono: <?php echo $cliente->telefono?><br />                                
+                                </div>    
+                                 <?php endforeach;?>
+                            </address>
+                        </div>
+                    <?php endif;?>
+
                     <div class="invoice-date">
                         <small>Remito / ....</small>
                         <div class="date m-t-5"><?php echo date("d/m/Y");?></div>

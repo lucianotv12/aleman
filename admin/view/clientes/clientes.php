@@ -37,6 +37,7 @@
 									<th style="background-color: #5DBD90;">Email</th>
 									<th style="background-color: #5DBD90;">Estado</th>
 									<th style="background-color: #5DBD90;">Facturas</th>
+									<th style="background-color: #5DBD90;">Nueva Factura</th>
 									<th style="background-color: #5DBD90;">Editar</th>
 									<th style="background-color: #5DBD90;">Borrar</th>
 	
@@ -65,6 +66,14 @@
 											 <a href="<?php echo HOME?>facturas_proveedor/<?php echo $cliente->get_id()?>/">Ver</a>	
 											</td>
 											<?php endif;?>
+											<?php if($tipo == "proveedores"):?>												
+												<td><a href="<?php echo HOME?>proveedor_factura/<?php echo $cliente->get_id() ?>/">Nueva factura</a></td>
+											<?php else:?>
+												<td><a href="<?php echo HOME?>modelo_factura/<?php echo $cliente->get_id() ?>/">Nueva factura</a></td>
+	
+											<?php endif;?>
+
+
 											<td><a href="<?php echo HOME?>cliente_modify/<?php echo $cliente->get_id();?>/">
 											<i class="fa fa-edit" aria-hidden="true"></i>
 											</a></td>

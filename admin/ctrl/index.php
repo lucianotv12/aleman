@@ -877,10 +877,16 @@ switch($accion):
 
 	case "modelo_factura":
 		{
+			if($_GET["id"]):
+				$_cliente =  New Cliente($_GET["id"]);
+			else:
 				$clientes = Cliente::get_clientes(0,0,1);				
+			
+			endif;	
 
-				Template::draw_header();
-				include("../view/facturacion/modelo_factura.php");
+
+			Template::draw_header();
+			include("../view/facturacion/modelo_factura.php");
 
 		}			
 		break;
