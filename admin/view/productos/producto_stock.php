@@ -25,7 +25,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach($movimientos as $mov):?>
+                                <?php $cantidad =0; 
+                                    foreach($movimientos as $mov):
+                                     $cantidad +=  $mov["cantidad"];  
+                                    ?>
                              
                                     <tr>
 
@@ -36,6 +39,14 @@
                                        <td><?php echo $mov["user"];?></td> 
                                     </tr>
                                 <?php endforeach;?>    
+                                    <tr>
+
+                                       <td colspan=2>Total</td> 
+                                       <td style="background-color: #00acac; color: white"><?php echo $cantidad;?></td> 
+                                       <td style="background-color: #00acac; color: white"><?php echo $mov["precio"];?></td> 
+                                       <td></td> 
+                                    </tr>
+
                                 </tbody>
                             </table>
 

@@ -489,7 +489,7 @@ class Factura
 			$whereclauseTipo = " and idTipo = ".$tipo;
 		endif;			
 		$conn = new Conexion();					
-		$sql = $conn->prepare("select * from clientes_facturas where 1 $whereclause $whereclauseTipo");
+		$sql = $conn->prepare("SELECT * from clientes_facturas where 1 $whereclause $whereclauseTipo");
 	//	print_r($sql);die;
 		$sql->execute();
 	/*	$result = $sql->fetchAll();
