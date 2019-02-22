@@ -78,7 +78,7 @@
 
 												
 											<?php if(@$_GET['id']):?>
-											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Editar</td>
+											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver</td>
 											<?php else:?>
 											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver mas</td>
 											<?php endif;?>		

@@ -21,11 +21,13 @@
                     </div>
                     <div class="invoice-to">
                         <small>Para</small>
-                        <address class="m-t-5 m-b-5">
-                            <strong>Consumidor Final</strong><br />
-                            domicilio<br />
-                            Ciudad<br />
-                            Telefono: (123) 456-7890<br />
+                        <address class="m-t-5 m-b-5">                                  
+                            <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
+                                <strong><?php echo $_cliente->nombre?></strong><br />
+                                <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
+                                Email:<?php echo $_cliente->email?><br />
+                                Telefono: <?php echo $_cliente->telefono?><br />                                
+                            </div>    
                         </address>
                     </div>
                     <div class="invoice-date">
@@ -52,7 +54,31 @@
                                     <th>Importe</th>
                                     <th></th>
                                 </tr>
-                                <?php foreach($productos as $producto):?>
+                                <?php 
+                                $iva21 = 0;
+                                $iva10 = 0;
+                                $precio_total_factura = 0;
+                                foreach($productos as $producto):
+                                    if($factura["idCliente"] != 1):
+                                        if($producto["iva"] == 21 or $producto["iva"] == 24 ):
+                                           $iva_precio_unitario = round($producto["precio_unitario"] * 21 / 100,2);
+                                           $iva21 += $iva_precio_unitario * $producto["cantidad"];
+                                           $precio_unitario_sin_iva = round($producto["precio_unitario"] - $iva_precio_unitario,2); 
+                                            $total_sin_iva += $precio_unitario_sin_iva * $producto["cantidad"];
+                                            //variables para mostrar
+                                            $precio_unitario = $precio_unitario_sin_iva;
+                                            $precio_total = round($precio_unitario_sin_iva * $producto["cantidad"],2);
+                                            $precio_total_factura += $precio_total; 
+                                        elseif($producto["iva"] == 10): // sin desarrollar    
+                                        endif;    
+
+                                    elseif($factura["idCliente"] == 1):
+                                            $precio_unitario = $producto["precio_unitario"];
+                                            $precio_total =  $producto["precio_total"];                                        
+                                            $precio_total_factura += $precio_total; 
+
+                                    endif; // idcliente consumidor final    
+                                    ?>
                                     <tr>
                                         <td><?php echo $producto["cantidad"]?></td>
                                         <td><?php echo $producto["idProducto"]?></td>
@@ -61,9 +87,9 @@
                                         else: 
                                             echo $producto["descripcion"];
                                         endif;?></td>
-                                        <td><?php echo $producto["precio_unitario"]?></td>
+                                        <td><?php echo number_format($precio_unitario, 2 , ',', '.')?></td>
                                         <td><?php echo $producto["descuento"]?></td>
-                                        <td><?php echo $producto["precio_total"]?></td>
+                                        <td><?php echo number_format($precio_total, 2 , ',', '.')?></td>
                                     </tr>    
                                 <?php endforeach;?>    
                         </table>
@@ -73,20 +99,22 @@
                             <div class="invoice-price-row">
                                 <div class="sub-price">
                                     <small>SUBTOTAL</small>
-                                    $<span id="subtotal_final"><?php echo $factura["importe"]?></span>
+                                    $<span id="subtotal_final"><?php echo number_format($precio_total_factura, 2 , ',', '.')?></span>
                                 </div>
-                                <div class="sub-price">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <div class="sub-price">
-                                    <small>Iva (21%)</small>
-                                    $0
-                                </div>
+                                <?php if($iva21):?>
+                                    <div class="sub-price">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                    <div class="sub-price">
+                                        <small>Iva (21%)</small>
+                                        $<?php echo number_format($iva21, 2 , ',', '.')?>
+                                    </div>
+                                <?php endif;?>
                             </div>
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> 
-                            $<span id="total_final"><?php echo $factura["importe"]?></span>
+                            $<span id="total_final"><?php echo number_format($factura["importe"], 2 , ',', '.') ?></span>
                         </div>
                     </div>
                 </div>

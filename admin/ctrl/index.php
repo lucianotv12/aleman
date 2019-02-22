@@ -868,6 +868,7 @@ switch($accion):
 		{
 			$factura = Factura::get_factura_by_id($_GET["id"]);	
 			$productos = Factura::get_productos_x_factura($_GET["id"]);	
+			$_cliente =  New Cliente($factura["idCliente"]);
 
 				Template::draw_header();
 				include("../view/facturacion/detalle_factura.php");

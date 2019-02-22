@@ -569,7 +569,7 @@ class Factura
 	function get_factura_by_id($id_factura)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("select CF.*, C.nombre
+		$sql = $conn->prepare("SELECT CF.*, C.nombre
 				  from clientes_facturas AS CF
 				  LEFT join clientes as C ON C.id = CF.idCliente
 				  LEFT join tipos_facturas as TF ON TF.id = CF.idTipo

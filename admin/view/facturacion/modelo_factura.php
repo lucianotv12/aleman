@@ -103,7 +103,7 @@ $( document ).ready(function() {
                 <div class="invoice-content">
 
                     <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura.html" onKeyPress="return disableEnterKey(event)" >
-                        <input type="hidden" name="proveedorId" id="proveedorId">
+                        <input type="hidden" name="proveedorId" id="proveedorId" value="<?php echo @$_GET['id'] ?>">
 
                     <div class="table-responsive">
                         <table id="mitabla" class="table table-invoice" >
@@ -133,6 +133,7 @@ $( document ).ready(function() {
                                     <small>SUBTOTAL</small>
                                     $<span id="subtotal_final">0</span>
                                 </div>
+                                <!--
                                 <div class="sub-price">
                                     <i class="fa fa-plus"></i>
                                 </div>
@@ -140,6 +141,7 @@ $( document ).ready(function() {
                                     <small>Iva (21%)</small>
                                     $0
                                 </div>
+                            -->
                             </div>
                         </div>
                         <div class="invoice-price-right">
