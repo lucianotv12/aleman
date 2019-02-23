@@ -29,6 +29,7 @@ class Template
           <link href="<?php echo ADMIN?>assets/css/style-responsive.min.css" rel="stylesheet" />
           <link href="<?php echo ADMIN?>assets/css/theme/default.css" rel="stylesheet" id="theme" />
           <link rel="stylesheet" href="<?php echo CSS?>cropper.css">
+          <link href="<?php echo ADMIN?>assets/css/invoice-print.min.css" rel="stylesheet" />
 
           <!-- ================== END BASE CSS STYLE ================== -->
           
