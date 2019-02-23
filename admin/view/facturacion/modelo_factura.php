@@ -24,10 +24,9 @@ $( document ).ready(function() {
                         <small>De</small>
                         <address class="m-t-5 m-b-5">
                             <strong>Maderas "El Aleman"</strong><br />
-                            Direccion<br />
+                            Ruta 5 Km 55200, B1748<br />
                             General Rodriguez, Buenos Aires<br />
-                            Telefono: (123) 456-7890<br />
-                            Fax: (123) 456-7890
+                            Telefono: 011 2184-4813
                         </address>
                     </div>
                     <?php if(@$_cliente):?>
