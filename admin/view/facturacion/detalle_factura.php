@@ -3,20 +3,20 @@
 			<div class="invoice">
                 <div class="invoice-company">
                     <span class="pull-right hidden-print">
-                    <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>
+                    <!--<a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>-->
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
                     </span>
-                    Maderas "El Aleman"
+                    <img src="<?php echo HOME?>images/logoaleman.png" height="60px">
                 </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <small>De</small>
                         <address class="m-t-5 m-b-5">
                             <strong>Maderas "El Aleman"</strong><br />
-                            Direccion<br />
+                            Ruta 5 Km 55200, B1748<br />
                             General Rodriguez, Buenos Aires<br />
-                            Telefono: (123) 456-7890<br />
-                            Fax: (123) 456-7890
+                            Telefono: 011 2184-4813
+                            
                         </address>
                     </div>
                     <div class="invoice-to">
@@ -125,19 +125,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="invoice-note">
+<!--                <div class="invoice-note">
                     * Nota 1<br />
                     * Nota 2<br />
                     * Nota 3
-                </div>
+                </div>-->
                 <div class="invoice-footer text-muted">
                     <p class="text-center m-b-5">
                         Muchas gracias
                     </p>
                     <p class="text-center">
-                        <span class="m-r-10"><i class="fa fa-globe"></i> elaleman.com</span>
-                        <span class="m-r-10"><i class="fa fa-phone"></i> T:0237-4444444</span>
-                        <span class="m-r-10"><i class="fa fa-envelope"></i> elaleman@gmail.com</span>
+                        <span class="m-r-10"><i class="fa fa-envelope"></i> maderaselaleman@yahoo.com.ar</span>
+                        <span class="m-r-10"><i class="fa fa-phone"></i> 011 2184-4813</span>
+                        <span class="m-r-10"><i class="fa fa-globe"></i> https://www.facebook.com/ELALEMANDEGR</span>
                     </p>
                 </div>
 
