@@ -132,7 +132,7 @@ class Template
            <li class="has-sub">
             <a href="<?php echo HOME?>facturas/presupuesto/">
                 <i class="fa fa-archive" aria-hidden="true"></i>
-                <span>Presupuestos</span>
+                <span style="color: blue">Presupuestos</span>
               </a>
           </li>  
            <li class="has-sub">
@@ -144,7 +144,7 @@ class Template
            <li class="has-sub">
             <a href="<?php echo HOME?>modelo_factura.html">
                 <i class="fa fa-barcode" aria-hidden="true"></i>
-                <span>Generar Presupuesto</span>
+                <span style="color: #5DBD90">Nuevo Presupuesto</span>
               </a>
           </li>                       
 
