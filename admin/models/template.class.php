@@ -138,13 +138,13 @@ class Template
            <li class="has-sub">
             <a href="<?php echo HOME?>facturas/factura/">
                 <i class="fa fa-archive" aria-hidden="true"></i>
-                <span>Presupuestos de salida</span>
+                <span style="color: red">Presupuestos de salida</span>
               </a>
           </li>  
            <li class="has-sub">
             <a href="<?php echo HOME?>modelo_factura.html">
                 <i class="fa fa-barcode" aria-hidden="true"></i>
-                <span>Generar Factura</span>
+                <span>Generar Presupuesto</span>
               </a>
           </li>                       
 
