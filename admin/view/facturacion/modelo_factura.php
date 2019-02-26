@@ -3,13 +3,34 @@ $( document ).ready(function() {
 
   $('#proveedorSelect').on('change', function() {
   var valor_actual = this.value ;
-    $('.clientes').css('display','none');
-    $('#cliente_' + valor_actual ).css('display','block');
-    $('#proveedorId' ).val(valor_actual);
+        if(valor_actual == 1){
+        $('.consumidor_final').css('display','block');
+        $('.clientes').css('display','none');
 
+        }else{
+        $('.clientes').css('display','none');
+        $('.consumidor_final').css('display','none');
+
+        $('#cliente_' + valor_actual ).css('display','block');
+        $('#proveedorId' ).val(valor_actual);
+        }
   });
+
+    $('#generar_presupuesto').click(function(){
+        alert('aca entroo');
+       $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/presupuesto/');
+    });
+
+
+    $('#generar_factura').click(function(){
+       $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/factura/');
+    });
 });
+
+
 </script>
+            <form name="datos" id="presupuesto_factura" method="post" enctype="multipart/form-data" action="" onKeyPress="return disableEnterKey(event)" >
+
 			<!-- begin invoice -->
 			<div class="invoice">
 <!--                <div class="invoice-company">
@@ -59,6 +80,15 @@ $( document ).ready(function() {
                                     Telefono: <?php echo $cliente->telefono?><br />                                
                                 </div>    
                                  <?php endforeach;?>
+
+                                <div class="consumidor_final"  style="display: none;">
+                                    <strong>Consumidor Final</strong><br />
+                                    <label style="width: 70px">nombre:</label><input type="text" name="consumidor_nombre"><br />
+                                    <label style="width: 70px">Domicilio:</label><input type="text" name="consumidor_domicilio"><br />
+                                    <label style="width: 70px">Email:</label><input type="text" name="consumidor_email"><br />
+                                    <label style="width: 70px">Telefono:</label><input type="text" name="consumidor_telefono"><br />                                
+                                </div>
+
                             </address>
                         </div>
                     <?php endif;?>
@@ -101,7 +131,6 @@ $( document ).ready(function() {
                     </div>
                 <div class="invoice-content">
 
-                    <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura.html" onKeyPress="return disableEnterKey(event)" >
                         <input type="hidden" name="proveedorId" id="proveedorId" value="<?php echo @$_GET['id'] ?>">
 
                     <div class="table-responsive">
@@ -176,7 +205,8 @@ $( document ).ready(function() {
                     </p>
                 </div>-->
                 <div class="invoice-footer text-muted text-center" style="padding: 15px">
-                    <input type="submit" name="GENERAR" class="btn btn-sm btn-success" value="GENERAR PRESUPUESTO">
+                    <input type="submit" name="GENERAR" id="generar_presupuesto" class="btn btn-sm btn-success" value="GENERAR PRESUPUESTO">
+                    <input type="submit" name="GENERAR" id="generar_factura" class="btn btn-sm btn-danger" value="PRESUPUESTO SALIDA">
 
                 </div>
 
