@@ -23,10 +23,17 @@
                         <small>Para</small>
                         <address class="m-t-5 m-b-5">                                  
                             <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
+                                <?php if($factura["idCliente"] == 1):?>
+                                <strong><?php echo $consumidor_final["nombre"]?></strong><br />
+                                <?php echo $consumidor_final["domicilio"]?> <?php echo $_cliente->cp?><br />
+                                Email:<?php echo $consumidor_final["email"]?><br />
+                                Telefono: <?php echo $consumidor_final["telefono"]?><br />                                
+                                <?php else:?>
                                 <strong><?php echo $_cliente->nombre?></strong><br />
                                 <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
                                 Email:<?php echo $_cliente->email?><br />
                                 Telefono: <?php echo $_cliente->telefono?><br />                                
+                                <?php endif;?>
                             </div>    
                         </address>
                     </div>
