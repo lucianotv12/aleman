@@ -35,7 +35,9 @@
 									<th style="background-color: #5DBD90;">Estado</th>
 									<th style="background-color: #5DBD90;">Comprobante</th>
 									<th style="background-color: #5DBD90;">Pagos</th>
-
+									<?php if($_GET["id"] == "presupuesto"):?>
+										<th style="background-color: #5DBD90;">A salida</th>
+									<?php endif;?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,12 +91,14 @@
 
 												
 											<?php if(@$_GET['id']):?>
-											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver</td>
+											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver</a></td>
 											<?php else:?>
-											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver mas</td>
+											<td><a href="<?php echo HOME?>detalle_factura/<?php echo $factura["id"];?>/">Ver mas</a></td>
 											<?php endif;?>		
 											<td><a data-toggle="modal" data-target="#pagos" data-book-id="<?php echo $factura["id"];?>"  >pagar</a></td>
-
+											<?php if($_GET["id"] == "presupuesto"):?>
+												<td><a style="color:red" href="<?php echo HOME?>pasar_a_factura/<?php echo $factura["id"];?>/">Pasar a salida</a></td>
+											<?php endif;?>
 
 											</form>										
 										</tr>
@@ -224,7 +228,7 @@
 	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
 	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
 	<script src="<?php echo HOME?>assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-	<script src="<?php echo HOME?>assets/js/table-manage-buttons.demo.min.js"></script>
+	<script src="<?php echo HOME?>assets/js/table-manage-buttons.demo.js"></script>
 	<script src="<?php echo HOME?>assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	

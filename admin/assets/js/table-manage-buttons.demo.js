@@ -11,6 +11,7 @@ var handleDataTableButtons = function() {
     if ($('#data-table').length !== 0) {
         $('#data-table').DataTable({
             dom: 'Bfrtip',
+            "order": [[ 0, "desc" ]],
             buttons: [
                 { extend: 'copy', className: 'btn-sm' },
                 { extend: 'csv', className: 'btn-sm' },

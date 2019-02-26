@@ -366,6 +366,36 @@ class Factura
 
 	}
 
+	function pasar_a_factura($_id){
+		$_usuario = unserialize(@$_SESSION["usuario"]);
+
+		$conn = new Conexion();		
+		$sql = $conn->prepare("SELECT * FROM clientes_factura_productos WHERE idFactura = :ID");
+		$sql->execute(array("ID" => $_id));		
+//		print_r($sql);die;
+		$datos= $sql->fetchAll(PDO::FETCH_ASSOC);
+		$sql=null;
+		foreach ($datos as $dato):
+			$conn = new Conexion();		
+
+		//	print_r($dato);die;
+			$idproducto = $dato["idProducto"];
+			$msj = "PROCESO DE FACTURA";
+			$cantidad_stock = "-" .$dato["cantidad"];
+			$precio_producto = $dato["precio_unitario"];
+			$sql = $conn->prepare("INSERT INTO productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', 2 , '$cantidad_stock', CURDATE(), '$_usuario->idUsuario', '$precio_producto')");
+//			print($sql);die;
+			$sql->execute();
+	        $insert_id = $conn->lastInsertId();
+
+    	endforeach;
+		$sql=null;    	
+		$sql = $conn->prepare("UPDATE clientes_facturas set estado = 'factura' where id= :ID ");
+		$sql->execute(array("ID" => $_id));		
+		$sql=null;
+		$conn=null;
+	}
+
 	function get_consumidor_final($_id){
 		$conn = new Conexion();			
 
@@ -533,12 +563,13 @@ class Factura
 	}	
 
 
-	function get_facturas($busqueda=0,$tipo_factura=0,$anio_sel=0,$mes_sel=0,$idcliente=0)
+	function get_facturas($busqueda=0,$tipo_factura=0,$anio_sel=0,$mes_sel=0,$idcliente=0,$estado=0)
 	{
 		if($busqueda) $whereclause = " AND (CF.n_factura like '%$busqueda%' or CF.fecha like '%$busqueda%' OR C.nombre like '%$busqueda%')"; else $whereclause ="";
 
 		$selectclause_factura = "";
-		$joinclause_factura = "";			
+		$joinclause_factura = "";		
+		$estadoclause = "";	
 		if($idcliente):
                   $cliente_clause = " AND C.id =" .$idcliente ;  
                 else:    
@@ -572,14 +603,19 @@ class Factura
 		else: 
 			$whereclause_factura ="";
 		endif;
+		if($estado): 
+
+			$estadoclause = " and estado = '". $estado . "'";
+		endif;	
 		
 		$conn = new Conexion();					
 		$sql = $conn->prepare("SELECT CF.*,date_format(CF.fecha,'%d/%m/%Y')as fecha, C.nombre as  nombre_cliente, TF.descripcion as tipo_factura $selectclause_factura
 				  from clientes_facturas AS CF
 				  LEFT join clientes as C ON C.id = CF.idCliente
 				  LEFT join tipos_facturas as TF ON TF.id = CF.idTipo $joinclause_factura
-				 where 1 $whereclause_factura $whereclause $cliente_clause
+				 where 1 $whereclause_factura $whereclause $cliente_clause $estadoclause
 				  ORDER BY CF.id DESC");
+	//	print_r($sql);die;
 		$sql->execute();
 		$result = $sql->fetchAll();		
 		$facturas = array();

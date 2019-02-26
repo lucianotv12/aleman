@@ -17,14 +17,18 @@ $( document ).ready(function() {
   });
 
     $('#generar_presupuesto').click(function(){
-        alert('aca entroo');
-       $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/presupuesto/');
+       if(confirm('Estas a punto de generar un presupuesto, confirmar')){ 
+        $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/presupuesto/');
+       }
     });
 
 
     $('#generar_factura').click(function(){
-       $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/factura/');
+       if(confirm('Estas a punto de generar un presupuesto de salida, confirmar')){ 
+         $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/factura/');
+        }
     });
+  
 });
 
 

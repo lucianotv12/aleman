@@ -860,7 +860,7 @@ switch($accion):
 				 $titulo = "LISTADO GENERAL DE PRESUPUESTOS";	
 				endif;				
 
-				$facturas = Factura::get_facturas($_GET["buscador"],$tipo_factura);	
+				$facturas = Factura::get_facturas($_GET["buscador"],$tipo_factura,0,0,0, @$_GET["id"]);	
 				}	
 		
 		//	$total_facturas = Factura::total_facturas();
@@ -913,31 +913,41 @@ switch($accion):
 
 
 	case "generar_factura":
-				{
-				// ESPERA UN ID
-				//	$_usuario = unserialize(@$_SESSION["usuario"]);
-		//			print_r($_usuario->idUsuario);die;
-					//$factura = new Factura($_GET["id"]);
-				//	print_r($_GET["id"]);die;
-					$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario, 0,$_GET["id"]);
-					echo "aca estpy";
-					$mensaje_cabezera = "FACTURA GENERADA";
-					$boton=true;
-					$cambio = "nuevo";
-					$deshabilitado = "";
+			{
+			// ESPERA UN ID
+			//	$_usuario = unserialize(@$_SESSION["usuario"]);
+	//			print_r($_usuario->idUsuario);die;
+				//$factura = new Factura($_GET["id"]);
+			//	print_r($_GET["id"]);die;
+				$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario, 0,$_GET["id"]);
+				echo "aca estpy";
+				$mensaje_cabezera = "FACTURA GENERADA";
+				$boton=true;
+				$cambio = "nuevo";
+				$deshabilitado = "";
 //					$productos_virtuales =	Factura::get_productos_virtuales();
-		//			jsCommand(javascript:popUp('../../pdf/presupuesto.php?idFactura=<?= $factura["id"] ? >'));
-					$_id=$_GET["id"];
+	//			jsCommand(javascript:popUp('../../pdf/presupuesto.php?idFactura=<?= $factura["id"] ? >'));
+				$_id=$_GET["id"];
 
-			//		jsCommand("alert('holaaaaaa');");					
-					$_variable = true;
-					
-				// ESPERA UN ID
-			     	echo '<script type="text/javascript">window.location.assign("detalle_factura/$_id_factura/");</script>'; 
-					header('Location:' . HOME . 'detalle_factura/'.$_id_factura .'/');				
+		//		jsCommand("alert('holaaaaaa');");					
+				$_variable = true;
+				
+			// ESPERA UN ID
+		     	echo '<script type="text/javascript">window.location.assign("detalle_factura/$_id_factura/");</script>'; 
+				header('Location:' . HOME . 'detalle_factura/'.$_id_factura .'/');				
 //					header("Location: index.php");				
-				}
-				break;
+			}
+			break;
+
+	case "pasar_a_factura":
+		{
+		// ESPERA UN ID
+			Factura::pasar_a_factura($_GET["id"]);
+
+	     	echo '<script type="text/javascript">window.location.assign("facturas/factura/");</script>'; 
+			header('Location:' . HOME . 'facturas/factura/');				
+		}	
+	break;				
 
 	case "generar_factura_proveedor":
 		{
@@ -1048,7 +1058,7 @@ switch($accion):
 				}
 				break;
 
-	case "facturas" :
+/*	case "facturas" :
 		{
 					$cliente = new Cliente($_GET["id"]);
 					$nombre= $cliente->get_nombre();
@@ -1059,7 +1069,7 @@ switch($accion):
 				include("../../view/clientes/facturas.php");
 	
 		}
-		break;
+		break;*/
 
 	case "factura_detalle" :
 		{
