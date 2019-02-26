@@ -121,7 +121,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Moneda</label>
                                     <div class="col-md-9">
-                                        <select name="idMoneda" class="form-control">
+                                        <select name="idMoneda" id="idMoneda" class="form-control">
                                         <?php foreach($monedas as $moneda):?>
                                             <option value="<?php echo $moneda['id']?>" <?php if(@$idMoneda == $moneda['id']) echo "selected"; ?> > <?php echo $moneda['nombre']?></option>
                                         <?php endforeach;?> 
@@ -228,6 +228,7 @@
             $("#desc3").change(function(){calcula_precio();});
             $("#utilidad").change(function(){calcula_precio();});
             $("#iva").change(function(){calcula_precio();});
+            $("#idMoneda").change(function(){calcula_precio();});
 
 
 
@@ -260,12 +261,15 @@
         var desc3 = parseFloat($('#desc3').val());
         var utilidad = parseFloat($('#utilidad').val());
         var iva = parseFloat($('#iva').val());
+        var moneda = parseFloat($('#idMoneda').val());
+        var dolar = <?php echo $dolar_actual?>;    
         var cuenta = precio;
         if(desc1 != 0){ cuenta = cuenta - (cuenta * desc1 / 100);}
         if(desc2 != 0){ cuenta = cuenta - (cuenta * desc2 / 100);}
         if(desc3 != 0){ cuenta = cuenta - (cuenta * desc3 / 100);}
         if(utilidad != 0){ cuenta = cuenta + (cuenta * utilidad / 100);}
         if(iva != 0){ cuenta = cuenta + (cuenta * iva / 100);}
+        if(moneda == 2){ cuenta = cuenta * dolar;}
         cuenta = cuenta.toFixed(2);
 
         $('#cuenta_final').val(cuenta);

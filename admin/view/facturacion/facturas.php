@@ -27,6 +27,7 @@
                                 	<tr><th colspan="3"><a href="<?php echo HOME?>modelo_factura.html">NUEVA FACTURA</a></th></tr>
 
                                     <tr style="font-size: 11px">
+									<th style="background-color: #5DBD90;">Id</th>
 									<th style="background-color: #5DBD90;">Fecha</th>
 									<th style="background-color: #5DBD90;">Cliente</th>
 									<th style="background-color: #5DBD90;">Importe</th>
@@ -38,14 +39,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-									<?php foreach($facturas as $factura):?>
+									<?php foreach($facturas as $factura):
+										if($factura["idCliente"] == 1):
+											$consumidor_final = Factura::get_consumidor_final($factura["id"]);
+										endif;
+										?>
 										<tr style="color:gray;font-size: 11px">
 										<form name="orden" method="post" action="<?php echo HOME?>cambio_orden/<?php echo $_GET['id']?>/">
 											<input type="hidden" name="integrante" value="<?php echo $producto["id"];?>">
 
 
+											<td><?php echo $factura["id"] ?></td>
 											<td><?php echo $factura["fecha"] ?></td>
-											<td><?php echo $factura["nombre_cliente"] ?></td>
+											<?php if($factura["idCliente"] == 1):?>
+												<td>C.Final <?php echo $consumidor_final["nombre"] ?></td>
+											<?php else:?>
+												<td><?php echo $factura["nombre_cliente"] ?></td>
+
+											<?php endif;?>
 											<td><?php echo $factura["importe"] ?></td>
 
 											<?php $saldo_factura = Factura::get_saldo_factura($factura["importe"],$factura["id"]) ;

@@ -128,6 +128,12 @@ switch($accion):
 			$IIBB = $producto->get_IIBB();
 			$precio_final =  Producto::get_precio_lista($producto->id);
 			$cambio="edit";
+			// valor dolar
+			$conn = new Conexion();
+			$sql = $conn->prepare("SELECT cotizacion from monedas where id = 2");
+			$sql->execute();
+			$datos_carga = $sql->fetch(PDO::FETCH_ASSOC);  
+			$dolar_actual = $datos_carga["cotizacion"];
 
 
 		Template::draw_header(0, 'productos');
@@ -869,9 +875,12 @@ switch($accion):
 			$factura = Factura::get_factura_by_id($_GET["id"]);	
 			$productos = Factura::get_productos_x_factura($_GET["id"]);	
 			$_cliente =  New Cliente($factura["idCliente"]);
-
-				Template::draw_header();
-				include("../view/facturacion/detalle_factura.php");
+			if($factura["idCliente"] == 1):
+				$consumidor_final = Factura::get_consumidor_final($_GET["id"]);
+			endif;
+		
+			Template::draw_header();
+			include("../view/facturacion/detalle_factura.php");
 
 		}	
 		break;
@@ -902,13 +911,16 @@ switch($accion):
 		}			
 		break;
 
+
 	case "generar_factura":
 				{
 				// ESPERA UN ID
 				//	$_usuario = unserialize(@$_SESSION["usuario"]);
 		//			print_r($_usuario->idUsuario);die;
-					$factura = new Factura($_GET["id"]);
-					$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario);
+					//$factura = new Factura($_GET["id"]);
+				//	print_r($_GET["id"]);die;
+					$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario, 0,$_GET["id"]);
+					echo "aca estpy";
 					$mensaje_cabezera = "FACTURA GENERADA";
 					$boton=true;
 					$cambio = "nuevo";

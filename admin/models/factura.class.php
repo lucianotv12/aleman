@@ -14,6 +14,7 @@ class Factura
 	var $condicion_venta;
 	var $condicion_iva; 
 	var $orden_compra;
+	var $estado;
 
 	function Factura($_id=0) 
 	{
@@ -37,6 +38,7 @@ class Factura
 			$this->condicion_venta = $datos_carga['condicion_venta']; 
 			$this->condicion_iva = $datos_carga['condicion_iva']; 
 			$this->orden_compra = $datos_carga['orden_compra'];
+			$this->estado = $datos_carga['estado'];
 		} 
 	}
 	
@@ -46,12 +48,12 @@ class Factura
 
 	if ($this->id<>0) 
 		{
-		$sql = $conn->prepare("update clientes_facturas set idCliente = '$this->idCliente', idTipo = '$this->idTipo', n_remito = '$this->n_remito', n_factura = '$this->n_factura', descuento = '$this->descuento', fecha = '$this->fecha', importe = '$this->importe', activo = '$this->activo', comision_vendedor = '$this->comision_vendedor', condicion_venta = '$this->condicion_venta', condicion_iva = '$this->condicion_iva', orden_compra = '$this->orden_compra' where id='$this->id'"); 
+		$sql = $conn->prepare("update clientes_facturas set idCliente = '$this->idCliente', idTipo = '$this->idTipo', n_remito = '$this->n_remito', n_factura = '$this->n_factura', descuento = '$this->descuento', fecha = '$this->fecha', importe = '$this->importe', activo = '$this->activo', comision_vendedor = '$this->comision_vendedor', condicion_venta = '$this->condicion_venta', condicion_iva = '$this->condicion_iva', orden_compra = '$this->orden_compra', estado = '$this->estado' where id='$this->id'"); 
 		$sql->execute();
 		} 
 	else
 		{
-		$sql = $conn->prepare( "insert into clientes_facturas values (null, '$this->idCliente', '$this->idTipo', '$this->n_remito', '$this->n_factura', '$this->descuento', CURDATE(), '$this->importe', '$this->activo', '$this->comision_vendedor', '$this->condicion_venta', '$this->condicion_iva', '$this->orden_compra' )"); 
+		$sql = $conn->prepare( "insert into clientes_facturas values (null, '$this->idCliente', '$this->idTipo', '$this->n_remito', '$this->n_factura', '$this->descuento', CURDATE(), '$this->importe', '$this->activo', '$this->comision_vendedor', '$this->condicion_venta', '$this->condicion_iva', '$this->orden_compra', '$this->estado' )"); 
 		$sql->execute();
 		$id_insert = $conn->lastInsertId();
 		return($id_insert);
@@ -149,6 +151,8 @@ class Factura
 		$factura->set_orden_compra($_PARAM["orden_compra"]);
 		$factura->set_importe($importe_total);
 		$factura->set_activo(1);
+		$factura->set_estado($_PARAM["estado"]);
+
 		
 		$sql = $conn->prepare("SELECT V.comision FROM clientes AS C inner join vendedores as V ON C.idVendedor = V.id WHERE C.id = $id_cliente");
 		$sql->execute();
@@ -242,7 +246,7 @@ class Factura
 	}
 
 
-	function generar_factura2($_PARAM,$_usuario_id=0,$_tipo=0)
+	function generar_factura2($_PARAM,$_usuario_id=0,$_tipo=0, $estado=0)
 	{
 		if($_tipo==0):
 			$_tipo=1;
@@ -260,33 +264,34 @@ class Factura
 
                 if($_PARAM[$cantidad]):
                 	if($_tipo == 1):
-                    $cantidad = $_PARAM[$cantidad];
-                    $cantidad_stock = "-" . $cantidad;
-                    $idproducto = $_PARAM[$idproducto];
-                    $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
-                    $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
-                    $descuento_producto = $_PARAM[$descuento_producto];
-                    $descripcion_producto = $_PARAM[$descripcion_producto];
-                    $mov=2;
-                    $msj = "PROCESO DE FACTURA";
+	                    $cantidad = $_PARAM[$cantidad];
+	                    $cantidad_stock = "-" . $cantidad;
+	                    $idproducto = $_PARAM[$idproducto];
+	                    $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
+	                    $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
+	                    $descuento_producto = $_PARAM[$descuento_producto];
+	                    $descripcion_producto = $_PARAM[$descripcion_producto];
+	                    $mov=2;
+	                    $msj = "PROCESO DE FACTURA";
 	                else:
-                    $cantidad = $_PARAM[$cantidad];
-                    $cantidad_stock =  $cantidad;
-                    $idproducto = $_PARAM[$idproducto];
-                    $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
-                    $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
-                    $descuento_producto = $_PARAM[$descuento_producto];
-                    $descripcion_producto = $_PARAM[$descripcion_producto];
-                    $mov=1;
-                    $msj = "PROCESO DE FACTURA PROVEEDOR";
+	                    $cantidad = $_PARAM[$cantidad];
+	                    $cantidad_stock =  $cantidad;
+	                    $idproducto = $_PARAM[$idproducto];
+	                    $precio_producto = redondear_dos_decimal($_PARAM[$precio_producto]);
+	                    $precio_total = redondear_dos_decimal($_PARAM[$precio_total]);
+	                    $descuento_producto = $_PARAM[$descuento_producto];
+	                    $descripcion_producto = $_PARAM[$descripcion_producto];
+	                    $mov=1;
+	                    $msj = "PROCESO DE FACTURA PROVEEDOR";
 
-					$sql = $conn->prepare("UPDATE productos set precio = '$precio_producto' where id = '$idproducto'");
-					$sql->execute();
+						$sql = $conn->prepare("UPDATE productos set precio = '$precio_producto' where id = '$idproducto'");
+						$sql->execute();
 	                endif;	
-					$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', $mov , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
-					$sql->execute();
-                    $insert_id = $conn->lastInsertId();
-
+	                	if($estado == "factura"):
+							$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', $mov , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
+							$sql->execute();
+		                    $insert_id = $conn->lastInsertId();
+		                endif;    
                     $sql = $conn->prepare("INSERT into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento, descripcion) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto', '$descripcion_producto')");
 					$sql->execute();
 
@@ -320,6 +325,9 @@ class Factura
 			$factura->set_orden_compra($_PARAM["orden_compra"]);
 			$factura->set_importe($importe_total);
 			$factura->set_activo(1);
+			$factura->set_estado($estado);
+
+
 			
 			$sql = $conn->prepare("SELECT V.comision FROM clientes AS C inner join vendedores as V ON C.idVendedor = V.id WHERE C.id = " . $_PARAM["_idcliente"]);
 			$sql->execute();
@@ -330,6 +338,12 @@ class Factura
 				$factura->set_comision_vendedor($comision);
 
 			$respuesta = $factura->save();
+
+			if($_PARAM["proveedorId"] == 1):
+//				echo "aca entro";die;
+				$sql = $conn->prepare("INSERT INTO clientes_facturas_consumidor values (:FACTURA,:NOMBRE, :DOMICILIO, :EMAIL, :TELEFONO)");
+				$sql->execute(array('FACTURA' => $respuesta, 'NOMBRE' => $_PARAM["consumidor_nombre"], 'DOMICILIO' => $_PARAM["consumidor_domicilio"], 'EMAIL' => $_PARAM["consumidor_email"], 'TELEFONO' => $_PARAM["consumidor_telefono"] ));				
+			endif;	
 
 			$sql = $conn->prepare("UPDATE clientes_factura_productos set activo = 1, idFactura = '$respuesta' where activo = 2");
 			$sql->execute();
@@ -349,6 +363,18 @@ class Factura
 
 		$sql=null;
 		$conn=null;
+
+	}
+
+	function get_consumidor_final($_id){
+		$conn = new Conexion();			
+
+		$sql = $conn->prepare("SELECT * FROM clientes_facturas_consumidor where facturaId = :FACTURA");
+		$sql->execute(array("FACTURA" => $_id));	
+
+		$datos= $sql->fetch(PDO::FETCH_ASSOC);
+
+		return $datos;
 
 	}
 
@@ -618,7 +644,7 @@ class Factura
 
 			foreach($facturas as $factura):
 			
-				$saldo_factura = Factura::get_saldo_factura($factura['importe'],$factura['n_factura']) ;	
+				$saldo_factura = Factura::get_saldo_factura($factura['importe'],$factura['id']) ;	
                         
 				if($saldo_factura > 0):
 	                     $factura['importe'] = $saldo_factura;
@@ -667,7 +693,7 @@ class Factura
 	function get_cliente_deudor($_idcliente)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("select * from clientes_facturas where idTipo = 1 and idCliente = " . $_idcliente);	
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and idCliente = " . $_idcliente);	
 		$sql->execute();
 		$resultado = $sql->fetchAll();
 
@@ -684,22 +710,27 @@ class Factura
 
 		foreach($facturas as $factura):
 		
-		$saldo_factura = $factura->get_saldo_factura($factura->get_importe(),$factura->get_n_factura(),$_idcliente) ;	
+		$saldo_factura = $factura->get_saldo_factura($factura->get_importe(),$factura->get_id(),$_idcliente) ;	
 
 		if($saldo_factura > 0) 
 			{
-			$fecha_factura=explode("-",$factura->get_fecha());
+				$saldo_total += $saldo_factura; 	
+	/*		$fecha_factura=explode("-",$factura->get_fecha());
 			$fechasalida= $fecha[2]."-".$fecha[1]."-".$fecha[0];
 			$fecha_vencimiento = date("Y-m-d",mktime(0, 0, 0, $fecha_factura[1]+1, $fecha_factura[2],   $fecha_factura[0]));
 
 				if($fecha_vencimiento < date("Y-m-d"))
-				{
-					return("<FONT COLOR=RED><B>DEUDOR</B></FONT>");	
-				}
+				{*/
+			//		return("<FONT COLOR=RED><B>DEUDOR</B></FONT>");	
+//				}
 			}
 	
 		endforeach;
-			return("<FONT COLOR=green>AL DIA</FONT>");
+			if($saldo_total):
+				return("<FONT COLOR=RED><B>$saldo_total</B></FONT>");	
+			else:	
+				return("<FONT COLOR=green>AL DIA</FONT>");
+			endif;
 	}
 
 
@@ -752,6 +783,7 @@ class Factura
 	function get_condicion_venta() { return($this->condicion_venta); } 
 	function get_condicion_iva() { return($this->condicion_iva); }
 	function get_orden_compra() { return($this->orden_compra); } 
+	function get_estado() { return($this->estado); } 
 	
 	/*------------------------------------------------------------------------*/ 
 	/*---SETTERS--------------------------------------------------------------*/ 
@@ -768,6 +800,7 @@ class Factura
 	function set_condicion_venta($_condicion_venta) { $this->condicion_venta = $_condicion_venta; } 
 	function set_condicion_iva($_condicion_iva) { $this->condicion_iva = $_condicion_iva; } 
 	function set_orden_compra($_orden_compra) { $this->orden_compra = $_orden_compra; } 
+	function set_estado($_estado) { $this->estado = $_estado; } 
 
 
 	/*------------------------------------------------------------------------*/ 
