@@ -92,6 +92,7 @@
 												?>
 
 											<?php elseif( $factura["estado"] == "presupuesto"):?>
+												<td>0</td>
 												<td style="color:blue">Presupuesto</td>
 											<?php endif;?>
 
