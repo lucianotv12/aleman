@@ -763,7 +763,7 @@ class Factura
 	
 		endforeach;
 			if($saldo_total):
-				return("<FONT COLOR=RED><B>$saldo_total</B></FONT>");	
+				return("<FONT COLOR=orange><B>$saldo_total</B></FONT>");	
 			else:	
 				return("<FONT COLOR=green>AL DIA</FONT>");
 			endif;
