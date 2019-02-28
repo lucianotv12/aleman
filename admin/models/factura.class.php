@@ -521,7 +521,7 @@ class Factura
 	function facturas_x_proveedor($_idcliente)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT * from aleman.clientes_facturas where idCliente = " . $_idcliente  );
+		$sql = $conn->prepare("SELECT * from aleman.clientes_facturas where idCliente = " . $_idcliente . " order by id desc "  );
 		$sql->execute();
 
 		$result = $sql->fetchAll();
@@ -729,7 +729,7 @@ class Factura
 	function get_cliente_deudor($_idcliente)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and idCliente = " . $_idcliente);	
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and estado != 'presupuesto' and idCliente = " . $_idcliente);	
 		$sql->execute();
 		$resultado = $sql->fetchAll();
 
@@ -768,6 +768,51 @@ class Factura
 				return("<FONT COLOR=green>AL DIA</FONT>");
 			endif;
 	}
+
+	function get_cliente_deudor_vencida($_idcliente)
+	{
+		$conn = new Conexion();					
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and estado != 'presupuesto' and idCliente = " . $_idcliente);	
+		$sql->execute();
+		$resultado = $sql->fetchAll();
+
+		$sql=null;
+		$conn=null;			
+
+		$facturas = array();
+	//	while($row = @mysql_fetch_assoc($result))
+		foreach($resultado as $row)	
+		{
+		$facturas[] = new Factura($row['id']);
+		}
+	//	@mysql_free_result($result);
+
+		foreach($facturas as $factura):
+		
+		$saldo_factura = $factura->get_saldo_factura($factura->get_importe(),$factura->get_id(),$_idcliente) ;	
+
+		if($saldo_factura > 0) 
+			{
+			$fecha_factura=explode("-",$factura->get_fecha());
+			$fechasalida= $fecha[2]."-".$fecha[1]."-".$fecha[0];
+			$fecha_vencimiento = date("Y-m-d",mktime(0, 0, 0, $fecha_factura[1]+1, $fecha_factura[2],   $fecha_factura[0]));
+
+				if($fecha_vencimiento < date("Y-m-d"))
+				{
+					$saldo_total += $saldo_factura; 	
+
+			//		return("<FONT COLOR=RED><B>DEUDOR</B></FONT>");	
+				}
+			}
+	
+		endforeach;
+			if($saldo_total):
+				return("<FONT COLOR=RED><B>$saldo_total</B></FONT>");	
+			else:	
+				return("<FONT COLOR=green>AL DIA</FONT>");
+			endif;
+	}
+
 
 
 	function get_pagos_facturas($n_factura,$_idcliente)

@@ -63,7 +63,7 @@
 
 											<?php endif;?>
 											<td><?php echo $factura["importe"] ?></td>
-											<?php if($_GET["id"] != "presupuesto"):?>
+											<?php if($_GET["id"] != "presupuesto" and $factura["estado"] != "presupuesto"):?>
 
 												<?php $saldo_factura = Factura::get_saldo_factura($factura["importe"],$factura["id"]) ;
 												if($saldo_factura > 0) {
@@ -91,6 +91,8 @@
 														}
 												?>
 
+											<?php elseif( $factura["estado"] == "presupuesto"):?>
+												<td style="color:blue">Presupuesto</td>
 											<?php endif;?>
 
 												
