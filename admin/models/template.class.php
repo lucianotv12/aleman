@@ -138,7 +138,7 @@ class Template
            <li class="has-sub">
             <a href="<?php echo HOME?>facturas/factura/">
                 <i class="fa fa-archive" aria-hidden="true"></i>
-                <span style="color: red">Presupuestos de salida</span>
+                <span style="color: red">Salidas</span>
               </a>
           </li>  
            <li class="has-sub">

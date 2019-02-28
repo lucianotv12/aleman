@@ -348,7 +348,7 @@ class Factura
 			$sql = $conn->prepare("UPDATE clientes_factura_productos set activo = 1, idFactura = '$respuesta' where activo = 2");
 			$sql->execute();
 			//REGISTRO PAGO FACTURA
-			if($_PARAM["pagoId"] == 1):
+			if($_PARAM["pagoId"] == 1 and $estado == "factura"):
 	            $pago = new Pago();
 	            $pago->set_idFactura($respuesta);
 	            $pago->set_idTipoPago(1);

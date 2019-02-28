@@ -31,8 +31,11 @@
 									<th style="background-color: #5DBD90;">Fecha</th>
 									<th style="background-color: #5DBD90;">Cliente</th>
 									<th style="background-color: #5DBD90;">Importe</th>
+									<?php if($_GET["id"] != "presupuesto"):?>
+
 									<th style="background-color: #5DBD90;">Saldo</th>
 									<th style="background-color: #5DBD90;">Estado</th>
+									<?php endif;?>
 									<th style="background-color: #5DBD90;">Comprobante</th>
 									<th style="background-color: #5DBD90;">Pagos</th>
 									<?php if($_GET["id"] == "presupuesto"):?>
@@ -60,34 +63,35 @@
 
 											<?php endif;?>
 											<td><?php echo $factura["importe"] ?></td>
+											<?php if($_GET["id"] != "presupuesto"):?>
 
-											<?php $saldo_factura = Factura::get_saldo_factura($factura["importe"],$factura["id"]) ;
-											if($saldo_factura > 0) {
-																?>
-											<td>$<FONT SIZE='' COLOR='red'><?php echo $saldo_factura?></FONT></td>
-											<?php }else{ ?>
-											<td>$<FONT SIZE='' COLOR='green'><?php echo $saldo_factura?></FONT></td>
+												<?php $saldo_factura = Factura::get_saldo_factura($factura["importe"],$factura["id"]) ;
+												if($saldo_factura > 0) {
+																	?>
+												<td>$<FONT SIZE='' COLOR='red'><?php echo $saldo_factura?></FONT></td>
+												<?php }else{ ?>
+												<td>$<FONT SIZE='' COLOR='green'><?php echo $saldo_factura?></FONT></td>
 
-											<?php } 
-											$fecha_factura=explode("-",$factura["fecha"]);
-											$fechasalida= $fecha[2]."-".$fecha[1]."-".$fecha[0];
+												<?php } 
+												$fecha_factura=explode("-",$factura["fecha"]);
+												$fechasalida= $fecha[2]."-".$fecha[1]."-".$fecha[0];
 
-											$fecha_vencimiento = date("Y-m-d",mktime(0, 0, 0, $fecha_factura[1]+1, $fecha_factura[2],   $fecha_factura[0]));
-												if($fecha_vencimiento < date("Y-m-d") and $saldo_factura != 0 )
-													{
-														echo "<td>Vencida</td>";
-													}
-												elseif($fecha_vencimiento > date("Y-m-d") and $saldo_factura != 0 )	
-													{
-														echo "<td>Pendiente</td>";
-													}
-												elseif($saldo_factura == 0 )	
-													{
-														echo "<td>Abonada</td>";
-													}
-											?>
+												$fecha_vencimiento = date("Y-m-d",mktime(0, 0, 0, $fecha_factura[1]+1, $fecha_factura[2],   $fecha_factura[0]));
+													if($fecha_vencimiento < date("Y-m-d") and $saldo_factura != 0 )
+														{
+															echo "<td>Vencida</td>";
+														}
+													elseif($fecha_vencimiento > date("Y-m-d") and $saldo_factura != 0 )	
+														{
+															echo "<td>Pendiente</td>";
+														}
+													elseif($saldo_factura == 0 )	
+														{
+															echo "<td>Abonada</td>";
+														}
+												?>
 
-											
+											<?php endif;?>
 
 												
 											<?php if(@$_GET['id']):?>
