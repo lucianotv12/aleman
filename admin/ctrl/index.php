@@ -69,7 +69,7 @@ switch($accion):
 		$idUsuario="";
 		$activo="";
 		$aviso_stock="";
-		$precio=0;
+		$precio="";
 		$desc1="";
 		$desc2="";
 		$desc3="";
@@ -81,6 +81,12 @@ switch($accion):
         $IIBB="";
 		$categorias = $producto->get_categorias_combo();
 		$monedas = $producto->get_monedas();
+		// valor dolar
+		$conn = new Conexion();
+		$sql = $conn->prepare("SELECT cotizacion from monedas where id = 2");
+		$sql->execute();
+		$datos_carga = $sql->fetch(PDO::FETCH_ASSOC);  
+		$dolar_actual = $datos_carga["cotizacion"];		
 		Template::draw_header(2, 'productos');
 		include("../view/productos/producto_abm.php");
 		}
