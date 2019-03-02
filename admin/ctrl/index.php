@@ -69,7 +69,7 @@ switch($accion):
 		$idUsuario="";
 		$activo="";
 		$aviso_stock="";
-		$precio="";
+		$precio=0;
 		$desc1="";
 		$desc2="";
 		$desc3="";
