@@ -327,14 +327,14 @@ switch($accion):
 					header("Location:".HOME ."list_categorias.html");								
 				}
 				break;
-	case "delete_categoria" :
+	case "categoria_delete" :
 				{
 				// ESPERA UN ID
 				// No icluye Vista, Borra directo..
 				Producto::delete_categoria($_GET["id"]);
 				//ingreso un registro en el log
 
-				header("Location: index.php?accion=list_categorias");
+				header("Location:".HOME ."list_categorias.html");								
 				}
 				break;
 /*************CATEGORIAS *******************************************************/
@@ -369,24 +369,8 @@ switch($accion):
 				{
 				Producto::delete_subcategoria($_GET["id"]);
 
-				$mensaje_cabezera = "MODIFICACION DE LA CATEGORIA";
-				$cambio = "modificar";
-				$detalle = false;
-				$boton=true;							
-				$deshabilitado = "";
+				header("Location:".HOME ."list_subcategorias.html");								
 
-				$categorias = Producto::get_categorias(0,0,0,$_GET["id_categoria"]);
-				foreach($categorias as $categoria):
-				$id= $categoria["id"];
-				$nombre= $categoria["nombre"];
-				$descripcion= $categoria["descripcion"];
-				$activo= $categoria["activo"];
-
-				endforeach;
-				$subcategorias = Producto::get_subcategorias($categoria["id"]);															
-				Template::draw_header(0,'subcategorias');
-
-				include("../../view/productos/abm_categorias.php");
 				}
 				break;
 
