@@ -69,7 +69,7 @@ class Producto
 			}
 		else
 			{
-			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', '$this->fechaActualizacion','$this->bulto', '$this->IIBB')");
+			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', CURDATE(),'$this->bulto', '$this->IIBB')");
 			$sql->execute();
 			$this->id = $conn->lastInsertId();
 			} 
