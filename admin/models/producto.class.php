@@ -196,8 +196,8 @@ class Producto
 		$conn = new Conexion();
 
 		$sql = $conn->prepare(" SELECT P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia from productos as P
-			INNER JOIN productos_categorias PC ON P.idCategoria = PC.id
-			INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
+			LEFT JOIN productos_categorias PC ON P.idCategoria = PC.id
+			LEFT JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
                         WHERE 1 $whereclause_descripcion $whereclause_referencia $whereclause_id  $whereclause_categoria $whereclause_subcategoria
 			Order By P.descripcion limit 50");
 		$sql->execute();
@@ -303,8 +303,8 @@ class Producto
 		$conn = new Conexion();
 
 		$sql = $conn->prepare("SELECT count(P.id) as cuenta from productos P
-				INNER JOIN productos_categorias PC ON P.idCategoria = PC.id  
-				INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
+				left JOIN productos_categorias PC ON P.idCategoria = PC.id  
+				left JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
 				$whereclause");
 		$sql->execute();
 
