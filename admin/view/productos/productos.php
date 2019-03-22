@@ -1,16 +1,4 @@
-<script type="text/javascript">
-	function pregunta_borrar(_id)
-	{
-	var update=window.confirm("Esta a punto de borrar el producto " + _id + ", desea continuar?");
 
-		if (update){
-
-			window.location="<?php echo HOME?>producto_delete/" + _id + "/";
-
-		}
-	}
-
-</script>
 
 			<!-- begin row -->
 			<div class="row">
