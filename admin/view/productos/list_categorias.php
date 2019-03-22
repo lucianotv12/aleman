@@ -59,7 +59,7 @@
 
 									</a></td>
 
-									<td align="center"><a data-href="<?php echo HOME?>categoria_delete/<?php echo $producto["id"];?>/" data-toggle="modal" data-target="#confirm-delete">
+									<td align="center"><a href="javaScript:pregunta('<?php echo  $producto["id"]?>','Categoria','delete_categoria')">
 									<i class="fa fa-trash" aria-hidden="true"></i>									
 									</a></td>
 								</tr>
@@ -80,39 +80,6 @@
 		
 
 	</div>
-
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-	    <div class="modal-dialog">
-
-	        <div class="modal-content">
-
-	            <div class="modal-header">
-
-	                Eliminanar categoria
-
-	            </div>
-
-	            <div class="modal-body">
-
-	                ¿Confirma que quiere eliminar esta categoria?
-
-	            </div>
-
-	            <div class="modal-footer">
-
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
-	                <a class="btn btn-danger btn-ok">Borrar</a>
-
-	            </div>
-
-	        </div>
-
-	    </div>
-
-	</div>
-
 	<!-- end page container -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -150,18 +117,5 @@
 			TableManageButtons.init();
 		});
 	</script>
-    <script type="text/javascript">
-
-		$('#confirm-delete').on('show.bs.modal', function(e) {
-
-		    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-
-		});    	
-
-    	
-
-    </script>	
-
-	
 </body>
 </html>

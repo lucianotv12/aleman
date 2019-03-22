@@ -69,7 +69,7 @@ class Producto
 			}
 		else
 			{
-			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', CURDATE(),'$this->bulto', '$this->IIBB')");
+			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', '$this->fechaActualizacion','$this->bulto', '$this->IIBB')");
 			$sql->execute();
 			$this->id = $conn->lastInsertId();
 			} 
@@ -196,8 +196,8 @@ class Producto
 		$conn = new Conexion();
 
 		$sql = $conn->prepare(" SELECT P.descripcion, P.id, PC.nombre as categoria, PS.nombre as subcategoria, P.referencia from productos as P
-			LEFT JOIN productos_categorias PC ON P.idCategoria = PC.id
-			LEFT JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
+			INNER JOIN productos_categorias PC ON P.idCategoria = PC.id
+			INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
                         WHERE 1 $whereclause_descripcion $whereclause_referencia $whereclause_id  $whereclause_categoria $whereclause_subcategoria
 			Order By P.descripcion limit 50");
 		$sql->execute();
@@ -303,8 +303,8 @@ class Producto
 		$conn = new Conexion();
 
 		$sql = $conn->prepare("SELECT count(P.id) as cuenta from productos P
-				left JOIN productos_categorias PC ON P.idCategoria = PC.id  
-				left JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
+				INNER JOIN productos_categorias PC ON P.idCategoria = PC.id  
+				INNER JOIN productos_subcategorias PS ON P.idSubCategoria = PS.id
 				$whereclause");
 		$sql->execute();
 
