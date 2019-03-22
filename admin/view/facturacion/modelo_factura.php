@@ -49,9 +49,10 @@ $( document ).ready(function() {
                         <small>De</small>
                         <address class="m-t-5 m-b-5">
                             <strong>Maderas "El Aleman"</strong><br />
-                            Ruta 5 Km 55200, B1748<br />
-                            General Rodriguez, Buenos Aires<br />
-                            Telefono: 011 2184-4813
+                            Ruta 5 km 55200<br />
+                            General Rodríguez, Buenos Aires<br />
+                            Teléfono: 0237-486-0534<BR/>
+                            Cel/Wpp: 1121844813
                         </address>
                     </div>
                     <?php if(@$_cliente):?>

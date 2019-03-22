@@ -19,7 +19,11 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <div class="col-md-12" style="padding: 10px 0 10px 20px"> 
+						<?php include("../view/productos/paginado.php");?>
+						</div>
                         <div class="panel-body">
+
                             <table  class="table table-striped table-bordered">
                                 <thead>
 									<form method="post" name="datos" id="formulario" action="">

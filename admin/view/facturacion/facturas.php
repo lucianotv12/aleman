@@ -24,7 +24,7 @@
                                 <thead>
 
 
-                                	<tr><th colspan="3"><a href="<?php echo HOME?>modelo_factura.html">NUEVA FACTURA</a></th></tr>
+                                	<tr><th colspan="3"><a href="<?php echo HOME?>modelo_factura.html">NUEVO PRESUPUESTO</a></th></tr>
 
                                     <tr style="font-size: 11px">
 									<th style="background-color: #5DBD90;">Id</th>
@@ -92,8 +92,8 @@
 												?>
 
 											<?php elseif( $factura["estado"] == "presupuesto"):?>
-												<td>0</td>
-												<td style="color:blue">Presupuesto</td>
+<!--												<td>0</td>
+												<td style="color:blue">Presupuesto</td>-->
 											<?php endif;?>
 
 												
