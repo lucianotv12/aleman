@@ -7,6 +7,16 @@
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Imprimir</a>
                     </span>
                     <img src="<?php echo HOME?>images/logoaleman.png" height="60px">
+                    <span class=" hidden-print" style="text-align: center; padding-left: 100px">
+
+                    <?php if($factura["estado"]=="factura"):?>
+                        <font color="red">Salida</font>
+                    <?php else:?>
+                        <font color="green">Presupuesto</font>
+
+                    <?php endif;?>    
+
+                    </span>
                 </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
