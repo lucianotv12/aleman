@@ -1,6 +1,6 @@
 
-			<!-- begin invoice -->
-			<div class="invoice">
+            <!-- begin invoice -->
+            <div class="invoice">
                 <div class="invoice-company">
                     <span class="pull-right hidden-print">
                     <!--<a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Exportar a PDF</a>-->
@@ -9,15 +9,20 @@
                     <img src="<?php echo HOME?>images/logoaleman.png" height="60px">
                     <span class=" hidden-print" style="text-align: center; padding-left: 100px">
 
-                    <?php if($factura["estado"]=="factura"):?>
+                    <?php if($factura["estado"]=="factura" and $factura["idTipo"] == 1):?>
                         <font color="red">Salida</font>
-                    <?php else:?>
+                    <?php elseif($factura["idTipo"] == 2):?>
+                        <font color="gray">Comprobante Proveedor</font>
+
+                    <?php else:?>    
                         <font color="green">Presupuesto</font>
 
                     <?php endif;?>    
-
+                        <?php echo $factura["fecha"]?>
                     </span>
                 </div>
+
+                <?php if($factura["idTipo"] == 1):?>
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <small>De</small>
@@ -35,6 +40,33 @@
                         <address class="m-t-5 m-b-5">                                  
                             <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
                                 <?php if($factura["idCliente"] == 1):?>
+                                    <strong><?php echo $consumidor_final["nombre"]?></strong><br />
+                                    <?php echo $consumidor_final["domicilio"]?> <?php echo $_cliente->cp?><br />
+                                    Email:<?php echo $consumidor_final["email"]?><br />
+                                    Telefono: <?php echo $consumidor_final["telefono"]?><br />
+                                <?php elseif($_cliente->get_condicion_iva() == "Exento"):?> 
+                                    <strong><?php echo $_cliente->nombre?></strong><br />
+                                    <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
+                                    Email:<?php echo $_cliente->email?><br />
+                                    Telefono: <?php echo $_cliente->telefono?><br />                               
+                                    Condicion IVA: Exento<br />                                                              
+                                <?php else:?>
+                                    <strong><?php echo $_cliente->nombre?></strong><br />
+                                    <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
+                                    Email:<?php echo $_cliente->email?><br />
+                                    Telefono: <?php echo $_cliente->telefono?><br />                                
+                                <?php endif;?>
+                            </div>    
+                        </address>
+                    </div>
+                <?php elseif($factura["idTipo"] == 2):?>
+
+                <div class="invoice-header">
+                    <div class="invoice-from">
+                        <small>De</small>
+                        <address class="m-t-5 m-b-5">                                  
+                            <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
+                                <?php if($factura["idCliente"] == 1):?>
                                 <strong><?php echo $consumidor_final["nombre"]?></strong><br />
                                 <?php echo $consumidor_final["domicilio"]?> <?php echo $_cliente->cp?><br />
                                 Email:<?php echo $consumidor_final["email"]?><br />
@@ -46,8 +78,23 @@
                                 Telefono: <?php echo $_cliente->telefono?><br />                                
                                 <?php endif;?>
                             </div>    
-                        </address>
+                        </address>                        
                     </div>
+                    <div class="invoice-to">
+                        <small>Para</small>
+                        <address class="m-t-5 m-b-5">
+                            <strong>Maderas "El Aleman"</strong><br />
+                            Ruta 5 km 55200<br />
+                            General Rodríguez, Buenos Aires<br />
+                            Teléfono: 0237-486-0534<BR/>
+                            Cel/Wpp: 1121844813
+                            
+                        </address>
+
+                    </div>
+
+
+                <?php endif?>    
                     <div class="invoice-date">
                         <small>Remito X / <?php echo $factura["id"]?></small>
                         <div class="date m-t-5"><?php echo date("d/m/Y");?></div>
@@ -77,7 +124,7 @@
                                 $iva10 = 0;
                                 $precio_total_factura = 0;
                                 foreach($productos as $producto):
-                                    if($factura["idCliente"] != 1):
+                                    if($factura["idCliente"] != 1 and $_cliente->get_condicion_iva() != 'Exento'):
                                         if($producto["iva"] == 21 or $producto["iva"] == 24 ):
                                            $iva_precio_unitario = round($producto["precio_unitario"] * 21 / 100,2);
                                            $iva21 += $iva_precio_unitario * $producto["cantidad"];
@@ -90,7 +137,7 @@
                                         elseif($producto["iva"] == 10): // sin desarrollar    
                                         endif;    
 
-                                    elseif($factura["idCliente"] == 1):
+                                    elseif($factura["idCliente"] == 1 or $_cliente->get_condicion_iva() == 'Exento'):
                                             $precio_unitario = $producto["precio_unitario"];
                                             $precio_total =  $producto["precio_total"];                                        
                                             $precio_total_factura += $precio_total; 
@@ -142,8 +189,8 @@
                     * Nota 3
                 </div>-->
                 <div class="invoice-footer text-muted">
-                    <p class="text-center m-b-5">
-                        Muchas gracias
+                    <p class="text-left m-b-5" style="font-size: 16px; padding-bottom: 20px">
+                        * Fletes y transporte no incluído en el precio
                     </p>
                     <p class="text-center">
                         <span class="m-r-10"><i class="fa fa-envelope"></i> maderaselaleman@yahoo.com.ar</span>
@@ -156,37 +203,37 @@
 
                 </form>
             </div>
-			<!-- end invoice -->
+            <!-- end invoice -->
 
-	
-	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!--[if lt IE 9]>
-		<script src="assets/crossbrowserjs/html5shiv.js"></script>
-		<script src="assets/crossbrowserjs/respond.min.js"></script>
-		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
-	<script src="<?php echo HOME?>assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="<?php echo HOME?>assets/plugins/jquery-cookie/jquery.cookie.js"></script>
-	<!-- ================== END BASE JS ================== -->
-	
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-	<script src="<?php echo HOME?>assets/js/apps.min.js"></script>
-	<!-- ================== END PAGE LEVEL JS ================== -->
-	
-	<script>
-		$(document).ready(function() {
-			App.init();
+    
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="<?php echo HOME?>assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="<?php echo HOME?>assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="<?php echo HOME?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="assets/crossbrowserjs/respond.min.js"></script>
+        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="<?php echo HOME?>assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo HOME?>assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="<?php echo HOME?>assets/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    
+    <script>
+        $(document).ready(function() {
+            App.init();
 
-		});
-
-
+        });
 
 
 
-	</script>
+
+
+    </script>
 </body>
 </html>

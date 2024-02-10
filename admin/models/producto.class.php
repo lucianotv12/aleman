@@ -72,6 +72,7 @@ class Producto
 			 $sql = $conn->prepare("insert into productos values (null, '$this->idMoneda', '$this->idCategoria','$this->idSubCategoria', '$this->descripcion', CURDATE(), '$this->idUsuario', '$this->activo', '$this->aviso_stock', '$this->precio', '$this->desc1', '$this->desc2', '$this->desc3', '$this->utilidad', '$this->iva', '$this->referencia', CURDATE(),'$this->bulto', '$this->IIBB')");
 			$sql->execute();
 			$this->id = $conn->lastInsertId();
+		//	print_r($sql);die;
 			} 
 		$sql=null;
 		$conn=null;	
@@ -91,13 +92,21 @@ class Producto
 
 	function nuevo_producto($_PARAM)
 	{ 
+		$_usuario = unserialize(@$_SESSION["usuario"]);
+		if(!$_usuario):
+			$user_id = $_usuario->idUsuario;
+		else:
+			$user_id = 1;
+
+		endif;
+
 		$producto = new Producto ();
 		$producto->set_idCategoria($_POST['idCategoria']);
 		$producto->set_idSubCategoria($_POST['idSubCategoria']);
 		$producto->set_descripcion($_POST['descripcion']);
 		$producto->set_precio($_POST['precio']);
 		$producto->set_fechaCarga('');
-		$producto->set_idUsuario($_PARAM['idUsuario']);
+		$producto->set_idUsuario($user_id);
 		$producto->set_activo($_PARAM['activo']);
 		$producto->set_aviso_stock($_PARAM['aviso_stock']);
 		$producto->set_precio($_PARAM['precio']);
@@ -478,8 +487,9 @@ class Producto
 	
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("insert into productos_categorias values('','$nombre','$descripcion','$activo','$dolar',CURDATE())");
+		$sql = $conn->prepare("insert into productos_categorias values(null,'$nombre','$descripcion','$activo','$dolar',CURDATE())");
 		$sql->execute();
+//		print_r($sql);die;
 		$insert = $conn->lastInsertId();			
         
         if($proveedor != 0): 
@@ -617,7 +627,7 @@ class Producto
         
 		if($cambio == "nuevo"):
 
-			$sql = $conn->prepare("INSERT into productos_subcategorias values('','$idCategoria','$nombre','$descripcion','$activo', '$dolar',CURDATE())");
+			$sql = $conn->prepare("INSERT into productos_subcategorias values(null,'$idCategoria','$nombre','$descripcion','$activo', '$dolar',CURDATE())");
 			$sql->execute();	
 			$insert = $conn->lastInsertId();
 
@@ -640,6 +650,7 @@ class Producto
 			$sql=null;
 			$conn=null;
 	}
+
 
 
 	/****************MODIFICACION DE PRECIOS****************************/
@@ -692,54 +703,53 @@ class Producto
 		endswitch;
 
 		if($_PARAM["idCategoria"] == "-2"):
-                    $whereclause = ""; // si selecciono todos los productos
+            $whereclause = ""; // si selecciono todos los productos
 		// inicio log de registros
-		$descripcion_log = "$tipo_valor_txt $monto_modificable";
+			$descripcion_log = "$tipo_valor_txt $monto_modificable";
 
+			$sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '$idSubCategoria', CURDATE(), CURTIME(),1)");
+            $sql->execute();
+        else:
+	        if($_PARAM["idSubCategoria"]): // si selecciono subcategorias
 
-				$sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '$idSubCategoria', CURDATE(), CURTIME(),1)");
-                $sql->execute();
-                else:
-                    if($_PARAM["idSubCategoria"]): // si selecciono subcategorias
-
-                        if(in_array("0", $_PARAM["idSubCategoria"])):  //si encontro 0en el array subcategorias
-                            $whereclause = "where idCategoria = $idCategoria ";
-                            // inicio log de registros
-                            $descripcion_log = "$tipo_valor_txt $monto_modificable";
-                            $sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '0', CURDATE(), CURTIME(),1)");
-                            $sql->execute();
-                            $sql = $conn->prepare("UPDATE productos_categorias set fechaActualizacion = curdate() WHERE id = $idCategoria ");
-                            $sql->execute();
-                            $sql = $conn->prepare("UPDATE productos set fechaActualizacion = curdate() WHERE idCategoria = $idCategoria ");
-                            $sql->execute();
-                        else:  
-                            $whereclause = " where idCategoria = $idCategoria ";  
-                            $contador_categorias= 0;
-                            foreach($_PARAM["idSubCategoria"] as $categoria):
-             	                $sql = $conn->prepare("UPDATE productos_subcategorias set fechaActualizacion = curdate() WHERE id = $categoria ");
-                                $sql->execute();
-                                $sql = $conn->prepare("UPDATE productos set fechaActualizacion = curdate() WHERE idSubCategoria = $categoria ");
-                            	$sql->execute();
-                                if($contador_categorias == 0):
-                                    $whereclause .= " AND ( idSubCategoria = $categoria" ; 
-                                else:
-                                    $whereclause .= " OR idSubCategoria = $categoria" ;                                     
-                                endif;
-                               $contador_categorias++;
-                                // inicio log de registros
-                                $descripcion_log = "$tipo_valor_txt $monto_modificable";
-                                $sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '$categoria', CURDATE(), CURTIME(),1)");
-                                $sql->execute();
-                               
-                            endforeach;
-                            
-                            $whereclause .= " )";
-                            
-                            
+                if(in_array("0", $_PARAM["idSubCategoria"])):  //si encontro 0en el array subcategorias
+                    $whereclause = "where idCategoria = $idCategoria ";
+                    // inicio log de registros
+                    $descripcion_log = "$tipo_valor_txt $monto_modificable";
+                    $sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '0', CURDATE(), CURTIME(),1)");
+                    $sql->execute();
+                    $sql = $conn->prepare("UPDATE productos_categorias set fechaActualizacion = curdate() WHERE id = $idCategoria ");
+                    $sql->execute();
+                    $sql = $conn->prepare("UPDATE productos set fechaActualizacion = curdate() WHERE idCategoria = $idCategoria ");
+                    $sql->execute();
+	            else:  
+                    $whereclause = " where idCategoria = $idCategoria ";  
+                    $contador_categorias= 0;
+                    foreach($_PARAM["idSubCategoria"] as $categoria):
+     	                $sql = $conn->prepare("UPDATE productos_subcategorias set fechaActualizacion = curdate() WHERE id = $categoria ");
+                        $sql->execute();
+                        $sql = $conn->prepare("UPDATE productos set fechaActualizacion = curdate() WHERE idSubCategoria = $categoria ");
+                    	$sql->execute();
+                        if($contador_categorias == 0):
+                            $whereclause .= " AND ( idSubCategoria = $categoria" ; 
+                        else:
+                            $whereclause .= " OR idSubCategoria = $categoria" ;                                     
                         endif;
-                    endif;
-                endif;
-                
+                       $contador_categorias++;
+                        // inicio log de registros
+                        $descripcion_log = "$tipo_valor_txt $monto_modificable";
+                        $sql = $conn->prepare("INSERT INTO productos_movimientos_log (id, idProductoMovimiento, descripcion, idUsuario, idCategoria, idSubCategoria, fecha, hora, MovimientoTipo) values (NULL, '$id_movimiento', '$descripcion_log','$idUsuario', '$idCategoria', '$categoria', CURDATE(), CURTIME(),1)");
+                        $sql->execute();
+                       
+                    endforeach;
+                    
+                    $whereclause .= " )";
+	                    
+	                    
+	            endif;
+            endif;
+        endif;
+ 	               
 
 		// fin log de registros
             $sql = $conn->prepare("select id, $campo from productos $whereclause ");
@@ -747,7 +757,7 @@ class Producto
             $query =$sql->fetchAll();
 //echo		$query = "select id, $campo from productos $whereclause "; die();
                 
-		
+	if($_PARAM["idCategoria"] and $_PARAM["idCategoria"] != "-1"):	
 		foreach($query as $row):
 			$campo_modificable = $row["$campo"]; 
 			$id_campo = $row["id"]; 			
@@ -774,7 +784,7 @@ class Producto
 			$sql = $conn->prepare("update productos set $campo = $nuevo_precio where id = $id_campo");
 			$sql->execute();
 		endforeach;
-		
+	endif;	
 	
 	}
 

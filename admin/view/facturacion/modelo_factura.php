@@ -19,14 +19,14 @@ $( document ).ready(function() {
     $('#generar_presupuesto').click(function(){
        if(confirm('Estas a punto de generar un presupuesto, confirmar')){ 
         $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/presupuesto/');
-       }
+       }else{ return false;}
     });
 
 
     $('#generar_factura').click(function(){
        if(confirm('Estas a punto de generar un presupuesto de salida, confirmar')){ 
          $('#presupuesto_factura').attr('action', '<?php echo HOME?>generar_factura/factura/');
-        }
+       }else{ return false;}
     });
   
 });
@@ -72,7 +72,7 @@ $( document ).ready(function() {
                             <small>Para <select name="proveedorSelect" id="proveedorSelect">    
                                     <option value="0">Seleccione Cliente</option>
                                 <?php foreach($clientes as $cliente):?>
-                                    <option value="<?php echo $cliente->id?>"><?php echo $cliente->nombre?></option>
+                                    <option value="<?php echo $cliente->id?>"><?php echo $cliente->nombre. " (" . $cliente->condicion_iva. ") "?></option>
                                  <?php endforeach;?>
                                 </select></small>
                             <address class="m-t-5 m-b-5">
