@@ -37,7 +37,7 @@
                                     <div class="col-md-9">
                                         <select name="idSubCategoria" id="idSubCategoria" class="form-control">
 
-                                            <option value="" > Ninguna</option>
+                                            <option value="0" > Ninguna</option>
 
                                         </select>
                                     </div>

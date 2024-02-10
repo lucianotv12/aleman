@@ -23,7 +23,7 @@
                                     <form name="cliente_insert" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>cliente_insert.html">                                    
                                 <?php endif;?>    
 		  					<?php else:?>
-                                <?php if($tipo == "proveedores"):?>
+                                <?php if($tipo != "proveedores"):?>
 		  					       <form name="cliente_cambio" enctype="multipart/form-data"  class="form-horizontal" method="post" action="<?php echo HOME?>cliente_update/<?php echo $_GET['id'];?>/">
 		  					       <input name="_idcliente" type="hidden" value="<?php echo $_GET['id'];?>">
                                 <?php else:?>
@@ -102,8 +102,9 @@
                                     <div class="col-md-9">
                                         <select name="condicion_iva" class="form-control">
                                         <option value="0" >Seleccione...</option>       
-                                        <option value="Responsable Inscripto" <?if($condicion_iva == "Responsable Inscripto") echo"selected"; ?> >Responsable Inscripto</option>
-                                        <option value="Monotributista" <?if($condicion_iva == "Monotributista") echo"selected"; ?>>Monotributista</option>
+                                        <option value="Responsable Inscripto" <?php if($condicion_iva == "Responsable Inscripto") echo"selected"; ?> >Responsable Inscripto</option>
+                                        <option value="Monotributista" <?php if($condicion_iva == "Monotributista") echo"selected"; ?>>Monotributista</option>
+                                        <option value="Exento" <?php if($condicion_iva == "Exento") echo"selected"; ?>>Exento</option>                                        
                                        </select>
                                     </div>
                                 </div> 

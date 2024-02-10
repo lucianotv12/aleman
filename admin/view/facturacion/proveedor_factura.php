@@ -21,6 +21,20 @@ $( document ).ready(function() {
                     Maderas "El Aleman"
                 </div>-->
                 <div class="invoice-header">
+                <?php if(@$_cliente):?>
+                        <div class="invoice-from">
+                            <small>De</small>
+                            <address class="m-t-5 m-b-5">
+                                <div class="clientes" id="cliente_<?php echo $_cliente->id?>" >
+                                    <strong><?php echo $_cliente->nombre?></strong><br />
+                                    <?php echo $_cliente->domicilio?> <?php echo $_cliente->cp?><br />
+                                    Email:<?php echo $_cliente->email?><br />
+                                    Telefono: <?php echo $_cliente->telefono?><br />                                
+                                </div>    
+                            </address>
+                        </div>
+                <?php else:?>
+
                     <div class="invoice-from">
                         <small>De <select name="proveedorSelect" id="proveedorSelect">    
                                 <option value="0">Seleccione Proveedor</option>
@@ -41,6 +55,8 @@ $( document ).ready(function() {
                             
                         </address>
                     </div>
+                    <?php endif;?>
+
                     <div class="invoice-to">
                         <small>Para</small>
                         <address class="m-t-5 m-b-5">
@@ -92,7 +108,11 @@ $( document ).ready(function() {
                 <div class="invoice-content">
 
                     <form name="datos" method="post" enctype="multipart/form-data" action="<?php echo HOME?>generar_factura_proveedor.html" onKeyPress="return disableEnterKey(event)" >
-                        <input type="hidden" name="proveedorId" id="proveedorId">
+                    <?php if(@$_cliente):?>
+                        <input type="hidden" name="proveedorId" id="proveedorId" value="<?php echo $_cliente->id?>">
+                    <?php else:?>    
+                        <input type="hidden" name="proveedorId" id="proveedorId">                                              
+                    <?php endif;?>
                     <div class="table-responsive">
                         <table id="mitabla" class="table table-invoice" >
                                 <tr id="0">

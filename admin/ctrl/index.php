@@ -4,7 +4,7 @@ $sess_name = session_name();
 if (session_start()) setcookie($sess_name, session_id(), null, '/', null, true, true);
 
 include_once("../../funciones.php");
-validar_permanencia();	
+//validar_permanencia();	
 
 if(!isset($_GET["accion"]))$accion= "home";
 else $accion = $_GET["accion"];
@@ -55,7 +55,8 @@ switch($accion):
 		break;	
 
 	case "producto_new" :
-		{			
+		{		
+		validar_permanencia();	
 		$cambio="new";
 		// Muestra el formulario de NUEVO
 		$producto = new Producto;
@@ -608,7 +609,6 @@ switch($accion):
 	case "cliente_update":
 				{
 					$cliente = new Cliente($_GET["id"]);
-
 					$cliente->set_nombre($_POST['nombre']);
 					$cliente->set_domicilio($_POST['domicilio']);
 					$cliente->set_idLocalidad($_POST['cmbLocalidad']);
@@ -893,7 +893,12 @@ switch($accion):
 
 	case "proveedor_factura":
 		{
-			$proveedores = Cliente::get_clientes(0,0,2);				
+			if($_GET["id"]):
+				$_cliente =  New Cliente($_GET["id"]);
+			else:
+				$proveedores = Cliente::get_clientes(0,0,2);				
+			
+			endif;	
 
 			Template::draw_header(0,'proveedores');
 			include("../view/facturacion/proveedor_factura.php");
@@ -909,6 +914,7 @@ switch($accion):
 	//			print_r($_usuario->idUsuario);die;
 				//$factura = new Factura($_GET["id"]);
 			//	print_r($_GET["id"]);die;
+			//	print_r($_POST);DIE;
 				$_id_factura =Factura::generar_factura2($_POST, $_usuario->idUsuario, 0,$_GET["id"]);
 				echo "aca estpy";
 				$mensaje_cabezera = "FACTURA GENERADA";
@@ -1185,11 +1191,104 @@ switch($accion):
 				Template::draw_header();
 //				include("../../view/clientes/facturas.php");
 	//		include("../view/facturacion/facturas.php");
-			include("../view/facturacion/facturas.php");			
+			include("../view/facturacion/facturas_proveedor.php");			
 
 		}
 		break;				
+	case "proveedor_cc" :
+        {
+            $proveedores = (new Cliente())->get_clientes(0,0,2);
+            if($_POST["proveedorId"]){
+                $cliente = new Cliente($_POST["proveedorId"]);
+                $nombre= $cliente->get_nombre();
 
+                $facturas = Factura::facturas_x_proveedor($cliente->id);	
+                $bancos = Pago::get_bancos();
+                $_GET["id"] = $_POST["proveedorId"];
+            }elseif($_GET["id"]){
+            $cliente = new Cliente($_GET["id"]);
+            $nombre= $cliente->get_nombre();
+            
+            $facturas = Factura::facturas_x_proveedor($cliente->id);	
+            $bancos = Pago::get_bancos();
+            }
+            $_proveedor = 0;
+            if($cliente){
+                $_proveedor = $cliente->get_id();
+            }
+            
+            $facturas_deuda = (new Factura())->facturas_x_cliente_deuda($_GET['id']);            
+            Template::draw_header();
+            //				include("../../view/clientes/facturas.php");
+            //		include("../view/facturacion/facturas.php");
+            include("../view/facturacion/proveedor_cc.php");			
+
+        }
+        break;	
+            
+	case "nuevo_movimiento_cc" :
+        {
+            (new Factura())->genera_movimiento_cc($_POST, $_usuario->idUsuario,2,"factura");
+
+            header('Location:' . HOME . 'proveedor_cc/'. $_POST["proveedorId"].'/');
+
+
+        }
+        break;	            
+	case "nuevo_movimiento_cc_haber" :
+        {
+            (new Pago())->nuevo_pago($_POST);
+            header('Location:' . HOME . 'proveedor_cc/'. $_POST["proveedorId"].'/');
+
+
+        }
+        break;	                        
+
+	case "clientes_cc" :
+        {
+            $clientes = (new Cliente())->get_clientes(0,0,1);
+            if($_POST["proveedorId"]){
+                $cliente = new Cliente($_POST["proveedorId"]);
+                $nombre= $cliente->get_nombre();
+
+                $facturas = Factura::facturas_x_proveedor($cliente->id);	
+                $bancos = Pago::get_bancos();
+                $_GET["id"] = $_POST["proveedorId"];
+            }elseif($_GET["id"]){
+            $cliente = new Cliente($_GET["id"]);
+            $nombre= $cliente->get_nombre();
+            
+            $facturas = Factura::facturas_x_proveedor($cliente->id);	
+            $bancos = Pago::get_bancos();
+            }
+            $_cliente = 0;
+            if($cliente){
+                $_cliente = $cliente->get_id();
+            }
+            $facturas_deuda = (new Factura())->facturas_x_cliente_deuda($_GET['id']);            
+            Template::draw_header();
+            //				include("../../view/clientes/facturas.php");
+            //		include("../view/facturacion/facturas.php");
+            include("../view/facturacion/cliente_cc.php");			
+        }
+        break;	
+            
+	case "cliente_nuevo_movimiento_cc" :
+        {
+            (new Factura())->genera_movimiento_cc($_POST, $_usuario->idUsuario,1,"factura");
+            header('Location:' . HOME . 'clientes_cc/'. $_POST["proveedorId"].'/');
+        }
+        break;	            
+	case "cliente_nuevo_movimiento_cc_haber" :
+        {
+            (new Pago())->nuevo_pago($_POST);
+            header('Location:' . HOME . 'clientes_cc/'. $_POST["proveedorId"].'/');
+
+
+        }
+        break;	                        
+    
+            
 	case "registrar_pago":
 	{
 		Pago::nuevo_pago($_POST);
@@ -1390,5 +1489,19 @@ switch($accion):
 	
 				}
 		break;				
+	case "detalle_factura_generico":
+		{
+			$factura = Factura::get_factura_by_id($_GET["id"]);	
+			$productos = Factura::get_productos_x_factura($_GET["id"]);	
+			$_cliente =  New Cliente($factura["idCliente"]);
+			if($factura["idCliente"] == 1):
+				$consumidor_final = Factura::get_consumidor_final($_GET["id"]);
+			endif;
+		
+			Template::draw_header();
+			include("../view/facturacion/detalle_factura_generico.php");
+
+		}	
+		break;                
 endswitch;
 ?>

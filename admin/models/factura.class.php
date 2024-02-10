@@ -253,7 +253,6 @@ class Factura
 		endif;	
 		$conn = new Conexion();			
             for ($i = 1; $i <= 30; $i++):
-
                 $cantidad = "cantidad" . $i;
                 $cantidad_stock = "-" . $cantidad;
                 $idproducto = "idproducto" . $i;
@@ -263,7 +262,8 @@ class Factura
                 $descripcion_producto = "descripcion_producto" . $i;
 
                 if($_PARAM[$cantidad]):
-                	if($_tipo == 1):
+                	if($_tipo == 1): 
+
 	                    $cantidad = $_PARAM[$cantidad];
 	                    $cantidad_stock = "-" . $cantidad;
 	                    $idproducto = $_PARAM[$idproducto];
@@ -291,10 +291,12 @@ class Factura
 							$sql = $conn->prepare("INSERT into productos_stock (id, idProducto, comentario, idMovimiento, cantidad, fechaCarga, idUsuario, precio) values (null,'$idproducto','$msj ', $mov , '$cantidad_stock', CURDATE(), $_usuario_id, '$precio_producto')");
 							$sql->execute();
 		                    $insert_id = $conn->lastInsertId();
+		                else:
+		                	$insert_id =0;    
 		                endif;    
                     $sql = $conn->prepare("INSERT into clientes_factura_productos (idFactura, idProducto, cantidad, precio_unitario, precio_total, activo,id, descuento, descripcion) values (0,'$idproducto','$cantidad', $precio_producto , '$precio_total', 2, '$insert_id', '$descuento_producto', '$descripcion_producto')");
 					$sql->execute();
-
+				//	print_r($sql);die;
 
                  endif;
 
@@ -366,6 +368,35 @@ class Factura
 
 	}
 
+        public function genera_movimiento_cc($_PARAM,$_usuario_id=0,$_tipo=0, $estado=0){
+            $factura = new Factura();
+            $factura->set_idCliente($_PARAM["proveedorId"]);
+            $factura->set_idTipo($_tipo);
+            $factura->set_n_remito($_PARAM["n_remito"]);
+            $factura->set_n_factura($_PARAM["n_factura"]);
+            $factura->set_descuento('');
+            $factura->set_condicion_venta('');
+            $factura->set_condicion_iva('');
+            $factura->set_orden_compra('');
+            $factura->set_importe($_PARAM["importe"]); //ACA HAY QUE CAMBIAR POR UN IMPORTE 
+            $factura->set_activo(1);
+            $factura->set_estado($estado);            
+            $respuesta = $factura->save();
+
+//            //REGISTRO PAGO FACTURA
+//            if($_PARAM["pagoId"] == 1 and $estado == "factura"):
+//                $pago = new Pago();
+//                $pago->set_idFactura($respuesta);
+//                $pago->set_idTipoPago(1);
+//                $pago->set_importe($importe_total);
+//                $pago->set_descripcion("PAGO CON LA FACTURA");
+//
+//                $id_pago = $pago->save();
+//            endif;	            
+            
+            
+        }        
+        
 	function pasar_a_factura($_id){
 		$_usuario = unserialize(@$_SESSION["usuario"]);
 
@@ -518,6 +549,27 @@ class Factura
 		return($facturas);
 
 	}
+
+	function facturas_x_cliente_deuda($_idcliente)
+	{
+		$conn = new Conexion();					
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idCliente = " . $_idcliente );
+		$sql->execute();
+		$result = $sql->fetchAll();
+		
+		$facturas = array();
+		foreach($result as $row):
+                    $saldo = $this->get_saldo_factura($row['importe'], $row['id']);                    
+                    if($saldo != 0){    
+			$facturas[] = $row;
+                    }    
+		endforeach;
+		$sql=null;
+		$conn=null;
+		return($facturas);
+
+	}        
+        
 	function facturas_x_proveedor($_idcliente)
 	{
 		$conn = new Conexion();					
@@ -561,7 +613,6 @@ class Factura
 		return($resultado);
 
 	}	
-
 
 	function get_facturas($busqueda=0,$tipo_factura=0,$anio_sel=0,$mes_sel=0,$idcliente=0,$estado=0)
 	{
@@ -607,16 +658,33 @@ class Factura
 
 			$estadoclause = " and estado = '". $estado . "'";
 		endif;	
-		
+                
+                //EMPIEZA CAMBIO FECHA
+                $fecha_actual = date('Y-m-d');
+                $month = date('m');
+                $year = date('Y');                
+                if($month !=  1){
+                    $month = $month -1;
+                }else{
+                    $month = 12;        
+	                $year = date('Y') -1;                    
+                }
+
+                $fecha_inicio = date('Y-m-d', mktime(0,0,0, $month, 1, $year));                
+                
+                $whereclause_fechas = " AND CF.fecha between '". $fecha_inicio ."' and '". $fecha_actual ." '";
+                //TERMINA CAMBIO FECHA 
+                
 		$conn = new Conexion();					
 		$sql = $conn->prepare("SELECT CF.*,date_format(CF.fecha,'%d/%m/%Y')as fecha, C.nombre as  nombre_cliente, TF.descripcion as tipo_factura $selectclause_factura
 				  from clientes_facturas AS CF
 				  LEFT join clientes as C ON C.id = CF.idCliente
 				  LEFT join tipos_facturas as TF ON TF.id = CF.idTipo $joinclause_factura
-				 where 1 $whereclause_factura $whereclause $cliente_clause $estadoclause
+				 where 1 $whereclause_factura $whereclause $cliente_clause $estadoclause $whereclause_fechas
 				  ORDER BY CF.id DESC");
 	//	print_r($sql);die;
 		$sql->execute();
+//                $sql->debugDumpParams();die;
 		$result = $sql->fetchAll();		
 		$facturas = array();
 		foreach($result as $row):
@@ -631,7 +699,7 @@ class Factura
 	function get_factura_by_id($id_factura)
 	{
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT CF.*, C.nombre
+		$sql = $conn->prepare("SELECT CF.*, C.nombre,date_format(CF.fecha,'%d/%m/%Y')as fecha
 				  from clientes_facturas AS CF
 				  LEFT join clientes as C ON C.id = CF.idCliente
 				  LEFT join tipos_facturas as TF ON TF.id = CF.idTipo
@@ -726,11 +794,12 @@ class Factura
 	}
 
         
-	function get_cliente_deudor($_idcliente)
+	function get_cliente_deudor($_idcliente,$_tipo=0)
 	{
+		if(!$_tipo)$_tipo = 1;
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and estado != 'presupuesto' and idCliente = " . $_idcliente);	
-		$sql->execute();
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = :TIPO and estado != 'presupuesto' and idCliente = " . $_idcliente);	
+		$sql->execute(array('TIPO' => $_tipo));
 		$resultado = $sql->fetchAll();
 
 		$sql=null;
@@ -769,11 +838,12 @@ class Factura
 			endif;
 	}
 
-	function get_cliente_deudor_vencida($_idcliente)
+	function get_cliente_deudor_vencida($_idcliente, $_tipo=0)
 	{
+		if(!$_tipo)$_tipo = 1;		
 		$conn = new Conexion();					
-		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = 1 and estado != 'presupuesto' and idCliente = " . $_idcliente);	
-		$sql->execute();
+		$sql = $conn->prepare("SELECT * from clientes_facturas where idTipo = :TIPO and estado != 'presupuesto' and idCliente = " . $_idcliente);	
+		$sql->execute(array("TIPO" => $_tipo));
 		$resultado = $sql->fetchAll();
 
 		$sql=null;

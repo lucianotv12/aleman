@@ -2,19 +2,27 @@
 //$URL = "http://localhost/comprasgo/admin";
 
 if("localhost" == $_SERVER['SERVER_NAME'] ):
-	$URL = "http://localhost/aleman/admin";
+	$URL = "http://192.168.1.236/aleman/admin";
+//	$URL = "http://localhost/aleman/admin";
+
 	define('ROOT','localhost');
 	define('DATABASE','aleman');
-	define('USER','root');
-	define('PASS','');	
+	define('USER','aleman');
+	define('PASS','1610Lucho');	
 
 else:
-$URL = '/admin';
+/*$URL = '/admin';
 
 define('ROOT','directgroup.c3aiub4xgnfs.us-west-2.rds.amazonaws.com');
 define('DATABASE','aleman');
 define('USER','ibris');
-define('PASS','Ibris1193');
+define('PASS','Ibris1193');*/
+	$URL = "http://192.168.1.236/aleman/admin";
+	define('ROOT','localhost');
+	define('DATABASE','aleman');
+	define('USER','aleman');
+	define('PASS','1610Lucho');	
+
 endif;
 
 

@@ -63,15 +63,15 @@ class Cliente
 
 		if ($this->id<>0) 
 			{ 
-			$sql = $conn->prepare("update clientes set idTipo = '$this->idTipo', nombre = '$this->nombre', domicilio = '$this->domicilio', idLocalidad = '$this->idLocalidad', idProvincia = '$this->idProvincia', pais = '$this->pais', cp = '$this->cp', telefono = '$this->telefono', telefono2 = '$this->telefono2', contacto = '$this->contacto', mail = '$this->mail', web = '$this->web', fechaCarga = '$this->fechaCarga', idUsuario = '$this->idUsuario', activo = '$this->activo', observaciones = '$this->observaciones',idVendedor = '$this->idVendedor',descuento = '$this->descuento',nro_cuit = '$this->nro_cuit',condicion_iva = '$this->condicion_iva'  where id='$this->id'"); 
+			$sql = $conn->prepare("update clientes set idTipo = '$this->idTipo', nombre = '$this->nombre', domicilio = '$this->domicilio', idLocalidad = '$this->idLocalidad', idProvincia = '$this->idProvincia', pais = '$this->pais', cp = '$this->cp', telefono = '$this->telefono', telefono2 = '$this->telefono2', contacto = '$this->contacto', mail = '$this->mail', web = '$this->web',  idUsuario = '$this->idUsuario', activo = '$this->activo', observaciones = '$this->observaciones',idVendedor = '$this->idVendedor',descuento = '$this->descuento',nro_cuit = '$this->nro_cuit',condicion_iva = '$this->condicion_iva'  where id='$this->id'"); 
 			$sql->execute();
 
 			}
 		else 
 			{
-			$sql = $conn->prepare("insert into clientes values (null, '$this->idTipo', '$this->nombre', '$this->domicilio', '$this->idLocalidad', '$this->idProvincia', '$this->pais', '$this->cp', '$this->telefono', '$this->telefono2', '$this->contacto', '$this->mail', '$this->web', '$this->fechaCarga', '$this->idUsuario', '$this->activo','$this->observaciones','$this->idVendedor','$this->descuento','$this->nro_cuit', '$this->condicion_iva')"); 
+			$sql = $conn->prepare("insert into clientes values (null, '$this->idTipo', '$this->nombre', '$this->domicilio', '$this->idLocalidad', '$this->idProvincia', '$this->pais', '$this->cp', '$this->telefono', '$this->telefono2', '$this->contacto', '$this->mail', '$this->web', curdate(), '$this->idUsuario', '$this->activo','$this->observaciones','$this->idVendedor','$this->descuento','$this->nro_cuit', '$this->condicion_iva')"); 
 			$sql->execute();
-		//	print_r($sql);DIE;
+		//	print_r($sql);die;
 			$this->id = $conn->lastInsertId();
 			}
 		$sql=null;
@@ -91,7 +91,7 @@ class Cliente
 		}	
 
 	function nuevo_cliente($_PARAM, $_idtipo)
-	{
+	{ $_usuario = unserialize(@$_SESSION["usuario"]);
 		$cliente = new Cliente ();
 		$cliente->set_idTipo($_idtipo);
 		$cliente->set_nombre($_PARAM['nombre']);
@@ -106,10 +106,11 @@ class Cliente
 		$cliente->set_mail($_PARAM['email']);
 		$cliente->set_web($_PARAM['web']);
 		$cliente->set_fechaCarga('0');
-		$cliente->set_idUsuario($_PARAM['idUsuario']);
+		$cliente->set_idUsuario($_usuario->idUsuario);
 		$cliente->set_activo(1);
 		$cliente->set_observaciones($_PARAM['observaciones']);
 		$cliente->set_idVendedor($_PARAM['idVendedor']);
+		if(!$_PARAM['descuento']) $_PARAM['descuento'] =0;
 		$cliente->set_descuento($_PARAM['descuento']);
 		$cliente->set_nro_cuit($_PARAM['nro_cuit']); 
 		$cliente->set_condicion_iva($_PARAM['condicion_iva']); 
@@ -125,7 +126,7 @@ class Cliente
 
 		$conn = new Conexion();
 
-		$sql = $conn->prepare("Select * FROM clientes where idTipo = $_id_tipo and activo = 1 $whereclause order by id $limit");
+		$sql = $conn->prepare("Select * FROM clientes where idTipo = $_id_tipo and activo = 1 $whereclause order by nombre $limit");
 		$sql->execute();
 		$result_listado = $sql->fetchAll();
 		$clientes = array();

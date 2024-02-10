@@ -56,8 +56,17 @@
 											<td><?php echo $cliente->get_nombre();?></td>
 											<td><?php echo $cliente->get_telefono();?></td>
 											<td><?php echo $cliente->get_mail();?></td>
-											<td><?php echo $cliente_deudor = Factura::get_cliente_deudor($cliente->get_id());?></td>
-											<td><?php echo Factura::get_cliente_deudor_vencida($cliente->get_id());?></td>												
+											<?php if($tipo == "proveedores"):?>
+
+											<td><?php echo $cliente_deudor = Factura::get_cliente_deudor($cliente->get_id(),2);?></td>
+											<td><?php echo Factura::get_cliente_deudor_vencida($cliente->get_id(),2);?></td>	
+
+											<?php else:?>											
+
+											<td><?php echo $cliente_deudor = Factura::get_cliente_deudor($cliente->get_id(),1);?></td>
+											<td><?php echo Factura::get_cliente_deudor_vencida($cliente->get_id(),1);?></td>
+											
+											<?php endif;?>												
 											<?php if($tipo == "proveedores"):?>
 											<td><?php echo Factura::facturas_cantidad($cliente->get_id(),2);?>
 											 <a href="<?php echo HOME?>facturas_proveedor/<?php echo $cliente->get_id()?>/">Ver</a> 

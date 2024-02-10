@@ -120,7 +120,7 @@ $categorias= Producto::get_categorias_combo();
             </div>
             <div class="panel-body" style="background: #5DBD90; color: white;">
 
-				<form name="datos" method="post" action="<?php echo HOME?>modificar_precios.html" >
+				<form name="datos" method="post" action="<?php echo HOME?>modificar_precios.html" onsubmit="return confirm('Desea generar el cambio en los precios? verifique la seleccion que realizo');" >
 				<input type="hidden" name="idUsuario" value="<?php echo $_usuario->idUsuario?>">
 			    <div class="col-xs-12">    
 					<div class="row">
@@ -140,7 +140,7 @@ $categorias= Producto::get_categorias_combo();
 						&nbsp;
 
 					   <select multiple id="idSubCategoria" name="idSubCategoria[]" size="10" style="background: #5DBD90; color: white;">
-							<option value="-1">Selecciona Uno...</option>
+							<option value="-1" selected="selected">Selecciona subcategorias</option>
 
 						</select>
 					</div>
@@ -162,7 +162,7 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" checked value="1">Aumentar
 							<input type="radio" name="tipo_valor" value="2">Disminuir
 							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">		
+							<input type="submit" name="submit"  value="Generar" style="background: white; color: #5DBD90; border: none;">		
 						</div>	
 					</div>
 					<div class="row">
@@ -175,7 +175,7 @@ $categorias= Producto::get_categorias_combo();
 							<input type="radio" name="tipo_valor" value="1">Aumentar
 							<input type="radio" name="tipo_valor" value="2">Disminuir
 							<input type="radio" name="tipo_valor" value="3">Definir porcentaje exacto
-							<input type="submit" name="submit" onclick="cambiar_precios();" value="Generar" style="background: white; color: #5DBD90; border: none;">
+							<input type="submit" name="submit"  value="Generar" style="background: white; color: #5DBD90; border: none;">
 						</div>						
 					</div>
 					<div class="row">
@@ -187,7 +187,7 @@ $categorias= Producto::get_categorias_combo();
 							Precio:% <input onKeyPress="return acceptNum(event)" type="text" name="cantidad_precio" size="4" maxlength=5 style="color: black">
 							<input type="radio" name="tipo_valor" value="1">Aumentar
 							<input type="radio" name="tipo_valor" value="2">Disminuir
-							<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
+							<input type="submit" name="submit" 	 value="Generar" style="background: white; color: #5DBD90; border: none;">
 						</div>							
 					</div>	
 					<div class="row">
@@ -203,7 +203,7 @@ $categorias= Producto::get_categorias_combo();
 		                            <option value="21">21</option>            
 		                            <option value="24">24</option>                                                    
 		                        </select>
-								<input type="submit" name="submit" onclick="cambiar_precios();"	 value="Generar" style="background: white; color: #5DBD90; border: none;">
+								<input type="submit" name="submit" 	 value="Generar" style="background: white; color: #5DBD90; border: none;">
 						</div>						
 			   		 </div>
 			   	</div>	 
@@ -236,4 +236,20 @@ $categorias= Producto::get_categorias_combo();
 		$(document).ready(function() {
 			App.init();
 	//		TableManageButtons.init();
-		});</script>
+		});
+        function genera_cambio()  
+        {
+        if(confirm("Desea generar el cambio en los precios? verifique la seleccion que realizo")){;
+	        	alert('SIN');
+	            /*var formu = document.datos;
+
+		        formu.submit();
+		        return true;*/
+	        } else {
+	        	ALERT('NO USO');
+	        	return false;
+	        	die();
+	        }
+        }
+
+	</script>

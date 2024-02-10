@@ -118,6 +118,12 @@ class Template
                 <i class="fa fa-child" aria-hidden="true"></i>
                 <span>Clientes</span>
               </a>
+                <ul class="sub-menu">
+                    <li class="<?php if($Seccion == 'clientes') echo "active"; ?>"><a href="<?php echo HOME?>clientes.html">Listado Clientes</a></li>
+                    <li class="<?php if($Seccion == 'clientes') echo "active"; ?>"><a href="<?php echo HOME?>clientes_cc.html">Cuenta Corriente</a></li>
+
+                </ul>              
+               
           </li>          
            <li class="has-sub <?php if($Seccion == 'proveedores') echo "active"; ?>">
             <a href="<?php echo HOME?>proveedores.html">
@@ -127,6 +133,8 @@ class Template
             <ul class="sub-menu">
                 <li class="<?php if($Seccion == 'proveedores') echo "active"; ?>"><a href="<?php echo HOME?>proveedores.html">Listado Proveedores</a></li>
                 <li class="<?php if($Seccion == 'proveedores') echo "active"; ?>"><a href="<?php echo HOME?>proveedor_factura.html">Factura Proveedor</a></li>
+                <li class="<?php if($Seccion == 'proveedores') echo "active"; ?>"><a href="<?php echo HOME?>proveedor_cc.html">Cuenta Corriente</a></li>
+                
             </ul>              
           </li>    
            <li class="has-sub">

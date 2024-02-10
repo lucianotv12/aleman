@@ -104,7 +104,7 @@
 											<?php endif;?>		
 											<td><a data-toggle="modal" data-target="#pagos" data-book-id="<?php echo $factura["id"];?>"  >pagar</a></td>
 											<?php if($_GET["id"] == "presupuesto"):?>
-												<td><a style="color:red" href="<?php echo HOME?>pasar_a_factura/<?php echo $factura["id"];?>/">Pasar a salida</a></td>
+												<td><a style="color:red" href="#" data-href="<?php echo HOME?>pasar_a_factura/<?php echo $factura["id"];?>/" data-toggle="modal" data-target="#confirm-salida">Pasar a salida</a></td>
 											<?php endif;?>
 
 											</form>										
@@ -208,6 +208,38 @@
 
 	</div>
 
+		<div class="modal fade" id="confirm-salida" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+	    <div class="modal-dialog">
+
+	        <div class="modal-content">
+
+	            <div class="modal-header">
+
+	                Pasar a salida
+
+	            </div>
+
+	            <div class="modal-body">
+
+	                ¿Confirma que quiere pasar a salida este presupuesto?
+
+	            </div>
+
+	            <div class="modal-footer">
+
+	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+	                <a class="btn btn-danger btn-ok">confirmar</a>
+
+	            </div>
+
+	        </div>
+
+	    </div>
+
+	</div>
+
 	<!-- end page container -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?php echo HOME?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -285,6 +317,18 @@ $('#pagos').on('show.bs.modal', function(e) {
 
 }); 
 </script>  
+    <script type="text/javascript">
+
+		$('#confirm-salida').on('show.bs.modal', function(e) {
+
+		    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+
+		});    	
+
+    	
+
+    </script>	
+
 
 </body>
 </html>
